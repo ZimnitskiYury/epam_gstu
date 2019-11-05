@@ -16,10 +16,10 @@ namespace task01.Tests
         public void GetNodTest_1()
         {
             Euclidean test1 = new Euclidean();
-            int f = 100;
-            int s = 25;
+            int first = 100;
+            int second = 25;
             int expected= 25;
-            int result=test1.GetNod(f, s);
+            int result=test1.GetNod(first, second);
             EuclideanTests.Equals(expected, result);
         }
         [TestMethod()]
@@ -27,10 +27,10 @@ namespace task01.Tests
         public void GetNodTest_2()
         {
             Euclidean test1 = new Euclidean();
-            int f = 25;
-            int s = 100;
+            int first = 25;
+            int second = 100;
             int expected = 25;
-            int result = test1.GetNod(f, s);
+            int result = test1.GetNod(first, second);
             Assert.AreEqual(expected, result);
         }
         [TestMethod()]
@@ -38,10 +38,10 @@ namespace task01.Tests
         public void GetNodTest_3()
         {
             Euclidean test1 = new Euclidean();
-            int f = 120;
-            int s = 25;
+            int first = 120;
+            int second = 25;
             int expected = 5;
-            int result = test1.GetNod(f, s);
+            int result = test1.GetNod(first, second);
             Assert.AreEqual(expected, result);
         }
         [TestMethod()]
@@ -49,10 +49,10 @@ namespace task01.Tests
         public void GetNodTest_4()
         {
             Euclidean test1 = new Euclidean();
-            int f = 219;
-            int s = 39;
+            int first = 219;
+            int second = 39;
             int expected = 3;
-            int result = test1.GetNod(f, s);
+            int result = test1.GetNod(first, second);
             Assert.AreEqual(expected, result);
         }
         [TestMethod()]
@@ -60,10 +60,10 @@ namespace task01.Tests
         public void GetNodTest_5()
         {
             Euclidean test1 = new Euclidean();
-            int f = 13;
-            int s = 13;
+            int first = 13;
+            int second = 13;
             int expected = 13;
-            int result = test1.GetNod(f, s);
+            int result = test1.GetNod(first, second);
             Assert.AreEqual(expected, result);
         }
     }

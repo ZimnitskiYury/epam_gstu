@@ -11,8 +11,8 @@ namespace task01
         //метод для получения Нод двух чисел
         public virtual int GetNod(int n, int k)
         {
-            int f;
-            int s;
+            int first;
+            int second;
             //если входные переменные равны,
             //то нод любой из входных
             if (n == k) { return n; }
@@ -22,24 +22,24 @@ namespace task01
             //если да, то переменные получают соответствующие значения
             //первая f равна n, вторая s равна k
             {
-                f = n;
-                s = k;
+                first = n;
+                second = k;
             }
             //если нет, то меняем местами
             else
             {
-                f = k;
-                s = n;
+                first = k;
+                second = n;
             }
             int nod;
             //проверка на неравенство остатка нулю
             //если неравен, то запускается этот же метод
             //с новыми значениями
-            if (f % s != 0)
+            if (first % second != 0)
             {
-                nod = GetNod(s, f % s);
+                nod = GetNod(second, first % second);
             }
-            else nod = s;
+            else nod = second;
             return nod;
         }
     }
