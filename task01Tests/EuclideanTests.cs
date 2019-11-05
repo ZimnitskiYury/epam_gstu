@@ -55,5 +55,16 @@ namespace task01.Tests
             int result = test1.GetNod(f, s);
             Assert.AreEqual(expected, result);
         }
+        [TestMethod()]
+        //тест с вызовом рекурсии
+        public void GetNodTest_5()
+        {
+            Euclidean test1 = new Euclidean();
+            int f = 13;
+            int s = 13;
+            int expected = 13;
+            int result = test1.GetNod(f, s);
+            Assert.AreEqual(expected, result);
+        }
     }
 }
