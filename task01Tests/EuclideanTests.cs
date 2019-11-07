@@ -66,5 +66,70 @@ namespace task01.Tests
             int result = test1.GetNod(first, second);
             Assert.AreEqual(expected, result);
         }
+        [TestMethod()]
+        //тест с тремя входными
+        public void GetNodTest_6()
+        {
+            Euclidean test1 = new Euclidean();
+            int first = 27;
+            int second = 74;
+            int third = 58;
+            int expected = 1;
+            int result = test1.GetNod(first, second, third);
+            Assert.AreEqual(expected, result);
+        }
+        [TestMethod()]
+        //тест с тремя входными
+        public void GetNodTest_7()
+        {
+            Euclidean test1 = new Euclidean();
+            int first = 130;
+            int second = 374;
+            int third = 258;
+            int expected = 2;
+            int result = test1.GetNod(first, second, third);
+            Assert.AreEqual(expected, result);
+        }
+        [TestMethod()]
+        //тест с четырьмя входными
+        public void GetNodTest_8()
+        {
+            Euclidean test1 = new Euclidean();
+            int first = 130;
+            int second = 374;
+            int third = 258;
+            int fourth = 382;
+            int expected = 2;
+            int result = test1.GetNod(first, second, third, fourth);
+            Assert.AreEqual(expected, result);
+        }
+        [TestMethod()]
+        //тест с пятью входными
+        public void GetNodTest_9()
+        {
+            Euclidean test1 = new Euclidean();
+            int first = 180;
+            int second = 24;
+            int third = 240;
+            int fourth = 138;
+            int fifth = 186;
+            int expected = 6;
+            int result = test1.GetNod(first, second, third, fourth, fifth);
+            Assert.AreEqual(expected, result);
+        }
+        [TestMethod()]
+        //тест с пятью входными, 1 после первых двух чисел
+        public void GetNodTest_10()
+        {
+            Euclidean test1 = new Euclidean();
+            int first = 7;
+            int second = 24;
+            int third = 240;
+            int fourth = 138;
+            int fifth = 186;
+            int expected = 1;
+            int result = test1.GetNod(first, second, third, fourth, fifth);
+            Assert.AreEqual(expected, result);
+        }
     }
 }

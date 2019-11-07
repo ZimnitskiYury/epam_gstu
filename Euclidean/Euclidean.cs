@@ -9,7 +9,7 @@ namespace task01
     public class Euclidean
     {
         //метод для получения Нод двух чисел
-        public virtual int GetNod(int n, int k)
+        public int GetNod(int n, int k)
         {
             int first;
             int second;
@@ -41,6 +41,56 @@ namespace task01
             }
             else nod = second;
             return nod;
+        }
+        public int GetNod(int n, int k, int l)
+        {
+            int nod;
+            nod = GetNod(n, k);
+                if (nod != 1)
+                {
+                    nod = GetNod(l, nod);
+                    return nod;
+                }
+                else return nod;
+        }
+        public int GetNod(int n, int k, int l, int m)
+        {
+            int nod;
+            nod = GetNod(n, k);
+            if (nod != 1)
+            {
+                nod = GetNod(l, nod);
+                {
+                    if (nod != 1)
+                    {
+                        nod = GetNod(m, nod);
+                        return nod;
+                    }
+                    else return nod;
+                }
+            }
+            else return nod;
+        }
+        public int GetNod(int n, int k, int l, int m, int p)
+        {
+            int nod;
+            nod = GetNod(n, k);
+            if (nod != 1)
+            {
+                nod = GetNod(l, nod);
+                    if (nod != 1)
+                    {
+                        nod = GetNod(m, nod);
+                        if (nod != 1)
+                        {
+                            nod = GetNod(p, nod);
+                            return nod;
+                        }
+                        else return nod;
+                    }
+                    else return nod;
+            }
+            else return nod;
         }
     }
 }
