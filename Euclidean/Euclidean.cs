@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace task01
 {
@@ -97,6 +98,72 @@ namespace task01
                     else return nod;
             }
             else return nod;
+        }
+        public int GetNodStein(int n, int k, out double ts)
+        {
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+            int nod;
+            int first;
+            int second;
+            if (n == 0)
+            {
+                stopWatch.Stop();
+                ts = stopWatch.Elapsed.TotalMilliseconds;
+                return k; //первое условие бинарного алгоритма
+
+            }
+            if (k == 0)
+            {
+                stopWatch.Stop();
+                ts = stopWatch.Elapsed.TotalMilliseconds;
+                return n; //первое условие бинарного алгоритма
+            }
+            if (n == k)
+            {
+                stopWatch.Stop();
+                ts = stopWatch.Elapsed.TotalMilliseconds;
+                return n; 
+            } //второе условие бинарного алгоритма
+
+            //проверка больше ли n>k
+            if (n > k)
+            //если да, то переменные получают соответствующие значения
+            //первая first равна n, вторая second равна k
+            {
+                first = n;
+                second = k;
+            }
+            //если нет, то меняем местами
+            else
+            {
+                first = k;
+                second = n;
+            }
+            //проверка третьего условия бинарного алгоритма
+            if (first % 2 == 0 && second % 2 == 0)
+            {
+                first /= 2;
+                second /= 2;
+                nod = 2 * GetNodStein(first, second, out _);
+            }
+            //проверка 5го условия бинарного алгоритма
+            else if (first % 2 == 1 && second % 2 == 1)
+            {
+                nod = GetNodStein((first - second) / 2, second, out _);
+            }
+            //проверка 4го условия бинарного алгоритма
+            else if (first % 2 == 0)
+            {
+                nod = GetNodStein(first / 2, second, out _);
+            }
+            else
+            {
+                nod = GetNodStein(first, second / 2, out _);
+            }
+            stopWatch.Stop();
+            ts = stopWatch.Elapsed.TotalMilliseconds;
+            return nod;
         }
     }
 }

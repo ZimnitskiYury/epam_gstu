@@ -18,8 +18,8 @@ namespace task01.Tests
             Euclidean test1 = new Euclidean();
             int first = 100;
             int second = 25;
-            int expected= 25;
-            int result=test1.GetNod(first, second);
+            int expected = 25;
+            int result = test1.GetNod(first, second);
             EuclideanTests.Equals(expected, result);
         }
         [TestMethod()]
@@ -129,6 +129,17 @@ namespace task01.Tests
             int fifth = 186;
             int expected = 1;
             int result = test1.GetNod(first, second, third, fourth, fifth);
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod()]
+        public void GetNodSteinTest()
+        {
+            Euclidean test2=new Euclidean();
+            int first = 15;
+            int second = 21;
+            int expected = 3;
+            int result = test2.GetNodStein(first, second, out double ts);
             Assert.AreEqual(expected, result);
         }
     }
