@@ -10,64 +10,74 @@ namespace task01
     public class Euclidean
     {
         //метод для получения Нод двух чисел
-        public int GetNod(int n, int k)
+        public int GetNod(int n, int k, out double timeEuclid)
         {
-            int first;
-            int second;
-            //если входные переменные равны,
-            //то нод любой из входных
-            if (n == k) { return n; }
-
-            //проверка больше ли n>k
-            else if (n > k)
-            //если да, то переменные получают соответствующие значения
-            //первая f равна n, вторая s равна k
+            int first;  //переменная для большего значения
+            int second; //переменная для меньшего значения
+            int nod;    //переменная для НОД
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+            if (n > k) //если n больше k, то переменные получают соответствующие значения                                     
             {
-                first = n;
-                second = k;
+                first = n;  //первая first равна n
+                second = k; //вторая second равна k
             }
-            //если нет, то меняем местами
-            else
+            else            //если нет, то меняем местами
             {
                 first = k;
                 second = n;
             }
-            int nod;
-            //проверка на неравенство остатка нулю
+            if (first == 0)
+            {
+                nod = second;
+            }
+            else if (second == 0)
+            {
+                nod = first;
+            }
+            else if (first == second) //если входные переменные равны, то НОД любая из них
+            {
+                nod = first;
+            }
+            else if (first % second != 0)//проверка на неравенство остатка нулю
             //если неравен, то запускается этот же метод
             //с новыми значениями
-            if (first % second != 0)
             {
-                nod = GetNod(second, first % second);
+                nod = GetNod(second, first % second, out _);
             }
-            else nod = second;
+            else
+            {
+                nod = second;
+            }
+            stopWatch.Stop();
+            timeEuclid = stopWatch.Elapsed.TotalMilliseconds;
             return nod;
         }
         public int GetNod(int n, int k, int l)
         {
             int nod;
-            nod = GetNod(n, k);
+            nod = GetNod(n, k, out _);
             //проверка на НОД равную 1, если равна единице, то продолжать нет смысла
-                if (nod != 1)
-                {
-                    nod = GetNod(l, nod);
-                    return nod;
-                }
-                else return nod;
+            if (nod != 1)
+            {
+                nod = GetNod(l, nod, out _);
+                return nod;
+            }
+            else return nod;
         }
         public int GetNod(int n, int k, int l, int m)
         {
             int nod;
-            nod = GetNod(n, k);
+            nod = GetNod(n, k, out _);
             //проверка на НОД равную 1, если равна единице, то продолжать нет смысла
             if (nod != 1)
             {
-                nod = GetNod(l, nod);
+                nod = GetNod(l, nod, out _);
                 {
                     //проверка на НОД равную 1, если равна единице, то продолжать нет смысла
                     if (nod != 1)
                     {
-                        nod = GetNod(m, nod);
+                        nod = GetNod(m, nod, out _);
                         return nod;
                     }
                     else return nod;
@@ -78,55 +88,34 @@ namespace task01
         public int GetNod(int n, int k, int l, int m, int p)
         {
             int nod;
-            nod = GetNod(n, k);
+            nod = GetNod(n, k, out _);
             //проверка на НОД равную 1, если равна единице, то продолжать нет смысла
             if (nod != 1)
             {
-                nod = GetNod(l, nod);
+                nod = GetNod(l, nod, out _);
                 //проверка на НОД равную 1, если равна единице, то продолжать нет смысла
                 if (nod != 1)
-                    {
-                        nod = GetNod(m, nod);
+                {
+                    nod = GetNod(m, nod, out _);
                     //проверка на НОД равную 1, если равна единице, то продолжать нет смысла
                     if (nod != 1)
-                        {
-                            nod = GetNod(p, nod);
-                            return nod;
-                        }
-                        else return nod;
+                    {
+                        nod = GetNod(p, nod, out _);
+                        return nod;
                     }
                     else return nod;
+                }
+                else return nod;
             }
             else return nod;
         }
-        public int GetNodStein(int n, int k, out double ts)
+        public int GetNodStein(int n, int k, out double timeStein)
         {
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
             int nod;
             int first;
             int second;
-            if (n == 0)
-            {
-                stopWatch.Stop();
-                ts = stopWatch.Elapsed.TotalMilliseconds;
-                return k; //первое условие бинарного алгоритма
-
-            }
-            if (k == 0)
-            {
-                stopWatch.Stop();
-                ts = stopWatch.Elapsed.TotalMilliseconds;
-                return n; //первое условие бинарного алгоритма
-            }
-            if (n == k)
-            {
-                stopWatch.Stop();
-                ts = stopWatch.Elapsed.TotalMilliseconds;
-                return n; 
-            } //второе условие бинарного алгоритма
-
-            //проверка больше ли n>k
             if (n > k)
             //если да, то переменные получают соответствующие значения
             //первая first равна n, вторая second равна k
@@ -140,8 +129,20 @@ namespace task01
                 first = k;
                 second = n;
             }
+            if (n == 0)
+            {
+                nod = k; //первое условие бинарного алгоритма
+            }
+            else if (k == 0)
+            {
+                nod = n; //первое условие бинарного алгоритма
+            }
+            else if (n == k)
+            {
+                nod = n;
+            } //второе условие бинарного алгоритма
             //проверка третьего условия бинарного алгоритма
-            if (first % 2 == 0 && second % 2 == 0)
+            else if (first % 2 == 0 && second % 2 == 0)
             {
                 first /= 2;
                 second /= 2;
@@ -162,8 +163,17 @@ namespace task01
                 nod = GetNodStein(first, second / 2, out _);
             }
             stopWatch.Stop();
-            ts = stopWatch.Elapsed.TotalMilliseconds;
+            timeStein = stopWatch.Elapsed.TotalMilliseconds;
             return nod;
+        }
+        public void GetAlgsTime(int n, int k, out string[] masX, out double [] masY)
+        {
+            GetNod(n, k, out double algsEuclidTime);
+            GetNodStein(n, k, out double algsSteinTime);
+            string [] algsName= { "EuclidAlgs", "SteinAlgs" };
+            double [] algsTime = { algsEuclidTime, algsSteinTime };
+            masX = algsName;
+            masY = algsTime;
         }
     }
 }

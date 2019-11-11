@@ -19,7 +19,7 @@ namespace task01.Tests
             int first = 100;
             int second = 25;
             int expected = 25;
-            int result = test1.GetNod(first, second);
+            int result = test1.GetNod(first, second, out _);
             EuclideanTests.Equals(expected, result);
         }
         [TestMethod()]
@@ -30,7 +30,7 @@ namespace task01.Tests
             int first = 25;
             int second = 100;
             int expected = 25;
-            int result = test1.GetNod(first, second);
+            int result = test1.GetNod(first, second, out _);
             Assert.AreEqual(expected, result);
         }
         [TestMethod()]
@@ -41,7 +41,7 @@ namespace task01.Tests
             int first = 120;
             int second = 25;
             int expected = 5;
-            int result = test1.GetNod(first, second);
+            int result = test1.GetNod(first, second, out _);
             Assert.AreEqual(expected, result);
         }
         [TestMethod()]
@@ -52,7 +52,7 @@ namespace task01.Tests
             int first = 219;
             int second = 39;
             int expected = 3;
-            int result = test1.GetNod(first, second);
+            int result = test1.GetNod(first, second, out _);
             Assert.AreEqual(expected, result);
         }
         [TestMethod()]
@@ -63,7 +63,7 @@ namespace task01.Tests
             int first = 13;
             int second = 13;
             int expected = 13;
-            int result = test1.GetNod(first, second);
+            int result = test1.GetNod(first, second, out _);
             Assert.AreEqual(expected, result);
         }
         [TestMethod()]
@@ -135,12 +135,26 @@ namespace task01.Tests
         [TestMethod()]
         public void GetNodSteinTest()
         {
-            Euclidean test2=new Euclidean();
+            Euclidean test2 = new Euclidean();
             int first = 15;
             int second = 21;
             int expected = 3;
             int result = test2.GetNodStein(first, second, out double ts);
             Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod()]
+        public void GetAlgsTimeTest()
+        {
+            Euclidean test3 = new Euclidean();
+            int first = 1073;
+            int second = 1597;
+            test3.GetAlgsTime(first, second, out string [] masX, out double [] masY);
+            string algsEuclidName = "EuclidAlgs";
+            string algsSteinName = "SteinAlgs";
+            Assert.AreEqual(algsEuclidName, masX[0]);
+            Assert.AreEqual(algsSteinName, masX[1]);
+            Assert.AreEqual(masY[0], masY[1]);
         }
     }
 }
