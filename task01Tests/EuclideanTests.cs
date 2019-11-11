@@ -27,7 +27,7 @@ namespace task01.Tests
         public void GetNodTest_2()
         {
             Euclidean test1 = new Euclidean();
-            int first = 25;
+            int first = -25;
             int second = 100;
             int expected = 25;
             int result = test1.GetNod(first, second, out _);
@@ -154,7 +154,7 @@ namespace task01.Tests
             string algsSteinName = "SteinAlgs";
             Assert.AreEqual(algsEuclidName, masX[0]);
             Assert.AreEqual(algsSteinName, masX[1]);
-            Assert.AreEqual(masY[0], masY[1]);
+            //Assert.AreEqual(masY[0], masY[1]); //тест с ошибкой, чтобы увидеть время выполнения
         }
     }
 }
