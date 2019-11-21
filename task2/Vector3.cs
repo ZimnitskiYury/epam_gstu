@@ -13,6 +13,18 @@ namespace task2
             y = 0;
             z = 0;
         }
+        public Vector3(float k)                                 //Конструктор, если объекту передается одна переменная
+        {
+            x = k;
+            y = k;
+            z = k;
+        }
+        public Vector3(float a, float b, float c)               //Конструктор для трех переменных
+        {
+            x = a;
+            y = b;
+            z = c;
+        }
         public static Vector3 operator +(Vector3 v1, Vector3 v2) //перегрузка операции сложения
         {
             v1.x += v2.x;
