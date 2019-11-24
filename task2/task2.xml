@@ -56,6 +56,14 @@
             <param name="i">A scalar float number</param>
             <returns>The new object with result</returns>
         </member>
+        <member name="M:task2.Vector3.op_Multiply(task2.Vector3,task2.Vector3)">
+            <summary>
+            Multiplies a two vectors
+            </summary>
+            <param name="v1">A first input vector</param>
+            <param name="v2">A second input vector</param>
+            <returns>The new object with result</returns>
+        </member>
         <member name="M:task2.Vector3.op_Division(task2.Vector3,System.Single)">
             <summary>
             Divides a vector by a scalar float number

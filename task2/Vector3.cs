@@ -22,9 +22,9 @@ namespace task2
         /// </summary>
         public Vector3()                                       
         {
-            x = 0;
-            y = 0;
-            z = 0;
+            x = 1;
+            y = 1;
+            z = 1;
         }
         /// <summary>
         /// Constructor with one float param.
@@ -80,6 +80,19 @@ namespace task2
             return new Vector3(v1.x * i, v1.y * i, v1.z * i);
         }
         /// <summary>
+        /// Multiplies a two vectors
+        /// </summary>
+        /// <param name="v1">A first input vector</param>
+        /// <param name="v2">A second input vector</param>
+        /// <returns>The new object with result</returns>
+        public static Vector3 operator *(Vector3 v1, Vector3 v2)
+        {
+            float vx = v1.y * v2.z - v1.z * v2.y;
+            float vy = -(v1.x * v2.z - v1.z * v2.x);
+            float vz = v1.x * v2.y - v1.y * v2.x;
+            return new Vector3(vx, vy, vz);
+        } 
+        /// <summary>
         /// Divides a vector by a scalar float number
         /// </summary>
         /// <remarks>Decrease the length of the vector</remarks>
@@ -98,8 +111,14 @@ namespace task2
         public static double Length(Vector3 v1)
         {
             double l = Math.Sqrt((v1.x * v1.x) + (v1.y * v1.y) + (v1.z * v1.z));
-            l = Math.Abs(l);
-            return l;
+            return Math.Abs(l);
+        }
+        public static float Scalar(Vector3 v1, Vector3 v2)
+        {
+            float scalarX = v1.x + v2.x;
+            float scalarY = v1.y + v2.y;
+            float scalarZ = v1.z + v2.z;
+            return scalarX + scalarY + scalarZ;
         }
     }
 }
