@@ -18,6 +18,7 @@ namespace task2.Tests
             Vector3 v2 = new Vector3(2);
             string str1 = v1.ToString();
             string str2 = v2.ToString();
+            double k=v1.GetLength();
             Assert.AreEqual(str1, str2);
         }
 

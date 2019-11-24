@@ -146,6 +146,15 @@ namespace task2
             return Math.Abs(l);
         }
         /// <summary>
+        /// Calculates the length of a vector
+        /// </summary>
+        /// <returns>Returns the length of the vector</returns>
+        public double GetLength()
+        {
+            double l = Math.Sqrt((x * x) + (y * y) + (z * z));
+            return Math.Abs(l);
+        }
+        /// <summary>
         /// Returns the dot product of two vectors
         /// </summary>
         /// <param name="v1"></param>

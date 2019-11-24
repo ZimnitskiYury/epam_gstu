@@ -4,13 +4,15 @@
         <name>task2</name>
     </assembly>
     <members>
+        <member name="T:task2.Polynom">
+            <summary>
+            Class for Polynomial and operations
+            </summary>
+        </member>
         <member name="T:task2.Vector3">
             <summary>
             This class for creating and working with Vector.
             </summary>
-            <remarks>
-            This class can add, subtract, multiply and divide.
-            </remarks>
         </member>
         <member name="M:task2.Vector3.#ctor">
             <summary>
@@ -101,6 +103,12 @@
             Calculates the length of a vector
             </summary>
             <param name="v1">A input vector</param>
+            <returns>Returns the length of the vector</returns>
+        </member>
+        <member name="M:task2.Vector3.GetLength">
+            <summary>
+            Calculates the length of a vector
+            </summary>
             <returns>Returns the length of the vector</returns>
         </member>
         <member name="M:task2.Vector3.GetScalar(task2.Vector3,task2.Vector3)">

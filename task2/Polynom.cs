@@ -9,14 +9,14 @@ namespace task2
     /// <summary>
     /// Class for Polynomial and operations
     /// </summary>
-    class Polynom
+    public class Polynom
     {
-        private int degree;
-        private int[] coef;
-        public Polynom(int [] c)
-        {
-            degree = coef.Length;
+        int degree;
+        int[] coef;
+        public Polynom(int []c)
+        {           
             coef = c;
+            degree = coef.Length;
         }
         public static Polynom operator +(Polynom p1, Polynom p2)
         {
@@ -97,7 +97,7 @@ namespace task2
                 {
                     for(int k = 0; k < p2.degree; k++)
                     {
-                        coef_temp[i + k] = p1.coef[i] * p2.coef[k];
+                        coef_temp[i + k] = coef_temp[i+k]+p1.coef[i] * p2.coef[k];
                     }
                 }
             }
@@ -107,11 +107,42 @@ namespace task2
                 {
                     for (int k = 0; k < p1.degree; k++)
                     {
-                        coef_temp[i + k] = p2.coef[i] * p1.coef[k];
+                        coef_temp[i + k] = coef_temp[i+k]+p2.coef[i] * p1.coef[k];
                     }
                 }
             }
             return new Polynom(coef_temp);
+        }
+        public static bool operator ==(Polynom p1, Polynom p2)
+        {
+            if (p1.degree != p2.degree)
+            {
+                return false;
+            }
+            else
+            {
+                for(int i=0;i<p1.degree;i++)
+                {
+                    if (p1.coef[i] != p2.coef[i])
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        public static bool operator !=(Polynom p1, Polynom p2)
+        {
+            return !(p1 == p2);
+        }
+        public override string ToString()
+        {
+            string pol = Convert.ToString(coef[0]);
+            for (int i=1; i<degree; i++)
+            {
+                pol += ", "+coef[i];
+            }
+            return pol;
         }
     }
 }
