@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace task2
 {
@@ -20,7 +16,7 @@ namespace task2
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public Vector3()                                       
+        public Vector3()
         {
             x = 0;
             y = 0;
@@ -30,7 +26,7 @@ namespace task2
         /// Constructor with one float param.
         /// </summary>
         /// <param name="k">A float number</param>
-        public Vector3(float k)                                 
+        public Vector3(float k)
         {
             x = k;
             y = k;
@@ -42,7 +38,7 @@ namespace task2
         /// <param name="a">A float number for X.</param>
         /// <param name="b">A float number for Y.</param>
         /// <param name="c">A float number for Z.</param>
-        public Vector3(float a, float b, float c)              
+        public Vector3(float a, float b, float c)
         {
             x = a;
             y = b;
@@ -75,7 +71,7 @@ namespace task2
         /// <returns>The new negated vector</returns>
         public static Vector3 operator -(Vector3 v1)
         {
-            return new Vector3(-1*v1.x, -1*v1.y, -1*v1.z);
+            return new Vector3(-1 * v1.x, -1 * v1.y, -1 * v1.z);
         }
         /// <summary>
         /// Multiplies a vector by a scalar float number
@@ -100,7 +96,7 @@ namespace task2
             float vy = v1.z * v2.x - v1.x * v2.z;
             float vz = v1.x * v2.y - v1.y * v2.x;
             return new Vector3(vx, vy, vz);
-        } 
+        }
         /// <summary>
         /// Divides a vector by a scalar float number
         /// </summary>
@@ -147,7 +143,7 @@ namespace task2
         /// </summary>
         /// <param name="v1">A input vector</param>
         /// <returns>Returns the length of the vector</returns>
-        public static double GetLength (Vector3 v1)
+        public static double GetLength(Vector3 v1)
         {
             double l = Math.Sqrt((v1.x * v1.x) + (v1.y * v1.y) + (v1.z * v1.z));
             return Math.Abs(l);
@@ -158,7 +154,7 @@ namespace task2
         /// <param name="v1"></param>
         /// <param name="v2"></param>
         /// <returns>The dot product of two vectors</returns>
-        public static float GetScalar (Vector3 v1, Vector3 v2)
+        public static float GetScalar(Vector3 v1, Vector3 v2)
         {
             float scalarX = v1.x + v2.x;
             float scalarY = v1.y + v2.y;
