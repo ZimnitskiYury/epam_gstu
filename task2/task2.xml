@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>task2</name>
+    </assembly>
+    <members>
+        <member name="T:task2.Vector3">
+            <summary>
+            This class for creating and working with Vector.
+            </summary>
+            <remarks>
+            This class can add, subtract, multiply and divide.
+            </remarks>
+        </member>
+        <member name="M:task2.Vector3.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:task2.Vector3.#ctor(System.Single)">
+            <summary>
+            Constructor with one float param.
+            </summary>
+            <param name="k">A float number</param>
+        </member>
+        <member name="M:task2.Vector3.#ctor(System.Single,System.Single,System.Single)">
+            <summary>
+            Constructor with three float param.
+            </summary>
+            <param name="a">A float number for X.</param>
+            <param name="b">A float number for Y.</param>
+            <param name="c">A float number for Z.</param>
+        </member>
+        <member name="M:task2.Vector3.op_Addition(task2.Vector3,task2.Vector3)">
+            <summary>
+            Adds two vectors and returns the result.
+            </summary>
+            <param name="v1">A first input vector</param>
+            <param name="v2">A second input vector</param>
+            <returns>The new object with sum of two vectors.</returns>
+        </member>
+        <member name="M:task2.Vector3.op_Subtraction(task2.Vector3,task2.Vector3)">
+            <summary>
+            Subtracts an object from another and returns the result.
+            </summary>
+            <param name="v1">A first input vector</param>
+            <param name="v2">A second input vector</param>
+            <returns>The new object with difference between two vectors</returns>
+        </member>
+        <member name="M:task2.Vector3.op_Multiply(task2.Vector3,System.Single)">
+            <summary>
+            Multiplies a vector by a scalar float number
+            </summary>
+            <remarks>Increase the length of the vector</remarks>
+            <param name="v1">A input vector</param>
+            <param name="i">A scalar float number</param>
+            <returns>The new object with result</returns>
+        </member>
+        <member name="M:task2.Vector3.op_Division(task2.Vector3,System.Single)">
+            <summary>
+            Divides a vector by a scalar float number
+            </summary>
+            <remarks>Decrease the length of the vector</remarks>
+            <param name="v1">A input vector</param>
+            <param name="i">A scalar float number</param>
+            <returns>The new object with result</returns>
+        </member>
+        <member name="M:task2.Vector3.Length(task2.Vector3)">
+            <summary>
+            Calculates the length of a vector
+            </summary>
+            <param name="v1">A input vector</param>
+            <returns>Returns the length of the vector</returns>
+        </member>
+    </members>
+</doc>
