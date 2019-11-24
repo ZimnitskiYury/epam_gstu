@@ -47,6 +47,13 @@
             <param name="v2">A second input vector</param>
             <returns>The new object with difference between two vectors</returns>
         </member>
+        <member name="M:task2.Vector3.op_UnaryNegation(task2.Vector3)">
+            <summary>
+            Negates an input vector.
+            </summary>
+            <param name="v1">A input Vector</param>
+            <returns>The new negated vector</returns>
+        </member>
         <member name="M:task2.Vector3.op_Multiply(task2.Vector3,System.Single)">
             <summary>
             Multiplies a vector by a scalar float number
@@ -73,12 +80,36 @@
             <param name="i">A scalar float number</param>
             <returns>The new object with result</returns>
         </member>
-        <member name="M:task2.Vector3.Length(task2.Vector3)">
+        <member name="M:task2.Vector3.op_Equality(task2.Vector3,task2.Vector3)">
+            <summary>
+            Сompares a two vectors for equality
+            </summary>
+            <param name="v1">A first input vector</param>
+            <param name="v2">A second input vector</param>
+            <returns>Returns true if equal</returns>
+        </member>
+        <member name="M:task2.Vector3.op_Inequality(task2.Vector3,task2.Vector3)">
+            <summary>
+            Сompares a two vectors for non-equality
+            </summary>
+            <param name="v1">A first input vector</param>
+            <param name="v2">A second input vector</param>
+            <returns>Returns true if non-equal</returns>
+        </member>
+        <member name="M:task2.Vector3.GetLength(task2.Vector3)">
             <summary>
             Calculates the length of a vector
             </summary>
             <param name="v1">A input vector</param>
             <returns>Returns the length of the vector</returns>
+        </member>
+        <member name="M:task2.Vector3.GetScalar(task2.Vector3,task2.Vector3)">
+            <summary>
+            Returns the dot product of two vectors
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns>The dot product of two vectors</returns>
         </member>
     </members>
 </doc>
