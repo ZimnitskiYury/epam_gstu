@@ -7,201 +7,234 @@ using System.Diagnostics;
 
 namespace task01
 {
+    /// <summary>
+    /// Euclidean alghorithm
+    /// </summary>
     public class Euclidean
     {
-        //метод для получения НОД двух чисел
-        //принимает входные параметры два целых числа
-        //выходной параметр время затраченное на вычисление НОД
+        /// <summary>
+        /// Calculates greatest common divisor (GCD) of two numbers
+        /// </summary>
+        /// <param name="n">A first number</param>
+        /// <param name="k">A second number</param>
+        /// <param name="timeEuclid">The time spent on the algorithm</param>
+        /// <returns>Greatest common divisor</returns>
         public int GetNod(int n, int k, out double timeEuclid)
         {
-            Stopwatch stopWatch = new Stopwatch();      //объект секундомера
-            stopWatch.Start();                          //запуск отсчета
-            n = Math.Abs(n);                            //модуль числа n
-            k = Math.Abs(k);                            //модуль числа k
-            int first;                                  //переменная для большего значения
-            int second;                                 //переменная для меньшего значения
-            int nod;                                    //переменная для НОД
+            Stopwatch stopWatch = new Stopwatch();      
+            stopWatch.Start();                         
+            n = Math.Abs(n);                           
+            k = Math.Abs(k);                           
+            int first;                                 
+            int second;                                
+            int nod;                                    
 
-            if (n > k)                                  //если n больше k, то переменные получают соответствующие значения                                     
+            if (n > k)                                                                    
             {
-                first = n;                              //первая first равна n
-                second = k;                             //вторая second равна k
+                first = n;                             
+                second = k;                             
             }
-            else                                        //если нет, то меняем местами
+            else                                        
             {
                 first = k;
                 second = n;
             }
-            if (first == 0)                             //при равенстве одного из входных параметров 0, НОД равен второму: НОД(0,b)=b
+            if (first == 0)                            
             {
                 nod = second;
             }
-            else if (second == 0)                       //НОД(a,0)=a
+            else if (second == 0)                       
             {
                 nod = first;
             }
-            else if (first == second)                   //если входные переменные равны, то НОД любой из них
+            else if (first == second)                   
             {
                 nod = first;
             }
-            else if (first % second != 0)               //проверка на неравенство остатка нулю
+            else if (first % second != 0)              
             {
-                nod = GetNod(second, first % second, out _);//если неравен, то запускается рекурсия                                                            
+                nod = GetNod(second, first % second, out _);                                                           
             }
             else
             {
-                nod = second;                           //если равен, то НОД меньшее значение
+                nod = second;                           
             }
-            stopWatch.Stop();                           //остановка отсчета
-            timeEuclid = stopWatch.Elapsed.TotalMilliseconds;//сохранение времени в выходном параметре
-            return nod;                                 //метод возвращает НОД
+            stopWatch.Stop();                           
+            timeEuclid = stopWatch.Elapsed.TotalMilliseconds;
+            return nod;                                 
         }
-        //метод для получения НОД трех чисел
-        //принимает входные параметры три целых числа
+        /// <summary>
+        /// Calculates greatest common divisor (GCD) of three numbers
+        /// </summary>
+        /// <param name="n">A first number</param>
+        /// <param name="k">A second number</param>
+        /// <param name="l">A third number</param>
+        /// <returns>Greatest common divisor</returns>
         public int GetNod(int n, int k, int l)
         {
-            int nod;                                    //переменная для НОД
-            nod = GetNod(n, k, out _);                  //вызов метода для получения НОД первых двух параметров
+            int nod;                                    
+            nod = GetNod(n, k, out _);                  
             
-            if (nod != 1)                               //проверка на НОД равную 1
+            if (nod != 1)                               
             {
-                nod = GetNod(l, nod, out _);            //вызов метода для получения НОД третьего параметра и НОД первых двух
+                nod = GetNod(l, nod, out _);            
                 return nod;
             }
             else
             {
-                return nod;                            //если НОД первых двух чисел равна 1, то с третьим можно не считать
+                return nod;                            
             }
         }
-        //метод для получения НОД четырех чисел
-        //принимает входные параметры четыре целых числа
+        /// <summary>
+        /// Calculates greatest common divisor (GCD) of four numbers
+        /// </summary>
+        /// <param name="n">A first number</param>
+        /// <param name="k">A second number</param>
+        /// <param name="l">A third number</param>
+        /// <param name="m">A fourth number</param>
+        /// <returns>Greatest common divisor</returns>
         public int GetNod(int n, int k, int l, int m)
         {
-            int nod;                                    //переменная для НОД
-            nod = GetNod(n, k, out _);                  //вызов метода для получения НОД первых двух параметров
+            int nod;                                    
+            nod = GetNod(n, k, out _);                  
             
-            if (nod != 1)                               //проверка на НОД равную 1
+            if (nod != 1)                               
             {
-                nod = GetNod(l, nod, out _);            //вызов метода для получения НОД третьего параметра и НОД первых двух
+                nod = GetNod(l, nod, out _);            
                 {
                     
-                    if (nod != 1)                       //проверка на НОД равную 1
+                    if (nod != 1)                       
                     {
-                        nod = GetNod(m, nod, out _);    //вызов метода для получения НОД четвертого параметра и НОД первых трех
+                        nod = GetNod(m, nod, out _);    
                         return nod;
                     }
                     else
                     {
-                        return nod;                     //если НОД первых трех чисел равна 1, то с остальными можно не считать
+                        return nod;                     
                     }
                 }
             }
             else
             {
-                return nod;                             //если НОД первых двух чисел равна 1, то с остальными можно не считать
+                return nod;                             
             }
         }
-        //метод для получения НОД пяти чисел
-        //принимает входные параметры пяти целых числа
+        /// <summary>
+        /// Calculates greatest common divisor (GCD) of five numbers
+        /// </summary>
+        /// <param name="n">A first number</param>
+        /// <param name="k">A second number</param>
+        /// <param name="l">A third number</param>
+        /// <param name="m">A fourth number</param>
+        /// <param name="p">A fives number</param>
+        /// <returns>Greatest common divisor</returns>
         public int GetNod(int n, int k, int l, int m, int p)
         {
-            int nod;                                    //переменная для НОД
-            nod = GetNod(n, k, out _);                  //вызов метода для получения НОД первых двух параметров            
-            if (nod != 1)                               //проверка на НОД равную 1
+            int nod;                                    
+            nod = GetNod(n, k, out _);                              
+            if (nod != 1)                               
             {
-                nod = GetNod(l, nod, out _);            //вызов метода для получения НОД третьего параметра и НОД первых двух
+                nod = GetNod(l, nod, out _);            
                 
-                if (nod != 1)                           //проверка на НОД равную 1
+                if (nod != 1)                           
                 {
-                    nod = GetNod(m, nod, out _);        //вызов метода для получения НОД четвертого параметра и НОД первых трех
+                    nod = GetNod(m, nod, out _);        
                     
-                    if (nod != 1)                       //проверка на НОД равную 1
+                    if (nod != 1)                       
                     {
-                        nod = GetNod(p, nod, out _);    //вызов метода для получения НОД пятого параметра и НОД первых четырех
+                        nod = GetNod(p, nod, out _);    
                         return nod;
                     }
                     else
                     {
-                        return nod;                     //если НОД первых четырех чисел равна 1, то с остальными можно не считать
+                        return nod;                     
                     }
                 }
                 else
                 {
-                    return nod;                         //если НОД первых трех чисел равна 1, то с остальными можно не считать
+                    return nod;                         
                 }
             }
             else
             {
-                return nod;                             //если НОД первых двух чисел равна 1, то с остальными можно не считать
+                return nod;                             
             }
         }
-        //метод для получения НОД двух чисел с помощью бинарного алгоритма
-        //принимает входные параметры двух целых числа
-        //выходной параметр время затраченное на вычисление НОД
+        /// <summary>
+        /// Calculates greatest common divisor (GCD) of two numbers using the Stein algorithm
+        /// </summary>
+        /// <param name="n">The first number</param>
+        /// <param name="k">The second number</param>
+        /// <param name="timeStein">The time spent on the algorithm</param>
+        /// <returns>Greatest common divisor</returns>
         public int GetNodStein(int n, int k, out double timeStein)
         {
-            Stopwatch stopWatch = new Stopwatch();      //объект секундомера
-            stopWatch.Start();                          //запуск отсчета
-            n = Math.Abs(n);                            //модуль числа n
-            k = Math.Abs(k);                            //модуль числа k
-            int nod;                                    //переменная для НОД
-            int first;                                  //переменная для большего значения
-            int second;                                 //переменная для меньшего значения
-            if (n > k)                                  //если n больше k, то переменные получают соответствующие значения
+            Stopwatch stopWatch = new Stopwatch();      
+            stopWatch.Start();                          
+            n = Math.Abs(n);                            
+            k = Math.Abs(k);                            
+            int nod;                                    
+            int first;                                  
+            int second;                                 
+            if (n > k)                                  
             {
-                first = n;                              //первая first равна n
-                second = k;                             //вторая second равна k
+                first = n;                              
+                second = k;                             
             }
-            else                                        //если нет, то меняем местами
+            else                                        
             {
                 first = k;
                 second = n;
             }
-            if (first == 0)                             //первое условие бинарного алгоритма: НОД(0,b)=b
+            if (first == 0)                             
             {
                 nod = second;                           
             }
-            else if (second == 0)                        //первое условие бинарного алгоритма: НОД(a,0)=a
+            else if (second == 0)                        
             {
                 nod = first;
             }
-            else if (first == second)                   //второе условие бинарного алгоритма: НОД(a,b) при a=b = a и b
+            else if (first == second)                   
             {
                 nod = first;
             }            
-            else if (first % 2 == 0 && second % 2 == 0) //третье условие бинарного алгоритма: оба четные
+            else if (first % 2 == 0 && second % 2 == 0) 
             {
                 first /= 2;
                 second /= 2;
-                nod = 2 * GetNodStein(first, second, out _);//вызов метода со значениями деленными на 2
+                nod = 2 * GetNodStein(first, second, out _);
             }            
-            else if (first % 2 == 1 && second % 2 == 1) //пятое условие бинарного алгоритма: оба нечетные
+            else if (first % 2 == 1 && second % 2 == 1) 
             {
-                nod = GetNodStein((first - second) / 2, second, out _);//вызов метода со значениями: (от большего отнять меньшее и делить на 2), меньшее
+                nod = GetNodStein((first - second) / 2, second, out _);
             }
-            else if (first % 2 == 0)                    //четвертое условие бинарного алгоритма: одно из чисел нечетное (меньшее)
+            else if (first % 2 == 0)                    
             {
-                nod = GetNodStein(first / 2, second, out _);//вызов метода со значениями: (четное поделенно на 2), меньшее
+                nod = GetNodStein(first / 2, second, out _);
             }
-            else                                        //четвертое условие бинарного алгоритма: одно из чисел нечетное(большее)
+            else                                        
             {
-                nod = GetNodStein(first, second / 2, out _);//вызов метода со значениями: большее, (четное поделенно на 2)
+                nod = GetNodStein(first, second / 2, out _);
             }
-            stopWatch.Stop();                           //остановка отсчета
-            timeStein = stopWatch.Elapsed.TotalMilliseconds;//сохранение времени в выходном параметре
-            return nod;                                 //метод возвращает НОД
+            stopWatch.Stop();                           
+            timeStein = stopWatch.Elapsed.TotalMilliseconds;
+            return nod;                                 
         }
-        //метод для получения двух массивов для постороения гистаграммы
-        //принимает входные параметры двух целых числа
-        //выходные параметры два массива типов string и double
+        /// <summary>
+        /// Creates 2 arrays with data of time spent by the algorithmes
+        /// </summary>
+        /// <param name="n">The first number</param>
+        /// <param name="k">The second number</param>
+        /// <param name="masX">The first array of names of alghorithmes</param>
+        /// <param name="masY">The second array of time spent by alghorithmes</param>
         public void GetAlgsTime(int n, int k, out string[] masX, out double [] masY)
         {
-            GetNod(n, k, out double algsEuclidTime);    //вызов метода для получения НОД двух целых чисел по алгоритму Евклида
-            GetNodStein(n, k, out double algsSteinTime);//вызов метода для получения НОД двух целых чисел по бинарному алгоритму Стейна
-            string [] algsName= { "EuclidAlgs", "SteinAlgs" };//сохраняем в массиве названия методов
-            double [] algsTime = { algsEuclidTime, algsSteinTime };//сохраняем соответствующие методам значения затраченного времени
-            masX = algsName;                            //ссылка на массив передается выходному параметру
-            masY = algsTime;                            //ссылка на массив передается выходному параметру
+            GetNod(n, k, out double algsEuclidTime);    
+            GetNodStein(n, k, out double algsSteinTime);
+            string [] algsName= { "EuclidAlgs", "SteinAlgs" };
+            double [] algsTime = { algsEuclidTime, algsSteinTime };
+            masX = algsName;                            
+            masY = algsTime;                            
         }
     }
 }

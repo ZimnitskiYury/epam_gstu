@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Euclidean</name>
+    </assembly>
+    <members>
+        <member name="T:task01.Euclidean">
+            <summary>
+            Euclidean alghorithm
+            </summary>
+        </member>
+        <member name="M:task01.Euclidean.GetNod(System.Int32,System.Int32,System.Double@)">
+            <summary>
+            Calculates greatest common divisor (GCD) of two numbers
+            </summary>
+            <param name="n">A first number</param>
+            <param name="k">A second number</param>
+            <param name="timeEuclid">The time spent on the algorithm</param>
+            <returns>Greatest common divisor</returns>
+        </member>
+        <member name="M:task01.Euclidean.GetNod(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Calculates greatest common divisor (GCD) of three numbers
+            </summary>
+            <param name="n">A first number</param>
+            <param name="k">A second number</param>
+            <param name="l">A third number</param>
+            <returns>Greatest common divisor</returns>
+        </member>
+        <member name="M:task01.Euclidean.GetNod(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="n"></param>
+            <param name="k"></param>
+            <param name="l"></param>
+            <param name="m"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
