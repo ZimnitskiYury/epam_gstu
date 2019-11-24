@@ -163,9 +163,9 @@ namespace task2
         /// <returns>The dot product of two vectors</returns>
         public static float GetScalar(Vector3 v1, Vector3 v2)
         {
-            float scalarX = v1.x + v2.x;
-            float scalarY = v1.y + v2.y;
-            float scalarZ = v1.z + v2.z;
+            float scalarX = v1.x * v2.x;
+            float scalarY = v1.y * v2.y;
+            float scalarZ = v1.z * v2.z;
             return scalarX + scalarY + scalarZ;
         }
     }
