@@ -5,9 +5,6 @@ namespace task2
     /// <summary>
     /// This class for creating and working with Vector.
     /// </summary>
-    /// <remarks>
-    /// This class can add, subtract, multiply and divide.
-    /// </remarks>
     public class Vector3
     {
         private float x;
