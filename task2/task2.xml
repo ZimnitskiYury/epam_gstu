@@ -9,6 +9,58 @@
             Class for Polynomial and operations
             </summary>
         </member>
+        <member name="M:task2.Polynom.#ctor(System.Int32[])">
+            <summary>
+            Constructor for Polynomial
+            </summary>
+            <param name="c">Input array</param>
+        </member>
+        <member name="M:task2.Polynom.op_Addition(task2.Polynom,task2.Polynom)">
+            <summary>
+            Overload a predefined operator +
+            </summary>
+            <param name="p1">A first polynomial</param>
+            <param name="p2">A second polynomial</param>
+            <returns>New Polynomial with sum of two polynomials</returns>
+        </member>
+        <member name="M:task2.Polynom.op_Subtraction(task2.Polynom,task2.Polynom)">
+            <summary>
+            Overload a predefined operator +
+            </summary>
+            <param name="p1">A first Polynomial</param>
+            <param name="p2">A first Polynomial</param>
+            <returns>New Polynomial with difference between two polynomials</returns>
+        </member>
+        <member name="M:task2.Polynom.op_Multiply(task2.Polynom,task2.Polynom)">
+            <summary>
+            Overload a predefined operator *
+            </summary>
+            <param name="p1">A first polynomial</param>
+            <param name="p2">A second polynomial</param>
+            <returns>New Polynomial with result</returns>
+        </member>
+        <member name="M:task2.Polynom.op_Equality(task2.Polynom,task2.Polynom)">
+            <summary>
+            Overload a predefined operator ==
+            </summary>
+            <param name="p1">A first polynomial</param>
+            <param name="p2">A second polynomial</param>
+            <returns>Returns true if equals</returns>
+        </member>
+        <member name="M:task2.Polynom.op_Inequality(task2.Polynom,task2.Polynom)">
+            <summary>
+            Overload a predefined operator !=
+            </summary>
+            <param name="p1">A first polynomial</param>
+            <param name="p2">A second polynomial</param>
+            <returns>Returns false if not-equals</returns>
+        </member>
+        <member name="M:task2.Polynom.ToString">
+            <summary>
+            Override a method ToString
+            </summary>
+            <returns>String contains coefficients polynomial</returns>
+        </member>
         <member name="T:task2.Vector3">
             <summary>
             This class for creating and working with Vector.

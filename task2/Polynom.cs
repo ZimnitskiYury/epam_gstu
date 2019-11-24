@@ -13,11 +13,21 @@ namespace task2
     {
         int degree;
         int[] coef;
+        /// <summary>
+        /// Constructor for Polynomial
+        /// </summary>
+        /// <param name="c">Input array</param>
         public Polynom(int []c)
         {           
             coef = c;
             degree = coef.Length;
         }
+        /// <summary>
+        /// Overload a predefined operator +
+        /// </summary>
+        /// <param name="p1">A first polynomial</param>
+        /// <param name="p2">A second polynomial</param>
+        /// <returns>New Polynomial with sum of two polynomials</returns>
         public static Polynom operator +(Polynom p1, Polynom p2)
         {
             int[] coef_temp;
@@ -53,6 +63,12 @@ namespace task2
             }
             return new Polynom(coef_temp);
         }
+        /// <summary>
+        /// Overload a predefined operator +
+        /// </summary>
+        /// <param name="p1">A first Polynomial</param>
+        /// <param name="p2">A first Polynomial</param>
+        /// <returns>New Polynomial with difference between two polynomials</returns>
         public static Polynom operator -(Polynom p1, Polynom p2)
         {
             int[] coef_temp;
@@ -88,6 +104,12 @@ namespace task2
             }
             return new Polynom(coef_temp);
         }
+        /// <summary>
+        /// Overload a predefined operator *
+        /// </summary>
+        /// <param name="p1">A first polynomial</param>
+        /// <param name="p2">A second polynomial</param>
+        /// <returns>New Polynomial with result</returns>
         public static Polynom operator *(Polynom p1, Polynom p2)
         {
             int[] coef_temp = new int[p2.degree + p1.degree - 1];
@@ -113,6 +135,12 @@ namespace task2
             }
             return new Polynom(coef_temp);
         }
+        /// <summary>
+        /// Overload a predefined operator ==
+        /// </summary>
+        /// <param name="p1">A first polynomial</param>
+        /// <param name="p2">A second polynomial</param>
+        /// <returns>Returns true if equals</returns>
         public static bool operator ==(Polynom p1, Polynom p2)
         {
             if (p1.degree != p2.degree)
@@ -131,10 +159,20 @@ namespace task2
                 return true;
             }
         }
+        /// <summary>
+        /// Overload a predefined operator !=
+        /// </summary>
+        /// <param name="p1">A first polynomial</param>
+        /// <param name="p2">A second polynomial</param>
+        /// <returns>Returns false if not-equals</returns>
         public static bool operator !=(Polynom p1, Polynom p2)
         {
             return !(p1 == p2);
         }
+        /// <summary>
+        /// Override a method ToString
+        /// </summary>
+        /// <returns>String contains coefficients polynomial</returns>
         public override string ToString()
         {
             string pol = Convert.ToString(coef[0]);
