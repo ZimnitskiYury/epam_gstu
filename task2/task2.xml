@@ -55,12 +55,6 @@
             <param name="p2">A second polynomial</param>
             <returns>Returns false if not-equals</returns>
         </member>
-        <member name="M:task2.Polynom.ToString">
-            <summary>
-            Override a method ToString
-            </summary>
-            <returns>String contains coefficients polynomial</returns>
-        </member>
         <member name="T:task2.Vector3">
             <summary>
             This class for creating and working with Vector.

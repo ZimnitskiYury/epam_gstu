@@ -79,11 +79,11 @@ namespace task2
                 {
                     if (i < p1.degree)
                     {
-                        coef_temp[i] = p2.coef[i] - p1.coef[i];
+                        coef_temp[i] = p1.coef[i] - p2.coef[i];
                     }
                     else
                     {
-                        coef_temp[i] = p2.coef[i];
+                        coef_temp[i] = -p2.coef[i];
                     }
                 }
             }
@@ -94,7 +94,7 @@ namespace task2
                 {
                     if (i < p2.degree)
                     {
-                        coef_temp[i] = p2.coef[i] - p1.coef[i];
+                        coef_temp[i] = p1.coef[i] - p2.coef[i];
                     }
                     else
                     {
@@ -168,19 +168,6 @@ namespace task2
         public static bool operator !=(Polynom p1, Polynom p2)
         {
             return !(p1 == p2);
-        }
-        /// <summary>
-        /// Override a method ToString
-        /// </summary>
-        /// <returns>String contains coefficients polynomial</returns>
-        public override string ToString()
-        {
-            string pol = Convert.ToString(coef[0]);
-            for (int i=1; i<degree; i++)
-            {
-                pol += ", "+coef[i];
-            }
-            return pol;
         }
     }
 }

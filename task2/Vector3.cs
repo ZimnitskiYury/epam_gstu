@@ -7,6 +7,7 @@ namespace task2
     /// </summary>
     public class Vector3
     {
+        const float eps= 0.01f;
         private float x;
         private float y;
         private float z;
@@ -113,11 +114,11 @@ namespace task2
         /// <returns>Returns true if equal</returns>
         public static bool operator ==(Vector3 v1, Vector3 v2)
         {
-            if (v1.x == v2.x)
+            if (Math.Abs(v1.x-v2.x)<eps)
             {
-                if (v1.y == v2.y)
+                if (Math.Abs(v1.y - v2.y) < eps)
                 {
-                    if (v1.z == v2.z)
+                    if (Math.Abs(v1.z - v2.z) < eps)
                     {
                         return true;
                     }
