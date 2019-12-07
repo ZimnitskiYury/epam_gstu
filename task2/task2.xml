@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>task2</name>
+    </assembly>
+    <members>
+        <member name="T:task2.Polynom">
+            <summary>
+            Class for Polynomial and operations
+            </summary>
+        </member>
+        <member name="M:task2.Polynom.#ctor(System.Int32[])">
+            <summary>
+            Constructor for Polynomial
+            </summary>
+            <param name="c">Input array</param>
+        </member>
+        <member name="M:task2.Polynom.op_Addition(task2.Polynom,task2.Polynom)">
+            <summary>
+            Overload a predefined operator +
+            </summary>
+            <param name="p1">A first polynomial</param>
+            <param name="p2">A second polynomial</param>
+            <returns>New Polynomial with sum of two polynomials</returns>
+        </member>
+        <member name="M:task2.Polynom.op_Subtraction(task2.Polynom,task2.Polynom)">
+            <summary>
+            Overload a predefined operator +
+            </summary>
+            <param name="p1">A first Polynomial</param>
+            <param name="p2">A first Polynomial</param>
+            <returns>New Polynomial with difference between two polynomials</returns>
+        </member>
+        <member name="M:task2.Polynom.op_Multiply(task2.Polynom,task2.Polynom)">
+            <summary>
+            Overload a predefined operator *
+            </summary>
+            <param name="p1">A first polynomial</param>
+            <param name="p2">A second polynomial</param>
+            <returns>New Polynomial with result</returns>
+        </member>
+        <member name="M:task2.Polynom.op_Equality(task2.Polynom,task2.Polynom)">
+            <summary>
+            Overload a predefined operator ==
+            </summary>
+            <param name="p1">A first polynomial</param>
+            <param name="p2">A second polynomial</param>
+            <returns>Returns true if equals</returns>
+        </member>
+        <member name="M:task2.Polynom.op_Inequality(task2.Polynom,task2.Polynom)">
+            <summary>
+            Overload a predefined operator !=
+            </summary>
+            <param name="p1">A first polynomial</param>
+            <param name="p2">A second polynomial</param>
+            <returns>Returns false if not-equals</returns>
+        </member>
+        <member name="T:task2.Vector3">
+            <summary>
+            This class for creating and working with Vector.
+            </summary>
+        </member>
+        <member name="M:task2.Vector3.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:task2.Vector3.#ctor(System.Single)">
+            <summary>
+            Constructor with one float param.
+            </summary>
+            <param name="k">A float number</param>
+        </member>
+        <member name="M:task2.Vector3.#ctor(System.Single,System.Single,System.Single)">
+            <summary>
+            Constructor with three float param.
+            </summary>
+            <param name="a">A float number for X.</param>
+            <param name="b">A float number for Y.</param>
+            <param name="c">A float number for Z.</param>
+        </member>
+        <member name="M:task2.Vector3.op_Addition(task2.Vector3,task2.Vector3)">
+            <summary>
+            Adds two vectors and returns the result.
+            </summary>
+            <param name="v1">A first input vector</param>
+            <param name="v2">A second input vector</param>
+            <returns>The new object with sum of two vectors.</returns>
+        </member>
+        <member name="M:task2.Vector3.op_Subtraction(task2.Vector3,task2.Vector3)">
+            <summary>
+            Subtracts an object from another and returns the result.
+            </summary>
+            <param name="v1">A first input vector</param>
+            <param name="v2">A second input vector</param>
+            <returns>The new object with difference between two vectors</returns>
+        </member>
+        <member name="M:task2.Vector3.op_UnaryNegation(task2.Vector3)">
+            <summary>
+            Negates an input vector.
+            </summary>
+            <param name="v1">A input Vector</param>
+            <returns>The new negated vector</returns>
+        </member>
+        <member name="M:task2.Vector3.op_Multiply(task2.Vector3,System.Single)">
+            <summary>
+            Multiplies a vector by a scalar float number
+            </summary>
+            <remarks>Increase the length of the vector</remarks>
+            <param name="v1">A input vector</param>
+            <param name="i">A scalar float number</param>
+            <returns>The new object with result</returns>
+        </member>
+        <member name="M:task2.Vector3.op_Multiply(task2.Vector3,task2.Vector3)">
+            <summary>
+            Multiplies a two vectors
+            </summary>
+            <param name="v1">A first input vector</param>
+            <param name="v2">A second input vector</param>
+            <returns>The new object with result</returns>
+        </member>
+        <member name="M:task2.Vector3.op_Division(task2.Vector3,System.Single)">
+            <summary>
+            Divides a vector by a scalar float number
+            </summary>
+            <remarks>Decrease the length of the vector</remarks>
+            <param name="v1">A input vector</param>
+            <param name="i">A scalar float number</param>
+            <returns>The new object with result</returns>
+        </member>
+        <member name="M:task2.Vector3.op_Equality(task2.Vector3,task2.Vector3)">
+            <summary>
+            Сompares a two vectors for equality
+            </summary>
+            <param name="v1">A first input vector</param>
+            <param name="v2">A second input vector</param>
+            <returns>Returns true if equal</returns>
+        </member>
+        <member name="M:task2.Vector3.op_Inequality(task2.Vector3,task2.Vector3)">
+            <summary>
+            Сompares a two vectors for non-equality
+            </summary>
+            <param name="v1">A first input vector</param>
+            <param name="v2">A second input vector</param>
+            <returns>Returns true if non-equal</returns>
+        </member>
+        <member name="M:task2.Vector3.GetLength(task2.Vector3)">
+            <summary>
+            Calculates the length of a vector
+            </summary>
+            <param name="v1">A input vector</param>
+            <returns>Returns the length of the vector</returns>
+        </member>
+        <member name="M:task2.Vector3.GetLength">
+            <summary>
+            Calculates the length of a vector
+            </summary>
+            <returns>Returns the length of the vector</returns>
+        </member>
+        <member name="M:task2.Vector3.GetScalar(task2.Vector3,task2.Vector3)">
+            <summary>
+            Returns the dot product of two vectors
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns>The dot product of two vectors</returns>
+        </member>
+    </members>
+</doc>
