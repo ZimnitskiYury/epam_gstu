@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>task3.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -42,6 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Box.cs" />
+    <Compile Include="Circle.cs" />
+    <Compile Include="Rectangle.cs" />
+    <Compile Include="Triangle.cs" />
     <Compile Include="Figure.cs" />
     <Compile Include="IFigure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -6,28 +6,60 @@ using System.Threading.Tasks;
 
 namespace task3
 {
-    //цвета
-    enum Colors
+    /// <summary>
+    /// 
+    /// </summary>
+    public abstract class Figure : IFigure
     {
-        red,
-        orange,
-        yellow,
-        green,
-        blue,
-        purple,
-        black
-    }
-    enum Materials
-    {
-        paper,
-        polyetylene
-    }
-    public class Figure : IFigure
-    {
-        Colors color;
-        Materials material;
+        //цвета
+        public enum Colors
+        {
+            transparent,
+            white,
+            red,
+            orange,
+            yellow,
+            green,
+            blue,
+            purple,
+            black
+        }
+        public enum Materials
+        {
+            paper,
+            polyetylene
+        }
 
-        public float Area { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public float Perimeter { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        private Colors color;
+        private Materials material;
+        /// <summary>
+        /// 
+        /// </summary>
+        public Colors Color
+        {
+            get => color;
+            set{
+                if ((material == Materials.paper)&&(color==Colors.white))
+                {
+                    color = value;
+                }
+                else
+                {
+                    color = Colors.transparent;
+                }
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public Materials Material { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public abstract float Area { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public abstract float Perimeter { get; set; }
     }
 }
