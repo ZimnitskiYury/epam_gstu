@@ -11,48 +11,30 @@ namespace task3
     /// </summary>
     public abstract class Figure : IFigure
     {
-        //цвета
+        private int? form;
+        private int? material;
+        private int? color;
+        private bool isPainted = false;
         public enum Colors
         {
-            transparent,
-            white,
             red,
-            orange,
-            yellow,
-            green,
             blue,
+            white,
+            green,
+            black,
+            yellow,
             purple,
-            black
-        }
-        public enum Materials
-        {
-            paper,
-            polyetylene
-        }
-
-        private Colors color;
-        private Materials material;
-        /// <summary>
-        /// 
-        /// </summary>
-        public Colors Color
-        {
-            get => color;
-            set{
-                if ((material == Materials.paper)&&(color==Colors.white))
-                {
-                    color = value;
-                }
-                else
-                {
-                    color = Colors.transparent;
-                }
-            }
+            pink
         }
         /// <summary>
         /// 
         /// </summary>
-        public Materials Material { get; set; }
+        public Figure(string m, string f, string c)
+        {
+            Material = m;
+            Form = f;
+            Color = c;
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -61,5 +43,30 @@ namespace task3
         /// 
         /// </summary>
         public abstract float Perimeter { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        Colors Color
+        {
+            get => (Colors)color;
+            set
+            {
+                if (color == null)
+                {
+                    color = (int)value;
+                }
+                else if (isPainted)
+                {
+                    color = (int)value;
+                    isPainted = true;
+                }
+                else
+                {
+                    //Exception.FigureIsAlreadyPainted
+                }
+            }
+        }
+        string Material { get => material; set => material = value; }
+        string Form { get => form; set => form = value; }
     }
 }
