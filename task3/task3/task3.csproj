@@ -43,9 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Box.cs" />
-    <Compile Include="Circle.cs" />
-    <Compile Include="Rectangle.cs" />
-    <Compile Include="Triangle.cs" />
+    <Compile Include="AllFigures.cs" />
+    <Compile Include="StreamXML.cs" />
     <Compile Include="Figure.cs" />
     <Compile Include="IFigure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

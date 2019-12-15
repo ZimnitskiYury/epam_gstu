@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using task3;
 
@@ -10,11 +11,8 @@ namespace task3_Test
         [TestMethod]
         public void TestMethod1()
         {
-            Figure f1 = new Circle
-            {
-                Material = Figure.Materials.paper,
-                Color = Figure.Colors.red
-            };
+            StreamXML st = new StreamXML();
+            st.Write();
         }
     }
 }

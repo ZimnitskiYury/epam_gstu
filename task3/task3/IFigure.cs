@@ -8,8 +8,8 @@ namespace task3
 {
     interface IFigure
     {
-        float Area { get; set; }
-        float Perimeter { get; set; }
+        float Area { get;}
+        float Perimeter { get;}
 
     }
 }

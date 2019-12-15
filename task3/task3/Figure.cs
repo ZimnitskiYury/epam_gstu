@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 namespace task3
 {
     /// <summary>
-    /// 
+    /// Abstract class for all figures
     /// </summary>
     public abstract class Figure : IFigure
     {
-        private int? form;
-        private int? material;
-        private int? color;
+        private int material;
+        private int color;
         private bool isPainted = false;
+        /// <summary>
+        /// Enumeration of colors
+        /// </summary>
         public enum Colors
         {
             red,
@@ -26,23 +28,27 @@ namespace task3
             purple,
             pink
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        public Figure(string m, string f, string c)
+        public enum Materials
         {
-            Material = m;
-            Form = f;
-            Color = c;
+            paper,
+            film
         }
         /// <summary>
-        /// 
+        /// Default constructor
         /// </summary>
-        public abstract float Area { get; set; }
+        public Figure(string m, string c)
+        {
+            material = m;
+            color = c;
+        }
         /// <summary>
-        /// 
+        /// Area of Figure
         /// </summary>
-        public abstract float Perimeter { get; set; }
+        public abstract float Area { get; }
+        /// <summary>
+        /// Perimeter of Figure
+        /// </summary>
+        public abstract float Perimeter { get;}
         /// <summary>
         /// 
         /// </summary>
@@ -51,22 +57,20 @@ namespace task3
             get => (Colors)color;
             set
             {
-                if (color == null)
+                if (!isPainted)
                 {
                     color = (int)value;
                 }
-                else if (isPainted)
-                {
-                    color = (int)value;
-                    isPainted = true;
-                }
-                else
+                else 
                 {
                     //Exception.FigureIsAlreadyPainted
                 }
             }
         }
-        string Material { get => material; set => material = value; }
-        string Form { get => form; set => form = value; }
+        Materials Material
+        {
+            get => (Materials)material;
+            set => material = (int)value;
+        }
     }
 }
