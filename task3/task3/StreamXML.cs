@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Xml;
 
-namespace task3
+/*namespace task3
 {
     public class StreamXML
     {
@@ -49,4 +49,4 @@ namespace task3
         }
     }
 }
-                    
+*/                    

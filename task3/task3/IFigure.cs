@@ -10,6 +10,8 @@ namespace task3
     {
         float Area { get;}
         float Perimeter { get;}
-
+    /*    string ToString();
+        bool Equals(object obj);
+        int GetHashCode();*/
     }
 }

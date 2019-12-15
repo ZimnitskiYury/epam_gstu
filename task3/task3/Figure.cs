@@ -11,7 +11,9 @@ namespace task3
     /// </summary>
     public abstract class Figure : IFigure
     {
-        private int material;
+        /// <summary>
+        /// Index of color in enumeration Colors
+        /// </summary>
         private int color;
         private bool isPainted = false;
         /// <summary>
@@ -19,27 +21,60 @@ namespace task3
         /// </summary>
         public enum Colors
         {
+            /// <summary>
+            /// Transparent = 0
+            /// </summary>
+            transparent,
+            /// <summary>
+            /// Red = 1
+            /// </summary>
             red,
+            /// <summary>
+            /// Blue = 2
+            /// </summary>
             blue,
+            /// <summary>
+            /// White = 3
+            /// </summary>
             white,
+            /// <summary>
+            /// Green = 4
+            /// </summary>
             green,
+            /// <summary>
+            /// Black = 5
+            /// </summary>
             black,
+            /// <summary>
+            /// Yellow = 6
+            /// </summary>
             yellow,
+            /// <summary>
+            /// Purple = 7
+            /// </summary>
             purple,
+            /// <summary>
+            /// Pink = 8
+            /// </summary>
             pink
         }
-        public enum Materials
-        {
-            paper,
-            film
-        }
         /// <summary>
-        /// Default constructor
+        /// Default constructor for all classes
         /// </summary>
         public Figure(string m, string c)
         {
-            material = m;
-            color = c;
+            if (m=="film")
+            {
+                Color = Colors.transparent;
+            }
+            else if((m=="paper")&&(c != "transparent"))
+            {
+                Color = (Colors)Enum.Parse(typeof(Colors), c);
+            }
+            else
+            {
+                throw new Exception("Wrong color input");
+            }
         }
         /// <summary>
         /// Area of Figure
@@ -52,25 +87,52 @@ namespace task3
         /// <summary>
         /// 
         /// </summary>
-        Colors Color
+        public Colors Color
         {
             get => (Colors)color;
             set
             {
-                if (!isPainted)
+                if ((int)value != 0)
                 {
-                    color = (int)value;
+                    if (!isPainted)
+                    {
+                        color = (int)value;
+                    }
+                    else
+                    {
+                        throw new Exception("Figure Is Already Painted");
+                    }
                 }
-                else 
+                else
                 {
-                    //Exception.FigureIsAlreadyPainted
+                    throw new Exception("Transparent is not color");
                 }
             }
         }
-        Materials Material
+        /// <summary>
+        /// Type of material. Returns paper or film. 
+        /// </summary>
+        public string Material
         {
-            get => (Materials)material;
-            set => material = (int)value;
+            get
+            {
+                if (Color != 0)
+                {
+                    return "paper";
+                }
+                else return "film";
+            }
         }
+        /// <summary>
+        /// Override default method ToString()
+        /// </summary>
+        /// <returns>String of params Figure</returns>
+    /*    public abstract override string ToString();*/
+        /// <summary>
+        /// Method for comparison figures
+        /// </summary>
+        /// <returns>Returns true if Equal</returns>
+        public abstract override bool Equals(object obj);
+       /* public abstract override int GetHashCode();*/
     }
 }

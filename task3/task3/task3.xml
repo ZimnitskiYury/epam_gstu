@@ -4,5 +4,164 @@
         <name>task3</name>
     </assembly>
     <members>
+        <member name="M:task3.Box.AddFigure(task3.Figure)">
+            <summary>
+            Add new figure into box
+            </summary>
+            <param name="f1">Input figure</param>
+        </member>
+        <member name="M:task3.Box.AddFigure(task3.Figure,System.Int32)">
+            <summary>
+            Add new figure into box
+            </summary>
+            <param name="f1">Input figure</param>
+        </member>
+        <member name="M:task3.Box.ViewFigure(System.Int32)">
+            <summary>
+            View figure by index without remove
+            </summary>
+            <param name="i">Index of figure in box</param>
+        </member>
+        <member name="M:task3.Box.RemoveFigure(System.Int32)">
+            <summary>
+            Remove Figure by index
+            </summary>
+            <param name="i">Index of figure in box</param>
+        </member>
+        <member name="M:task3.Box.ReplaceFigure(task3.Figure,System.Int32)">
+            <summary>
+            Replace Figure on another by index
+            </summary>
+            <param name="f1">New Figure</param>
+            <param name="i">Index of figure in box</param>
+        </member>
+        <member name="T:task3.Rectangle">
+            <summary>
+            Class for operations with rectangle
+            </summary>
+        </member>
+        <member name="M:task3.Rectangle.#ctor(System.String,System.String,System.Single,System.Single)">
+            <summary>
+            Constructor for Rectangle. Uses base class constructor.
+            </summary>
+            <param name="m">Material</param>
+            <param name="c">Color</param>
+            <param name="h">Height</param>
+            <param name="w">Width</param>
+        </member>
+        <member name="P:task3.Rectangle.Area">
+            <summary>
+            Area of Rectangle
+            </summary>
+        </member>
+        <member name="P:task3.Rectangle.Perimeter">
+            <summary>
+            Perimeter of Rectangle
+            </summary>
+        </member>
+        <member name="M:task3.Rectangle.Equals(System.Object)">
+            <summary>
+            Compares this rectangle with another object
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:task3.Rectangle.ToString">
+            <summary>
+            Convert figure into string
+            </summary>
+            <returns>String with params</returns>
+        </member>
+        <member name="T:task3.Figure">
+            <summary>
+            Abstract class for all figures
+            </summary>
+        </member>
+        <member name="F:task3.Figure.color">
+            <summary>
+            Index of color in enumeration Colors
+            </summary>
+        </member>
+        <member name="T:task3.Figure.Colors">
+            <summary>
+            Enumeration of colors
+            </summary>
+        </member>
+        <member name="F:task3.Figure.Colors.transparent">
+            <summary>
+            Transparent = 0
+            </summary>
+        </member>
+        <member name="F:task3.Figure.Colors.red">
+            <summary>
+            Red = 1
+            </summary>
+        </member>
+        <member name="F:task3.Figure.Colors.blue">
+            <summary>
+            Blue = 2
+            </summary>
+        </member>
+        <member name="F:task3.Figure.Colors.white">
+            <summary>
+            White = 3
+            </summary>
+        </member>
+        <member name="F:task3.Figure.Colors.green">
+            <summary>
+            Green = 4
+            </summary>
+        </member>
+        <member name="F:task3.Figure.Colors.black">
+            <summary>
+            Black = 5
+            </summary>
+        </member>
+        <member name="F:task3.Figure.Colors.yellow">
+            <summary>
+            Yellow = 6
+            </summary>
+        </member>
+        <member name="F:task3.Figure.Colors.purple">
+            <summary>
+            Purple = 7
+            </summary>
+        </member>
+        <member name="F:task3.Figure.Colors.pink">
+            <summary>
+            Pink = 8
+            </summary>
+        </member>
+        <member name="M:task3.Figure.#ctor(System.String,System.String)">
+            <summary>
+            Default constructor for all classes
+            </summary>
+        </member>
+        <member name="P:task3.Figure.Area">
+            <summary>
+            Area of Figure
+            </summary>
+        </member>
+        <member name="P:task3.Figure.Perimeter">
+            <summary>
+            Perimeter of Figure
+            </summary>
+        </member>
+        <member name="P:task3.Figure.Color">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:task3.Figure.Material">
+            <summary>
+            Type of material. Returns paper or film. 
+            </summary>
+        </member>
+        <member name="M:task3.Figure.Equals(System.Object)">
+            <summary>
+            Method for comparison figures
+            </summary>
+            <returns>Returns true if Equal</returns>
+        </member>
     </members>
 </doc>

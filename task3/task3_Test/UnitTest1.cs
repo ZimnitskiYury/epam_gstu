@@ -9,10 +9,7 @@ namespace task3_Test
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
-        {
-            StreamXML st = new StreamXML();
-            st.Write();
-        }
+        Rectangle rect = new Rectangle("film", "red", 10, 20);
+
     }
 }
