@@ -1,22 +1,27 @@
 ﻿using System.IO;
 using System.Collections.Generic;
 using System.Xml;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-/*namespace task3
+namespace task3
 {
     public class StreamXML
     {
     static string writePath = @"D:\output.xml";
         public void Write()
         {
-            string text = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
+            string text = "";
             StreamWriter sw = new StreamWriter(writePath, false, System.Text.Encoding.Default);
             sw.Write(text);
             sw.Close();
         }
-        public List<string> Read()
+        public List<Figure> Read()
         {
-            List<string> boxxml = new List<string>();
+            List<Figure> boxxml = new List<Figure>();
             StreamReader sr = new StreamReader(writePath);
             string doc =sr.ReadToEnd();
             XmlDocument xdoc = new XmlDocument();
@@ -24,12 +29,55 @@ using System.Xml;
             XmlElement xRoot = xdoc.DocumentElement;
             foreach (XmlNode xnode in xRoot)
             {
-                // получаем атрибут name
-                if (xnode.Attributes.Count > 0)
+                XmlNode typefigure = xnode.Attributes.GetNamedItem("type");
+                switch (typefigure.Value)
                 {
-                    XmlNode attr = xnode.Attributes.GetNamedItem("name");
-                    if (attr != null)
-                        Console.WriteLine(attr.Value);
+                    case "Circle":
+                        {
+                            string material = "", color = "";
+                            int diameter = 1;
+                            foreach (XmlNode childnode in xnode.ChildNodes)
+                            {
+                                if (childnode.Name == "material")
+                                {
+                                    material = $"{childnode.InnerText}";
+                                }
+                                if (childnode.Name == "color")
+                                {
+                                    color = $"{childnode.InnerText}";
+                                }
+                                if (childnode.Name == "diameter")
+                                {
+                                    diameter = int.Parse(childnode.InnerText);
+                                }
+                            }
+                            Circle c1 = new Circle(material, color, diameter);
+                            boxxml.Add(c1);
+                            break;
+                        }
+                    case "Rectangle": {
+                            string material = "", color = "";
+                            int height = 1; 
+                            int width = 1;
+                            foreach (XmlNode childnode in xnode.ChildNodes)
+                            {
+                                if (childnode.Name == "material")
+                                {
+                                    material = $"{childnode.InnerText}";
+                                }
+                                if (childnode.Name == "color")
+                                {
+                                    color = $"{childnode.InnerText}";
+                                }
+                                if (childnode.Name == "diameter")
+                                {
+                                    diameter = int.Parse(childnode.InnerText);
+                                }
+                            }
+                            Circle c1 = new Circle(material, color, diameter);
+                            boxxml.Add(c1);
+                            break;
+                        }
                 }
                 // обходим все дочерние узлы элемента user
                 foreach (XmlNode childnode in xnode.ChildNodes)

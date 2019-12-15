@@ -4,6 +4,16 @@
         <name>task3</name>
     </assembly>
     <members>
+        <member name="T:task3.Box">
+            <summary>
+            Box of Figures. Max count 20.
+            </summary>
+        </member>
+        <member name="F:task3.Box.boxoffigure">
+            <summary>
+            List of figures.
+            </summary>
+        </member>
         <member name="M:task3.Box.AddFigure(task3.Figure)">
             <summary>
             Add new figure into box
@@ -15,6 +25,7 @@
             Add new figure into box
             </summary>
             <param name="f1">Input figure</param>
+            <param name="i">Index of Figure in box</param>
         </member>
         <member name="M:task3.Box.ViewFigure(System.Int32)">
             <summary>
@@ -63,14 +74,149 @@
             <summary>
             Compares this rectangle with another object
             </summary>
-            <param name="obj"></param>
+            <param name="obj">Input object</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:task3.Rectangle.GetHashCode">
+            <summary>
+            Override GetHashCode
+            </summary>
             <returns></returns>
         </member>
-        <member name="M:task3.Rectangle.ToString">
+        <member name="T:task3.Square">
             <summary>
-            Convert figure into string
+            Class for operations with Square
             </summary>
-            <returns>String with params</returns>
+        </member>
+        <member name="F:task3.Square.a">
+            <summary>
+            Height of Square
+            </summary>
+        </member>
+        <member name="M:task3.Square.#ctor(System.String,System.String,System.Single)">
+            <summary>
+            Constructor for Square. Uses base class constructor.
+            </summary>
+            <param name="m">Material</param>
+            <param name="c">Color</param>
+            <param name="a">Height</param>
+        </member>
+        <member name="P:task3.Square.Area">
+            <summary>
+            Calculates Area of square
+            </summary>
+        </member>
+        <member name="P:task3.Square.Perimeter">
+            <summary>
+            Calculates Parimeter of square
+            </summary>
+        </member>
+        <member name="M:task3.Square.Equals(System.Object)">
+            <summary>
+            Compares this square with another object
+            </summary>
+            <param name="obj">Input object</param>
+            <returns>True or False</returns>
+        </member>
+        <member name="M:task3.Square.GetHashCode">
+            <summary>
+            Override GetHashCode()
+            </summary>
+            <returns>Int value for hashcode</returns>
+        </member>
+        <member name="T:task3.Triangle">
+            <summary>
+            Class for operations with triangle
+            </summary>
+        </member>
+        <member name="F:task3.Triangle.a">
+            <summary>
+            Sides of triangle
+            </summary>
+        </member>
+        <member name="F:task3.Triangle.b">
+            <summary>
+            Sides of triangle
+            </summary>
+        </member>
+        <member name="F:task3.Triangle.d">
+            <summary>
+            Sides of triangle
+            </summary>
+        </member>
+        <member name="M:task3.Triangle.#ctor(System.String,System.String,System.Single,System.Single,System.Single)">
+            <summary>
+            Constructor for Triangle. Uses base class constructor.
+            </summary>
+            <param name="m">Material</param>
+            <param name="c">Color</param>
+            <param name="a">First side</param>
+            <param name="b">Second side</param>
+            <param name="d">Third side</param>
+        </member>
+        <member name="P:task3.Triangle.Area">
+            <summary>
+            Calculates Area of triangle
+            </summary>
+        </member>
+        <member name="P:task3.Triangle.Perimeter">
+            <summary>
+            Calculates Perimeter of triangle
+            </summary>
+        </member>
+        <member name="M:task3.Triangle.Equals(System.Object)">
+            <summary>
+            Compares Triangle with another object
+            </summary>
+            <param name="obj">Input object</param>
+            <returns>True or False</returns>
+        </member>
+        <member name="M:task3.Triangle.GetHashCode">
+            <summary>
+            Override GetHashCode()
+            </summary>
+            <returns>Int value for hash code</returns>
+        </member>
+        <member name="T:task3.Circle">
+            <summary>
+            Class for operations with Circle
+            </summary>
+        </member>
+        <member name="F:task3.Circle.diameter">
+            <summary>
+            Diameter of circle
+            </summary>
+        </member>
+        <member name="M:task3.Circle.#ctor(System.String,System.String,System.Single)">
+            <summary>
+            Constructor for Circle. Uses base class constructor.
+            </summary>
+            <param name="m">Material</param>
+            <param name="c">Color</param>
+            <param name="d">Diameter</param>
+        </member>
+        <member name="P:task3.Circle.Area">
+            <summary>
+            Calculates are of circle
+            </summary>
+        </member>
+        <member name="P:task3.Circle.Perimeter">
+            <summary>
+            Calculates Perimeter of circle
+            </summary>
+        </member>
+        <member name="M:task3.Circle.Equals(System.Object)">
+            <summary>
+            Compares Triangle with another object
+            </summary>
+            <param name="obj">Input object</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:task3.Circle.GetHashCode">
+            <summary>
+            Override GetHashCode()
+            </summary>
+            <returns>Int value for hashcode</returns>
         </member>
         <member name="T:task3.Figure">
             <summary>
@@ -157,11 +303,23 @@
             Type of material. Returns paper or film. 
             </summary>
         </member>
+        <member name="M:task3.Figure.ToString">
+            <summary>
+            Override default method ToString()
+            </summary>
+            <returns>String of params Figure</returns>
+        </member>
         <member name="M:task3.Figure.Equals(System.Object)">
             <summary>
             Method for comparison figures
             </summary>
             <returns>Returns true if Equal</returns>
+        </member>
+        <member name="M:task3.Figure.GetHashCode">
+            <summary>
+            Override GetHashCode()
+            </summary>
+            <returns>Int value for hashcode</returns>
         </member>
     </members>
 </doc>

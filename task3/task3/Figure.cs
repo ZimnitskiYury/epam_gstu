@@ -73,7 +73,7 @@ namespace task3
             }
             else
             {
-                throw new Exception("Wrong color input");
+                throw new Exception("Wrong color or material input");
             }
         }
         /// <summary>
@@ -127,12 +127,24 @@ namespace task3
         /// Override default method ToString()
         /// </summary>
         /// <returns>String of params Figure</returns>
-    /*    public abstract override string ToString();*/
+        public override string ToString()
+        {
+            string txt = "Type of Figure:" + GetType().Name;
+            txt += "\nColor of Figure:" + Color;
+            txt += "\nMaterial of Figure:" + Material;
+            txt += "\nArea of Figure:" + Area;
+            txt += "\nPerimeter of Figure:" + Perimeter;
+            return txt;
+        }
+    /// <summary>
+    /// Method for comparison figures
+    /// </summary>
+    /// <returns>Returns true if Equal</returns>
+    public abstract override bool Equals(object obj);
         /// <summary>
-        /// Method for comparison figures
+        /// Override GetHashCode()
         /// </summary>
-        /// <returns>Returns true if Equal</returns>
-        public abstract override bool Equals(object obj);
-       /* public abstract override int GetHashCode();*/
+        /// <returns>Int value for hashcode</returns>
+        public abstract override int GetHashCode();
     }
 }

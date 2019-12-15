@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace task3
 {
+    /// <summary>
+    /// Box of Figures. Max count 20.
+    /// </summary>
     public class Box
     {
+        /// <summary>
+        /// List of figures.
+        /// </summary>
         List<Figure> boxoffigure = new List<Figure>(20);
         /// <summary>
         /// Add new figure into box
@@ -29,6 +35,7 @@ namespace task3
         /// Add new figure into box
         /// </summary>
         /// <param name="f1">Input figure</param>
+        /// <param name="i">Index of Figure in box</param>
         public void AddFigure(Figure f1, int i)
         {
             //Проверка на переполнение коробки. макс 20
@@ -45,11 +52,11 @@ namespace task3
         /// View figure by index without remove
         /// </summary>
         /// <param name="i">Index of figure in box</param>
-        public void ViewFigure(int i)
+        public Figure ViewFigure(int i)
         {
             if ((boxoffigure.Count != 0) && (i < boxoffigure.Count))
             {
-                    boxoffigure[i].ToString();
+                    return boxoffigure[i];
             }
             else throw new Exception("Box don't have this figure");
         }
@@ -90,54 +97,76 @@ namespace task3
         /// </summary>
         /// <param name="f1">Figure for search</param>
         /// <returns>Index of figure in box</returns>
-   /*     public int FindFigure(Figure f1)
+        public int FindFigure(Figure f1)
         {
-            foreach (var i in boxoffigure)
+            for (int i = 0; i < boxoffigure.Count; i++)
             {
-                if (i.Equals(f1))
+                if (boxoffigure[i].Equals(f1))
                 {
-                    return 
+                    return i;
                 }
             }
-            return i;
+
         }
-        //фигур в списке
+        /// <summary>
+        /// Count of figures in box
+        /// </summary>
+        /// <returns>Int value</returns>
         public int CountFigures()
         {
-            int i = 0;//переделать
-            return i;
+            return boxoffigure.Count;
         }
         /// <summary>
-        /// Общая площадь
+        /// Total area of all figures into box
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Float value of area</returns>
         public float TotalArea()
         {
-            float i = 0;//переделать
-            return i;
+            float totalarea=0;
+            foreach (var i in boxoffigure)
+            {
+                totalarea += i.Area;
+            }
+            return totalarea;
         }
         /// <summary>
-        /// Общий периметр
+        /// Total perimeter of all figures into box
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Float value of perimeter</returns>
         public float TotalPerimeter()
         {
-            float i = 0;//переделать
-            return i;
+            float totalperimeter = 0;
+            foreach (var i in boxoffigure)
+            {
+                totalperimeter += i.Perimeter;
+            }
+            return totalperimeter;
         }
         /// <summary>
-        /// Удалить круги
+        /// Delete all circles into box
         /// </summary>
         public void RemoveCircles()
         {
-
+            foreach (var i in boxoffigure)
+            {
+                if(i is Circle)
+                {
+                    boxoffigure.Remove(i);
+                }
+            }
         }
         /// <summary>
-        /// Удалить пленки
+        /// Delete all film figures
         /// </summary>
-        public void RemovePolyethylene()
+        public void RemoveFilm()
         {
-
+            foreach (var i in boxoffigure)
+            {
+                if (i.Material=="film")
+                {
+                    boxoffigure.Remove(i);
+                }
+            }
         }
         /// <summary>
         /// Save xml (streamwriter)
@@ -166,6 +195,6 @@ namespace task3
         public void LoadXML2()
         {
 
-        }*/
+        }
     }
 }
