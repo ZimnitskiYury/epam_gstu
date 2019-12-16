@@ -21,17 +21,26 @@ namespace task3
         /// <param name="w">Width</param>
         public Rectangle(string m, string c, float h, float w):base (m,c)
         {
-            width = w;
-            height = h;
+            Width = w;
+            Height = h;
         }
         /// <summary>
         /// Area of Rectangle
         /// </summary>
-        public override float Area { get => width * height; }
+        public override float Area { get => Width * Height; }
         /// <summary>
         /// Perimeter of Rectangle
         /// </summary>
-        public override float Perimeter { get => 2 * (width + height); }
+        public override float Perimeter { get => 2 * (Width + Height); }
+        /// <summary>
+        /// Property of width
+        /// </summary>
+        public float Width { get => width; set => width = value; }
+        /// <summary>
+        /// Property of height
+        /// </summary>
+        public float Height { get => height; set => height = value; }
+
         /// <summary>
         /// Compares this rectangle with another object
         /// </summary>
@@ -41,7 +50,7 @@ namespace task3
         {
             if (obj is Rectangle)
             {
-                if ((this.height == ((Rectangle)obj).height)&& (this.width == ((Rectangle)obj).width))
+                if ((this.Height == ((Rectangle)obj).Height)&& (this.Width == ((Rectangle)obj).Width))
                 {
                     if ((this.Color == ((Rectangle)obj).Color))
                     {
@@ -59,7 +68,7 @@ namespace task3
         /// <returns></returns>
         public override int GetHashCode()
         {
-            int hash = (int)((Area - width) + (height + Perimeter)) + (int)Color;
+            int hash = (int)((Area - Width) + (Height + Perimeter)) + (int)Color;
             return hash;
         }
 
@@ -69,8 +78,8 @@ namespace task3
             xml += "\t<figure type=\"Rectangle\">\n";
             xml += "\t\t<material>" + Material + "</material>\n";
             xml += "\t\t<color>" + Color + "</color>\n";
-            xml += "\t\t<height>" + height + "</height>\n";
-            xml += "\t\t<width>" + height + "</width>\n";
+            xml += "\t\t<height>" + Height + "</height>\n";
+            xml += "\t\t<width>" + Height + "</width>\n";
             xml += "\t</figure>\n";
             return xml;
         }
@@ -92,16 +101,21 @@ namespace task3
         /// <param name="a">Height</param>
         public Square(string m, string c, float a):base (m,c)
         {
-            this.a = a;
+            this.A = a;
         }
         /// <summary>
         /// Calculates Area of square
         /// </summary>
-        public override float Area { get => a*a; }
+        public override float Area { get => A*A; }
         /// <summary>
         /// Calculates Parimeter of square
         /// </summary>
-        public override float Perimeter { get => 4 * a; }
+        public override float Perimeter { get => 4 * A; }
+        /// <summary>
+        /// Property for a
+        /// </summary>
+        public float A { get => a; set => a = value; }
+
         /// <summary>
         /// Compares this square with another object
         /// </summary>
@@ -111,7 +125,7 @@ namespace task3
         {
             if (obj is Square)
             {
-                if ((this.a == ((Square)obj).a))
+                if ((this.A == ((Square)obj).A))
                 {
                     if ((this.Color == ((Square)obj).Color))
                     {
@@ -129,7 +143,7 @@ namespace task3
         /// <returns>Int value for hashcode</returns>
         public override int GetHashCode()
         {
-            int hash = (int)((Area - a) + (a+ Perimeter)) + (int)Color;
+            int hash = (int)((Area - A) + (A+ Perimeter)) + (int)Color;
             return hash;
         }
 
@@ -139,7 +153,7 @@ namespace task3
             xml += "\t<figure type=\"Square\">\n";
             xml += "\t\t<material>" + Material + "</material>\n";
             xml += "\t\t<color>" + Color + "</color>\n";
-            xml += "\t\t<height>" + a + "</height>\n";
+            xml += "\t\t<height>" + A + "</height>\n";
             xml += "\t</figure>\n";
             return xml;
         }
@@ -163,9 +177,9 @@ namespace task3
         /// <param name="d">Third side</param>
         public Triangle(string m, string c, float a, float b, float d):base (m,c)
         {
-            this.a = a;
-            this.b = b;
-            this.d = d;
+            this.A = a;
+            this.B = b;
+            this.D = d;
         }
         /// <summary>
         /// Calculates Area of triangle
@@ -175,13 +189,26 @@ namespace task3
             get
             {
                 float halfperimeter = Perimeter / 2;
-                return (float)Math.Sqrt(halfperimeter * (halfperimeter - a) * (halfperimeter - b) * (halfperimeter - d));
+                return (float)Math.Sqrt(halfperimeter * (halfperimeter - A) * (halfperimeter - B) * (halfperimeter - D));
             }
         }
         /// <summary>
         /// Calculates Perimeter of triangle
         /// </summary>
-        public override float Perimeter { get => a + b + d; }
+        public override float Perimeter { get => A + B + D; }
+        /// <summary>
+        /// Property for a
+        /// </summary>
+        public float A { get => a; set => a = value; }
+        /// <summary>
+        /// Property for b
+        /// </summary>
+        public float B { get => b; set => b = value; }
+        /// <summary>
+        /// Property for d
+        /// </summary>
+        public float D { get => d; set => d = value; }
+
         /// <summary>
         /// Compares Triangle with another object
         /// </summary>
@@ -191,7 +218,7 @@ namespace task3
         {
             if (obj is Triangle)
             {
-                if ((this.a == ((Triangle)obj).a)&& (this.b == ((Triangle)obj).b)&& (this.d == ((Triangle)obj).d))
+                if ((this.A == ((Triangle)obj).A)&& (this.B == ((Triangle)obj).B)&& (this.D == ((Triangle)obj).D))
                 {
                     if ((this.Color == ((Triangle)obj).Color))
                     {
@@ -209,7 +236,7 @@ namespace task3
         /// <returns>Int value for hash code</returns>
         public override int GetHashCode()
         {
-            int hash = (int)((Area - a) + (b + Perimeter)) + (int)Color+(int)d;
+            int hash = (int)((Area - A) + (B + Perimeter)) + (int)Color+(int)D;
             return hash;
         }
 
@@ -219,9 +246,9 @@ namespace task3
             xml += "\t<figure type=\"Triangle\">\n";
             xml += "\t\t<material>" + Material + "</material>\n";
             xml += "\t\t<color>" + Color + "</color>\n";
-            xml += "\t\t<side_a>" + a+ "</side_a>\n";
-            xml += "\t\t<side_b>" + b + "</side_b>\n";
-            xml += "\t\t<side_d>" + d + "</side_d>\n";
+            xml += "\t\t<side_a>" + A+ "</side_a>\n";
+            xml += "\t\t<side_b>" + B + "</side_b>\n";
+            xml += "\t\t<side_d>" + D + "</side_d>\n";
             xml += "\t</figure>\n";
             return xml;
         }
@@ -243,7 +270,7 @@ namespace task3
         /// <param name="d">Diameter</param>
         public Circle(string m, string c, float d) : base(m,c)
         {
-            diameter = d;
+            Diameter = d;
         }
         /// <summary>
         /// Calculates are of circle
@@ -252,7 +279,7 @@ namespace task3
         {
             get
             {
-                double i = diameter * diameter;
+                double i = Diameter * Diameter;
                 i = i * Math.PI;
                 i /= 4;
                 return (float)i;
@@ -261,7 +288,12 @@ namespace task3
         /// <summary>
         /// Calculates Perimeter of circle
         /// </summary>
-        public override float Perimeter { get => (float)(Math.PI * diameter); }
+        public override float Perimeter { get => (float)(Math.PI * Diameter); }
+        /// <summary>
+        /// Property of Diameter
+        /// </summary>
+        public float Diameter { get => diameter; set => diameter = value; }
+
         /// <summary>
         /// Compares Triangle with another object
         /// </summary>
@@ -271,7 +303,7 @@ namespace task3
         {
             if (obj is Circle)
             {
-                if ((this.diameter== ((Circle)obj).diameter))
+                if ((this.Diameter== ((Circle)obj).Diameter))
                 {
                     if ((this.Color == ((Circle)obj).Color))
                     {
@@ -289,7 +321,7 @@ namespace task3
         /// <returns>Int value for hashcode</returns>
         public override int GetHashCode()
         {
-            int hash = (int)((Area - diameter) + (diameter+ Perimeter)) + (int)Color;
+            int hash = (int)((Area - Diameter) + (Diameter+ Perimeter)) + (int)Color;
             return hash;
         }
         /// <summary>
@@ -302,7 +334,7 @@ namespace task3
             xml += "\t<figure type=\"Circle\">\n";
             xml+="\t\t<material>"+Material+"</material>\n";
             xml += "\t\t<color>"+Color+"</color>\n";
-            xml += "\t\t<diameter>" + diameter + "</diameter>\n";
+            xml += "\t\t<diameter>" + Diameter + "</diameter>\n";
             xml += "\t</figure>\n";
             return xml;
         }

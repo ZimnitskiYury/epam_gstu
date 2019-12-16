@@ -46,6 +46,14 @@
             <param name="f1">New Figure</param>
             <param name="i">Index of figure in box</param>
         </member>
+        <member name="M:task3.Box.FindFigure(task3.Figure)">
+            <summary>
+            Find figure in box
+            </summary>
+            <param name="f1">Figure for search</param>
+            <param name="k">Index of Figure</param>
+            <returns>Index of figure in box</returns>
+        </member>
         <member name="M:task3.Box.CountFigures">
             <summary>
             Count of figures in box
@@ -74,9 +82,19 @@
             Delete all film figures
             </summary>
         </member>
-        <member name="M:task3.Box.SaveXML">
+        <member name="M:task3.Box.SaveXMLAll">
             <summary>
             Save xml (streamwriter)
+            </summary>
+        </member>
+        <member name="M:task3.Box.SaveXMLFilm">
+            <summary>
+            Save xml (only film)
+            </summary>
+        </member>
+        <member name="M:task3.Box.SaveXMLPaper">
+            <summary>
+            Save xml (only paper)
             </summary>
         </member>
         <member name="M:task3.Box.LoadXML">
@@ -84,9 +102,19 @@
             load xml (streamreader)
             </summary>
         </member>
-        <member name="M:task3.Box.SaveXML2">
+        <member name="M:task3.Box.SaveXML2All">
             <summary>
             Save xml (xmlwriter)
+            </summary>
+        </member>
+        <member name="M:task3.Box.SaveXML2Film">
+            <summary>
+            Save xml only film (xmlwriter)
+            </summary>
+        </member>
+        <member name="M:task3.Box.SaveXML2Paper">
+            <summary>
+            Save xml only paper (xmlwriter)
             </summary>
         </member>
         <member name="M:task3.Box.LoadXML2">
@@ -116,6 +144,16 @@
         <member name="P:task3.Rectangle.Perimeter">
             <summary>
             Perimeter of Rectangle
+            </summary>
+        </member>
+        <member name="P:task3.Rectangle.Width">
+            <summary>
+            Property of width
+            </summary>
+        </member>
+        <member name="P:task3.Rectangle.Height">
+            <summary>
+            Property of height
             </summary>
         </member>
         <member name="M:task3.Rectangle.Equals(System.Object)">
@@ -157,6 +195,11 @@
         <member name="P:task3.Square.Perimeter">
             <summary>
             Calculates Parimeter of square
+            </summary>
+        </member>
+        <member name="P:task3.Square.A">
+            <summary>
+            Property for a
             </summary>
         </member>
         <member name="M:task3.Square.Equals(System.Object)">
@@ -212,6 +255,21 @@
             Calculates Perimeter of triangle
             </summary>
         </member>
+        <member name="P:task3.Triangle.A">
+            <summary>
+            Property for a
+            </summary>
+        </member>
+        <member name="P:task3.Triangle.B">
+            <summary>
+            Property for b
+            </summary>
+        </member>
+        <member name="P:task3.Triangle.D">
+            <summary>
+            Property for d
+            </summary>
+        </member>
         <member name="M:task3.Triangle.Equals(System.Object)">
             <summary>
             Compares Triangle with another object
@@ -253,6 +311,11 @@
             Calculates Perimeter of circle
             </summary>
         </member>
+        <member name="P:task3.Circle.Diameter">
+            <summary>
+            Property of Diameter
+            </summary>
+        </member>
         <member name="M:task3.Circle.Equals(System.Object)">
             <summary>
             Compares Triangle with another object
@@ -272,9 +335,37 @@
             </summary>
             <returns>Formated String</returns>
         </member>
-        <member name="M:task3.StreamXML.Read">
+        <member name="T:task3.Stream">
             <summary>
-            XMLReader
+            StreamReader and StreamWriter
+            </summary>
+        </member>
+        <member name="M:task3.Stream.Write(System.String)">
+            <summary>
+            StreamWriter
+            </summary>
+            <param name="i">Input string</param>
+        </member>
+        <member name="M:task3.Stream.Read">
+            <summary>
+            StreamReader
+            </summary>
+            <returns>List of figures from XML</returns>
+        </member>
+        <member name="T:task3.XML">
+            <summary>
+            XmlWriter and XMLReader
+            </summary>
+        </member>
+        <member name="M:task3.XML.Write(System.Collections.Generic.List{task3.Figure})">
+            <summary>
+            Method Write
+            </summary>
+            <param name="intoBox">Input List</param>
+        </member>
+        <member name="M:task3.XML.Read">
+            <summary>
+            not working
             </summary>
             <returns></returns>
         </member>
@@ -342,6 +433,14 @@
             <summary>
             Default constructor for all classes
             </summary>
+        </member>
+        <member name="M:task3.Figure.#ctor(System.String,System.String,task3.Figure)">
+            <summary>
+            Constructor for create figure from another
+            </summary>
+            <param name="m">material</param>
+            <param name="c">color</param>
+            <param name="f1">Figure another</param>
         </member>
         <member name="P:task3.Figure.Area">
             <summary>

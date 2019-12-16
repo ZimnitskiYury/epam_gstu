@@ -10,18 +10,20 @@ using task3;
 
 namespace task3
 {
-    public class StreamXML
-    {
-        string writePath = @"C:\Users\byrtn\Downloads\output.xml";
+    /// <summary>
+    /// StreamReader and StreamWriter
+    /// </summary>
+    public class Stream
+    {       
         /// <summary>
         /// StreamWriter
         /// </summary>
         /// <param name="i">Input string</param>
         public void Write(string i)
         {
-            StreamWriter sw = new StreamWriter(writePath, false, System.Text.Encoding.Default);
+            StreamWriter sw = new StreamWriter("output.xml", false, System.Text.Encoding.Default);
             string xml = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<Box>\n";
-            sw.Write(xml+i+"\n</Box>");
+            sw.Write(xml + i + "\n</Box>");
             sw.Close();
         }
         /// <summary>
@@ -31,8 +33,8 @@ namespace task3
         public List<Figure> Read()
         {
             List<Figure> boxxml = new List<Figure>();
-            StreamReader sr = new StreamReader(@"C:\Users\byrtn\Downloads\output2.xml");
-            string doc =sr.ReadToEnd();
+            StreamReader sr = new StreamReader("input.xml");
+            string doc = sr.ReadToEnd();
             XmlDocument xdoc = new XmlDocument();
             xdoc.LoadXml(doc);
             XmlElement xRoot = xdoc.DocumentElement;
@@ -153,12 +155,127 @@ namespace task3
             return boxxml;
         }
     }
-    public class XMLWriter
+    /// <summary>
+    /// XmlWriter and XMLReader
+    /// </summary>
+    public class XML
     {
-        public void Write()
+        /// <summary>
+        /// Method Write
+        /// </summary>
+        /// <param name="intoBox">Input List</param>
+        public void Write(List<Figure> intoBox)
         {
-            var xml = new XmlWriter.();
+            XmlWriter xmlWriter = XmlWriter.Create("test.xml");
+            xmlWriter.WriteStartDocument();
+            xmlWriter.WriteStartElement("Boxs");
+            foreach (var i in intoBox)
+            {
+                switch (i.GetType().Name)
+                {
+                    case "Circle":
+                        {
+                            Circle c1 = (Circle)i;
+                            xmlWriter.WriteStartElement("figure");
+                            xmlWriter.WriteAttributeString("type", "Circle");
+                            xmlWriter.WriteStartElement("material");
+                            xmlWriter.WriteString(c1.Material);
+                            xmlWriter.WriteEndElement();
+                            xmlWriter.WriteStartElement("color");
+                            xmlWriter.WriteString("" + c1.Color);
+                            xmlWriter.WriteEndElement();
+                            xmlWriter.WriteStartElement("diameter");
+                            xmlWriter.WriteString("" + c1.Diameter);
+                            xmlWriter.WriteEndElement();
+                            xmlWriter.WriteEndElement();
+                            break;
+                        }
+                    case "Rectangle":
+                        {
+                            Rectangle r1 = (Rectangle)i;
+                            xmlWriter.WriteStartElement("figure");
+                            xmlWriter.WriteAttributeString("type", "Rectangle");
+                            xmlWriter.WriteStartElement("material");
+                            xmlWriter.WriteString(r1.Material);
+                            xmlWriter.WriteEndElement();
+                            xmlWriter.WriteStartElement("color");
+                            xmlWriter.WriteString("" + r1.Color);
+                            xmlWriter.WriteEndElement();
+                            xmlWriter.WriteStartElement("height");
+                            xmlWriter.WriteString("" + r1.Height);
+                            xmlWriter.WriteEndElement();
+                            xmlWriter.WriteStartElement("width");
+                            xmlWriter.WriteString("" + r1.Width);
+                            xmlWriter.WriteEndElement();
+                            xmlWriter.WriteEndElement();
+                            break;
+                        }
+                    case "Square":
+                        {
+                            Square s1 = (Square)i;
+                            xmlWriter.WriteStartElement("figure");
+                            xmlWriter.WriteAttributeString("type", "Square");
+                            xmlWriter.WriteStartElement("material");
+                            xmlWriter.WriteString(s1.Material);
+                            xmlWriter.WriteEndElement();
+                            xmlWriter.WriteStartElement("color");
+                            xmlWriter.WriteString("" + s1.Color);
+                            xmlWriter.WriteEndElement();
+                            xmlWriter.WriteStartElement("height");
+                            xmlWriter.WriteString("" + s1.A);
+                            xmlWriter.WriteEndElement();
+                            xmlWriter.WriteEndElement();
+                            break;
+                        }
+                    case "Triangle":
+                        {
+                            Triangle t1 = (Triangle)i;
+                            xmlWriter.WriteStartElement("figure");
+                            xmlWriter.WriteAttributeString("type", "Triangle");
+                            xmlWriter.WriteStartElement("material");
+                            xmlWriter.WriteString(t1.Material);
+                            xmlWriter.WriteEndElement();
+                            xmlWriter.WriteStartElement("color");
+                            xmlWriter.WriteString("" + t1.Color);
+                            xmlWriter.WriteEndElement();
+                            xmlWriter.WriteStartElement("side_a");
+                            xmlWriter.WriteString("" + t1.A);
+                            xmlWriter.WriteEndElement();
+                            xmlWriter.WriteStartElement("side_b");
+                            xmlWriter.WriteString("" + t1.B);
+                            xmlWriter.WriteEndElement();
+                            xmlWriter.WriteStartElement("side_d");
+                            xmlWriter.WriteString("" + t1.D);
+                            xmlWriter.WriteEndElement();
+                            xmlWriter.WriteEndElement();
+                            break;
+                        }
+                }
+            }
+            xmlWriter.WriteEndDocument();
+            xmlWriter.Close();
+        }
+        /// <summary>
+        /// not working
+        /// </summary>
+        /// <returns></returns>
+        public List<Figure> Read()
+        {
+            List<Figure> boxxml = new List<Figure>();
+            XmlReader xmlReader = XmlReader.Create("input.xml");
+            while (xmlReader.Read())
+            {
+                if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "Circle"))
+                {
+                    string m = xmlReader.GetAttribute("material");
+                    string c = xmlReader.GetAttribute("color");
+                    int d = Int32.Parse(xmlReader.GetAttribute("diameter"));
+                    Circle c1 = new Circle(m, c, d);
+                    boxxml.Add(c1);
+                }
+            }
+            return boxxml;
 
         }
     }
-}    
+}

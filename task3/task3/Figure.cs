@@ -77,6 +77,19 @@ namespace task3
             }
         }
         /// <summary>
+        /// Constructor for create figure from another
+        /// </summary>
+        /// <param name="m">material</param>
+        /// <param name="c">color</param>
+        /// <param name="f1">Figure another</param>
+        public Figure(string m, string c, Figure f1):this(m,c)
+        {
+            if (f1.Area< this.Area)
+            {
+                throw new Exception("You cannot create bigger figure from less");
+            }
+        }
+        /// <summary>
         /// Area of Figure
         /// </summary>
         public abstract float Area { get; }

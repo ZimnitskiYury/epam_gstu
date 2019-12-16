@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -96,18 +97,20 @@ namespace task3
         /// Find figure in box
         /// </summary>
         /// <param name="f1">Figure for search</param>
+        /// <param name="k">Index of Figure</param>
         /// <returns>Index of figure in box</returns>
-/*        public int FindFigure(Figure f1)
+        public string FindFigure(Figure f1)
         {
+            string k = null;
             for (int i = 0; i < boxoffigure.Count; i++)
             {
                 if (boxoffigure[i].Equals(f1))
                 {
-                    return i;
+                    return k += i;
                 }
             }
-
-        }*/
+            return k;
+        }
         /// <summary>
         /// Count of figures in box
         /// </summary>
@@ -171,9 +174,9 @@ namespace task3
         /// <summary>
         /// Save xml (streamwriter)
         /// </summary>
-        public void SaveXML()
+        public void SaveXMLAll()
         {
-            StreamXML sxml = new StreamXML();
+            Stream sxml = new Stream();
             string txt = "";
             foreach(var i in boxoffigure)
             {
@@ -182,26 +185,92 @@ namespace task3
             sxml.Write(txt);
         }
         /// <summary>
+        /// Save xml (only film)
+        /// </summary>
+        public void SaveXMLFilm()
+        {
+            Stream sxml = new Stream();
+            string txt = "";
+            foreach (var i in boxoffigure)
+            {
+                if (i.Material == "film")
+                {
+                    txt += i.GetXML();
+                }
+            }
+            sxml.Write(txt);
+        }
+        /// <summary>
+        /// Save xml (only paper)
+        /// </summary>
+        public void SaveXMLPaper()
+        {
+            Stream sxml = new Stream();
+            string txt = "";
+            foreach (var i in boxoffigure)
+            {
+                if (i.Material == "paper")
+                {
+                    txt += i.GetXML();
+                }
+            }
+            sxml.Write(txt);
+        }
+        /// <summary>
         /// load xml (streamreader)
         /// </summary>
         public void LoadXML()
         {
-            StreamXML sxml = new StreamXML();
+            Stream sxml = new Stream();
             boxoffigure = sxml.Read();
         }
         /// <summary>
         /// Save xml (xmlwriter)
         /// </summary>
-        public void SaveXML2()
+        public void SaveXML2All()
         {
-
+            XML wx = new XML();
+            wx.Write(boxoffigure);
+        }
+        /// <summary>
+        /// Save xml only film (xmlwriter)
+        /// </summary>
+        public void SaveXML2Film()
+        {
+            XML wx = new XML();
+            List<Figure> filmbox = new List<Figure>();
+            foreach(var i in boxoffigure)
+            {
+                if (i.Material == "film")
+                {
+                    filmbox.Add(i);
+                }
+            }
+            wx.Write(filmbox);
+        }
+        /// <summary>
+        /// Save xml only paper (xmlwriter)
+        /// </summary>
+        public void SaveXML2Paper()
+        {
+            XML wx = new XML();
+            List<Figure> paperbox = new List<Figure>();
+            foreach (var i in boxoffigure)
+            {
+                if (i.Material == "paper")
+                {
+                    paperbox.Add(i);
+                }
+            }
+            wx.Write(paperbox);
         }
         /// <summary>
         /// load xml (xmlreader)
         /// </summary>
         public void LoadXML2()
         {
-
+            XML sx = new XML();
+            boxoffigure = sx.Read();
         }
     }
 }
