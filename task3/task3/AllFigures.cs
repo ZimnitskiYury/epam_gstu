@@ -62,6 +62,18 @@ namespace task3
             int hash = (int)((Area - width) + (height + Perimeter)) + (int)Color;
             return hash;
         }
+
+        public override string GetXML()
+        {
+            string xml = "";
+            xml += "\t<figure type=\"Rectangle\">\n";
+            xml += "\t\t<material>" + Material + "</material>\n";
+            xml += "\t\t<color>" + Color + "</color>\n";
+            xml += "\t\t<height>" + height + "</height>\n";
+            xml += "\t\t<width>" + height + "</width>\n";
+            xml += "\t</figure>\n";
+            return xml;
+        }
     }
     /// <summary>
     /// Class for operations with Square
@@ -119,6 +131,17 @@ namespace task3
         {
             int hash = (int)((Area - a) + (a+ Perimeter)) + (int)Color;
             return hash;
+        }
+
+        public override string GetXML()
+        {
+            string xml = "";
+            xml += "\t<figure type=\"Square\">\n";
+            xml += "\t\t<material>" + Material + "</material>\n";
+            xml += "\t\t<color>" + Color + "</color>\n";
+            xml += "\t\t<height>" + a + "</height>\n";
+            xml += "\t</figure>\n";
+            return xml;
         }
     }
     /// <summary>
@@ -189,6 +212,19 @@ namespace task3
             int hash = (int)((Area - a) + (b + Perimeter)) + (int)Color+(int)d;
             return hash;
         }
+
+        public override string GetXML()
+        {
+            string xml = "";
+            xml += "\t<figure type=\"Triangle\">\n";
+            xml += "\t\t<material>" + Material + "</material>\n";
+            xml += "\t\t<color>" + Color + "</color>\n";
+            xml += "\t\t<side_a>" + a+ "</side_a>\n";
+            xml += "\t\t<side_b>" + b + "</side_b>\n";
+            xml += "\t\t<side_d>" + d + "</side_d>\n";
+            xml += "\t</figure>\n";
+            return xml;
+        }
     }
     /// <summary>
     /// Class for operations with Circle
@@ -255,6 +291,20 @@ namespace task3
         {
             int hash = (int)((Area - diameter) + (diameter+ Perimeter)) + (int)Color;
             return hash;
+        }
+        /// <summary>
+        /// Get XML form of object with params
+        /// </summary>
+        /// <returns>Formated String</returns>
+        public override string GetXML()
+        {
+            string xml = "";
+            xml += "\t<figure type=\"Circle\">\n";
+            xml+="\t\t<material>"+Material+"</material>\n";
+            xml += "\t\t<color>"+Color+"</color>\n";
+            xml += "\t\t<diameter>" + diameter + "</diameter>\n";
+            xml += "\t</figure>\n";
+            return xml;
         }
     }
 }

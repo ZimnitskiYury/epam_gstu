@@ -17,11 +17,13 @@ namespace task3.Tests
             Circle rect = new Circle("paper", "red", 10);
             Circle rect2 = new Circle("paper", "red", 4);
             Box bo = new Box();
+            bo.LoadXML();
+            
             bo.AddFigure(rect);
             bo.AddFigure(rect2);
-
+            bo.SaveXML();
             bool b1 = (bo.ViewFigure(0)).Equals(bo.ViewFigure(1));
-            Assert.AreEqual(b1, rect.ToString());
+            Assert.AreEqual(bo.ViewFigure(0).ToString(), bo.ViewFigure(2).ToString());
         }
 
         [TestMethod()]

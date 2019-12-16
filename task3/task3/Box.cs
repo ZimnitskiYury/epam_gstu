@@ -97,7 +97,7 @@ namespace task3
         /// </summary>
         /// <param name="f1">Figure for search</param>
         /// <returns>Index of figure in box</returns>
-        public int FindFigure(Figure f1)
+/*        public int FindFigure(Figure f1)
         {
             for (int i = 0; i < boxoffigure.Count; i++)
             {
@@ -107,7 +107,7 @@ namespace task3
                 }
             }
 
-        }
+        }*/
         /// <summary>
         /// Count of figures in box
         /// </summary>
@@ -173,14 +173,21 @@ namespace task3
         /// </summary>
         public void SaveXML()
         {
-
+            StreamXML sxml = new StreamXML();
+            string txt = "";
+            foreach(var i in boxoffigure)
+            {
+                txt += i.GetXML();
+            }
+            sxml.Write(txt);
         }
         /// <summary>
         /// load xml (streamreader)
         /// </summary>
         public void LoadXML()
         {
-
+            StreamXML sxml = new StreamXML();
+            boxoffigure = sxml.Read();
         }
         /// <summary>
         /// Save xml (xmlwriter)

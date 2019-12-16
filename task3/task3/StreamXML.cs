@@ -6,23 +6,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using task3;
 
 namespace task3
 {
     public class StreamXML
     {
-    static string writePath = @"D:\output.xml";
-        public void Write()
+        string writePath = @"C:\Users\byrtn\Downloads\output.xml";
+        /// <summary>
+        /// StreamWriter
+        /// </summary>
+        /// <param name="i">Input string</param>
+        public void Write(string i)
         {
-            string text = "";
             StreamWriter sw = new StreamWriter(writePath, false, System.Text.Encoding.Default);
-            sw.Write(text);
+            string xml = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<Box>\n";
+            sw.Write(xml+i+"\n</Box>");
             sw.Close();
         }
+        /// <summary>
+        /// StreamReader
+        /// </summary>
+        /// <returns>List of figures from XML</returns>
         public List<Figure> Read()
         {
             List<Figure> boxxml = new List<Figure>();
-            StreamReader sr = new StreamReader(writePath);
+            StreamReader sr = new StreamReader(@"C:\Users\byrtn\Downloads\output2.xml");
             string doc =sr.ReadToEnd();
             XmlDocument xdoc = new XmlDocument();
             xdoc.LoadXml(doc);
@@ -55,9 +64,10 @@ namespace task3
                             boxxml.Add(c1);
                             break;
                         }
-                    case "Rectangle": {
+                    case "Rectangle":
+                        {
                             string material = "", color = "";
-                            int height = 1; 
+                            int height = 1;
                             int width = 1;
                             foreach (XmlNode childnode in xnode.ChildNodes)
                             {
@@ -69,32 +79,86 @@ namespace task3
                                 {
                                     color = $"{childnode.InnerText}";
                                 }
-                                if (childnode.Name == "diameter")
+                                if (childnode.Name == "height")
                                 {
-                                    diameter = int.Parse(childnode.InnerText);
+                                    height = int.Parse(childnode.InnerText);
+                                }
+                                if (childnode.Name == "width")
+                                {
+                                    width = int.Parse(childnode.InnerText);
                                 }
                             }
-                            Circle c1 = new Circle(material, color, diameter);
+                            Rectangle c1 = new Rectangle(material, color, height, width);
+                            boxxml.Add(c1);
+                            break;
+                        }
+                    case "Square":
+                        {
+                            string material = "", color = "";
+                            int height = 1;
+                            foreach (XmlNode childnode in xnode.ChildNodes)
+                            {
+                                if (childnode.Name == "material")
+                                {
+                                    material = $"{childnode.InnerText}";
+                                }
+                                if (childnode.Name == "color")
+                                {
+                                    color = $"{childnode.InnerText}";
+                                }
+                                if (childnode.Name == "height")
+                                {
+                                    height = int.Parse(childnode.InnerText);
+                                }
+                            }
+                            Square c1 = new Square(material, color, height);
+                            boxxml.Add(c1);
+                            break;
+                        }
+                    case "Triangle":
+                        {
+                            string material = "", color = "";
+                            int a = 1;
+                            int b = 1;
+                            int d = 1;
+                            foreach (XmlNode childnode in xnode.ChildNodes)
+                            {
+                                if (childnode.Name == "material")
+                                {
+                                    material = $"{childnode.InnerText}";
+                                }
+                                if (childnode.Name == "color")
+                                {
+                                    color = $"{childnode.InnerText}";
+                                }
+                                if (childnode.Name == "side_a")
+                                {
+                                    a = int.Parse(childnode.InnerText);
+                                }
+                                if (childnode.Name == "side_b")
+                                {
+                                    b = int.Parse(childnode.InnerText);
+                                }
+                                if (childnode.Name == "side_d")
+                                {
+                                    d = int.Parse(childnode.InnerText);
+                                }
+                            }
+                            Triangle c1 = new Triangle(material, color, a, b, d);
                             boxxml.Add(c1);
                             break;
                         }
                 }
-                // обходим все дочерние узлы элемента user
-                foreach (XmlNode childnode in xnode.ChildNodes)
-                {
-                    // если узел - company
-                    if (childnode.Name == "company")
-                    {
-                        Console.WriteLine($"Компания: {childnode.InnerText}");
-                    }
-                    // если узел age
-                    if (childnode.Name == "age")
-                    {
-                        Console.WriteLine($"Возраст: {childnode.InnerText}");
-                    }
-                }
-                return boxxml;
+            }
+            return boxxml;
         }
     }
-}
-*/                    
+    public class XMLWriter
+    {
+        public void Write()
+        {
+            var xml = new XmlWriter.();
+
+        }
+    }
+}    

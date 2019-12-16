@@ -46,6 +46,54 @@
             <param name="f1">New Figure</param>
             <param name="i">Index of figure in box</param>
         </member>
+        <member name="M:task3.Box.CountFigures">
+            <summary>
+            Count of figures in box
+            </summary>
+            <returns>Int value</returns>
+        </member>
+        <member name="M:task3.Box.TotalArea">
+            <summary>
+            Total area of all figures into box
+            </summary>
+            <returns>Float value of area</returns>
+        </member>
+        <member name="M:task3.Box.TotalPerimeter">
+            <summary>
+            Total perimeter of all figures into box
+            </summary>
+            <returns>Float value of perimeter</returns>
+        </member>
+        <member name="M:task3.Box.RemoveCircles">
+            <summary>
+            Delete all circles into box
+            </summary>
+        </member>
+        <member name="M:task3.Box.RemoveFilm">
+            <summary>
+            Delete all film figures
+            </summary>
+        </member>
+        <member name="M:task3.Box.SaveXML">
+            <summary>
+            Save xml (streamwriter)
+            </summary>
+        </member>
+        <member name="M:task3.Box.LoadXML">
+            <summary>
+            load xml (streamreader)
+            </summary>
+        </member>
+        <member name="M:task3.Box.SaveXML2">
+            <summary>
+            Save xml (xmlwriter)
+            </summary>
+        </member>
+        <member name="M:task3.Box.LoadXML2">
+            <summary>
+            load xml (xmlreader)
+            </summary>
+        </member>
         <member name="T:task3.Rectangle">
             <summary>
             Class for operations with rectangle
@@ -218,6 +266,18 @@
             </summary>
             <returns>Int value for hashcode</returns>
         </member>
+        <member name="M:task3.Circle.GetXML">
+            <summary>
+            Get XML form of object with params
+            </summary>
+            <returns>Formated String</returns>
+        </member>
+        <member name="M:task3.StreamXML.Read">
+            <summary>
+            XMLReader
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:task3.Figure">
             <summary>
             Abstract class for all figures
@@ -320,6 +380,12 @@
             Override GetHashCode()
             </summary>
             <returns>Int value for hashcode</returns>
+        </member>
+        <member name="M:task3.Figure.GetXML">
+            <summary>
+            Get XML form of object with params
+            </summary>
+            <returns>Formated String</returns>
         </member>
     </members>
 </doc>

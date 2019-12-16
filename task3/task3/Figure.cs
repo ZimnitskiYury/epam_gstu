@@ -65,7 +65,7 @@ namespace task3
         {
             if (m=="film")
             {
-                Color = Colors.transparent;
+                color = (int)Colors.transparent;
             }
             else if((m=="paper")&&(c != "transparent"))
             {
@@ -103,10 +103,7 @@ namespace task3
                         throw new Exception("Figure Is Already Painted");
                     }
                 }
-                else
-                {
-                    throw new Exception("Transparent is not color");
-                }
+                else throw new Exception("Transparent is not color");
             }
         }
         /// <summary>
@@ -146,5 +143,10 @@ namespace task3
         /// </summary>
         /// <returns>Int value for hashcode</returns>
         public abstract override int GetHashCode();
+        /// <summary>
+        /// Get XML form of object with params
+        /// </summary>
+        /// <returns>Formated String</returns>
+        public abstract string GetXML();
     }
 }
