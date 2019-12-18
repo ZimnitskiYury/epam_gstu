@@ -22,7 +22,6 @@ namespace task3
         /// <param name="f1">Input figure</param>
         public void AddFigure(Figure f1)
         {
-            //Проверка на переполнение коробки. макс 20
             if (boxoffigure.Count == 20)
             {
                 throw new Exception("Box is full");
@@ -39,10 +38,13 @@ namespace task3
         /// <param name="i">Index of Figure in box</param>
         public void AddFigure(Figure f1, int i)
         {
-            //Проверка на переполнение коробки. макс 20
-            if (boxoffigure.Count == 19)
+            if (boxoffigure.Count == 20)
             {
                 throw new Exception("Box is full");
+            }
+            else if (boxoffigure.Count < i)
+            {
+                throw new Exception("Wrong index");
             }
             else
             {

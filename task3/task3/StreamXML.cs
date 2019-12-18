@@ -14,7 +14,7 @@ namespace task3
     /// StreamReader and StreamWriter
     /// </summary>
     public class Stream
-    {       
+    {
         /// <summary>
         /// StreamWriter
         /// </summary>
@@ -262,20 +262,27 @@ namespace task3
         public List<Figure> Read()
         {
             List<Figure> boxxml = new List<Figure>();
-            XmlReader xmlReader = XmlReader.Create("input.xml");
-            while (xmlReader.Read())
+            XmlReader xreader = XmlReader.Create("input.xml");
+            string m;
+            string c;
+            while (xreader.Read())
             {
-                if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "Circle"))
+                if (xreader.Name == "figure")
                 {
-                    string m = xmlReader.GetAttribute("material");
-                    string c = xmlReader.GetAttribute("color");
-                    int d = Int32.Parse(xmlReader.GetAttribute("diameter"));
-                    Circle c1 = new Circle(m, c, d);
-                    boxxml.Add(c1);
+                    switch (xreader.Value)
+                    {
+                        case "Circle":
+                            {
+                                m = xreader.GetAttribute("material");
+                                c= xreader.GetAttribute("color");
+                                int d = int.Parse(xreader.GetAttribute("diameter"));
+                                boxxml.Add(new Circle(m, c, d));
+                                break;
+                            }
+                    }
                 }
             }
             return boxxml;
-
         }
     }
 }
