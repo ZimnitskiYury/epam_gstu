@@ -363,12 +363,7 @@
             </summary>
             <param name="intoBox">Input List</param>
         </member>
-        <member name="M:task3.XML.Read">
-            <summary>
-            not working
-            </summary>
-            <returns></returns>
-        </member>
+        <!-- Badly formed XML comment ignored for member "M:task3.XML.Read" -->
         <member name="T:task3.Figure">
             <summary>
             Abstract class for all figures

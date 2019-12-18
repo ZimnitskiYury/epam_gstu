@@ -32,14 +32,15 @@ namespace task3.Tests
         public void RectangleTest()
         {
             Box bx = new Box();
+
+
+            bx.LoadXML2();
+
             Circle rect = new Circle("paper", "red", 11);
             Circle rect2 = new Circle("paper", "red", 10);
             bx.AddFigure(rect);
             bx.AddFigure(rect2);
-            bx.LoadXML2();
             bx.SaveXML2All();
-            
- 
             Assert.AreEqual(bx.ViewFigure(0), rect2);
         }
 

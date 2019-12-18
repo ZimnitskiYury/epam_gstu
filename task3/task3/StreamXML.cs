@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Xml;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -152,6 +151,7 @@ namespace task3
                         }
                 }
             }
+            sr.Close();
             return boxxml;
         }
     }
@@ -256,9 +256,9 @@ namespace task3
             xmlWriter.Close();
         }
         /// <summary>
-        /// not working
+        /// Method Read
         /// </summary>
-        /// <returns></returns>
+        /// <returns>New List<Figure></returns>
         public List<Figure> Read()
         {
             List<Figure> boxxml = new List<Figure>();
@@ -267,21 +267,133 @@ namespace task3
             string c;
             while (xreader.Read())
             {
+
                 if (xreader.Name == "figure")
                 {
-                    switch (xreader.Value)
+                    switch (xreader.GetAttribute("type"))
                     {
                         case "Circle":
                             {
-                                m = xreader.GetAttribute("material");
-                                c= xreader.GetAttribute("color");
-                                int d = int.Parse(xreader.GetAttribute("diameter"));
-                                boxxml.Add(new Circle(m, c, d));
+                                int d;
+                                xreader.Read();
+                                xreader.Read();
+                                if (xreader.Name == "material")
+                                {
+                                    m = xreader.ReadInnerXml();
+                                    xreader.Read();
+                                }
+                                else throw new Exception("Wrong input xml");
+                                if (xreader.Name == "color")
+                                {
+                                    c = xreader.ReadInnerXml();
+                                    xreader.Read();
+                                }
+                                else throw new Exception("Wrong input xml");
+                                if (xreader.Name == "diameter")
+                                {
+                                    d = Int32.Parse(xreader.ReadInnerXml());
+                                }
+                                else throw new Exception("Wrong input xml");
+                                boxxml.Add(new Circle(m,c,d));
+                                break;
+                            }
+                        case "Square":
+                            {
+                                int a;
+                                xreader.Read();
+                                xreader.Read();
+                                if (xreader.Name == "material")
+                                {
+                                    m = xreader.ReadInnerXml();
+                                    xreader.Read();
+                                }
+                                else throw new Exception("Wrong input xml");
+                                if (xreader.Name == "color")
+                                {
+                                    c = xreader.ReadInnerXml();
+                                    xreader.Read();
+                                }
+                                else throw new Exception("Wrong input xml");
+                                if (xreader.Name == "height")
+                                {
+                                    a = Int32.Parse(xreader.ReadInnerXml());
+                                }
+                                else throw new Exception("Wrong input xml");
+                                boxxml.Add(new Square(m, c, a));
+                                break;
+                            }
+                        case "Rectangle":
+                            {
+                                int h, w;
+                                xreader.Read();
+                                xreader.Read();
+                                if (xreader.Name == "material")
+                                {
+                                    m = xreader.ReadInnerXml();
+                                    xreader.Read();
+                                }
+                                else throw new Exception("Wrong input xml");
+                                if (xreader.Name == "color")
+                                {
+                                    c = xreader.ReadInnerXml();
+                                    xreader.Read();
+                                }
+                                else throw new Exception("Wrong input xml");
+                                if (xreader.Name == "height")
+                                {
+                                    h = Int32.Parse(xreader.ReadInnerXml());
+                                    xreader.Read();
+                                }
+                                else throw new Exception("Wrong input xml");
+                                if (xreader.Name == "width")
+                                {
+                                    w = Int32.Parse(xreader.ReadInnerXml());
+                                }
+                                else throw new Exception("Wrong input xml");
+                                boxxml.Add(new Rectangle(m, c, h, w));
+                                break;
+                            }
+                        case "Triangle":
+                            {
+                                int a, b, d;
+                                xreader.Read();
+                                xreader.Read();
+                                if (xreader.Name == "material")
+                                {
+                                    m = xreader.ReadInnerXml();
+                                    xreader.Read();
+                                }
+                                else throw new Exception("Wrong input xml");
+                                if (xreader.Name == "color")
+                                {
+                                    c = xreader.ReadInnerXml();
+                                    xreader.Read();
+                                }
+                                else throw new Exception("Wrong input xml");
+                                if (xreader.Name == "a")
+                                {
+                                    a = Int32.Parse(xreader.ReadInnerXml());
+                                    xreader.Read();
+                                }
+                                else throw new Exception("Wrong input xml");
+                                if (xreader.Name == "b")
+                                {
+                                    b = Int32.Parse(xreader.ReadInnerXml());
+                                    xreader.Read();
+                                }
+                                else throw new Exception("Wrong input xml");
+                                if (xreader.Name == "d")
+                                {
+                                    d = Int32.Parse(xreader.ReadInnerXml());
+                                }
+                                else throw new Exception("Wrong input xml");
+                                boxxml.Add(new Triangle(m, c, a, b, d));
                                 break;
                             }
                     }
                 }
             }
+            xreader.Close();
             return boxxml;
         }
     }
