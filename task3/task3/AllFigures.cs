@@ -71,7 +71,10 @@ namespace task3
             int hash = (int)((Area - Width) + (Height + Perimeter)) + (int)Color;
             return hash;
         }
-
+        /// <summary>
+        /// Create xml for figure
+        /// </summary>
+        /// <returns>String for xml</returns>
         public override string GetXML()
         {
             string xml = "";
@@ -146,7 +149,10 @@ namespace task3
             int hash = (int)((Area - A) + (A+ Perimeter)) + (int)Color;
             return hash;
         }
-
+        /// <summary>
+        /// Create xml for figure
+        /// </summary>
+        /// <returns>String for xml</returns>
         public override string GetXML()
         {
             string xml = "";
@@ -239,7 +245,10 @@ namespace task3
             int hash = (int)((Area - A) + (B + Perimeter)) + (int)Color+(int)D;
             return hash;
         }
-
+        /// <summary>
+        /// Create xml for figure
+        /// </summary>
+        /// <returns>String for xml</returns>
         public override string GetXML()
         {
             string xml = "";

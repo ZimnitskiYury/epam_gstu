@@ -258,7 +258,7 @@ namespace task3
         /// <summary>
         /// Method Read
         /// </summary>
-        /// <returns>New List<Figure></returns>
+        /// <returns>New List</returns>
         public List<Figure> Read()
         {
             List<Figure> boxxml = new List<Figure>();

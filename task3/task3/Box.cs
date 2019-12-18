@@ -99,7 +99,6 @@ namespace task3
         /// Find figure in box
         /// </summary>
         /// <param name="f1">Figure for search</param>
-        /// <param name="k">Index of Figure</param>
         /// <returns>Index of figure in box</returns>
         public string FindFigure(Figure f1)
         {
