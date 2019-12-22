@@ -25,7 +25,7 @@ namespace task4
 
         string ip;
         int port;
-        ServerHandler serverHandler = new ServerHandler();
+        ServerMessagesHandler serverHandler = new ServerMessagesHandler();
         /// <summary>
         /// 
         /// </summary>
@@ -51,7 +51,7 @@ namespace task4
         {
             IPEndPoint tcpEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
             Socket tcpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            onReceived += serverHandler.SaveMessages;
+            onReceived += serverHandler.Save;
             tcpSocket.Bind(tcpEndPoint);
             tcpSocket.Listen(1);
             while (true)
@@ -71,7 +71,6 @@ namespace task4
                 listener.Shutdown(SocketShutdown.Both);
                 listener.Close();
             }
-
         }
     }
 }
