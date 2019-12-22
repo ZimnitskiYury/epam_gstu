@@ -1,33 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace task4
 {
     /// <summary>
-    /// 
+    /// Client for TCP/IP connection to server
     /// </summary>
     public class Client
     {
         /// <summary>
-        /// 
+        /// Delegate for event
         /// </summary>
-        /// <param name="message"></param>
+        /// <param name="message">Input message from server</param>
         public delegate string MessageAnswerEventHandler(string message);
         /// <summary>
-        /// 
+        /// Event on answer from server
         /// </summary>
         public event MessageAnswerEventHandler OnAnswer;
-
+        /// <summary>
+        /// Ip address for connection to server
+        /// </summary>
         string ip;
+        /// <summary>
+        /// Port for connection to server
+        /// </summary>
         int port;
         ClientMessagesHandler clientHandler = new ClientMessagesHandler();
         /// <summary>
-        /// 
+        /// Default constructor 
         /// </summary>
         public Client()
         {
@@ -35,7 +36,7 @@ namespace task4
             port = 8080;
         }
         /// <summary>
-        /// 
+        /// Constructor for custom Ip and Port
         /// </summary>
         /// <param name="i">Ip for connect to server</param>
         /// <param name="p">Port for connect to server</param>
@@ -45,8 +46,10 @@ namespace task4
             port = p;
         }
         /// <summary>
-        /// 
+        /// Send message to server from Name-user
         /// </summary>
+        /// <param name="name">Name of user</param>
+        /// <param name="msg">Message from User</param>
         public void Send(string name, string msg)
         {
             var tcpEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
@@ -58,8 +61,9 @@ namespace task4
             tcpSocket.Close();
         }
         /// <summary>
-        /// 
+        /// REceive message from server
         /// </summary>
+        /// <returns>Return message - string</returns>
         public string Receive()
         {
             OnAnswer += clientHandler.Transliteration;

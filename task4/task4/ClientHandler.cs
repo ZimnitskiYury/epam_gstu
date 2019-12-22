@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace task4
+﻿namespace task4
 {
     /// <summary>
     /// Class for transliteration from cyrillic to latin

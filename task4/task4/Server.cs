@@ -1,33 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace task4
 {
     /// <summary>
-    /// 
+    /// Server for TCP/IP connection to server
     /// </summary>
     public class Server
     {
         /// <summary>
-        /// 
+        /// Delegate for event
         /// </summary>
-        /// <param name="message"></param>
+        /// <param name="message">Message from client</param>
         public delegate void MessageReceivedEventHandler(string message);
         /// <summary>
-        /// 
+        /// Event on receive message from client
         /// </summary>
         public event MessageReceivedEventHandler onReceived;
-
+        /// <summary>
+        /// Ip address for connection to server
+        /// </summary>
         string ip;
+        /// <summary>
+        /// Port for connection to server
+        /// </summary>
         int port;
         ServerMessagesHandler serverHandler = new ServerMessagesHandler();
         /// <summary>
-        /// 
+        /// Default constructor
         /// </summary>
         public Server()
         {
@@ -35,17 +36,17 @@ namespace task4
             port = 8080;
         }
         /// <summary>
-        /// 
+        /// Constructor for custom Ip and Port
         /// </summary>
-        /// <param name="i"></param>
-        /// <param name="p"></param>
+        /// <param name="i">Ip address for connection</param>
+        /// <param name="p">Port for connection</param>
         public Server(string i, int p)
         {
             ip = i;
             port = p;
         }
         /// <summary>
-        /// 
+        /// Start to listen socket
         /// </summary>
         public void Start()
         {
@@ -69,9 +70,21 @@ namespace task4
                 onReceived(data.ToString());
                 listener.Shutdown(SocketShutdown.Both);
                 listener.Close();
-
             }
-
+        }
+        /// <summary>
+        /// Send message to Client
+        /// </summary>
+        /// <param name="t">String with nessage to client</param>
+        public void Answer(string t)
+        {
+            IPEndPoint tcpEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
+            Socket tcpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            var data = Encoding.UTF8.GetBytes(t);
+            tcpSocket.Connect(tcpEndPoint);
+            tcpSocket.Send(data);
+            tcpSocket.Shutdown(SocketShutdown.Both);
+            tcpSocket.Close();
         }
     }
 }
