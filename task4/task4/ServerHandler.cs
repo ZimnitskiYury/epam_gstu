@@ -18,7 +18,7 @@ namespace task4
         {
             int i = msg.IndexOf(":");
             string client = msg.Substring(0, i);
-            string text = msg.Substring(i);
+            string text = msg.Substring(i+1);
             ClientMessage clientMessage = new ClientMessage
             { 
                 name = client,
@@ -26,7 +26,7 @@ namespace task4
             };
             data.Add(clientMessage);
         }
-        public List <ClientMessage> Show()
+        public List<ClientMessage> Show()
         {
             return data;
         }

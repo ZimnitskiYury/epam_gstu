@@ -67,10 +67,11 @@ namespace task4
                 }
                 while (listener.Available > 0);
                 onReceived(data.ToString());
-                Console.WriteLine(data);
                 listener.Shutdown(SocketShutdown.Both);
                 listener.Close();
+
             }
+
         }
     }
 }
