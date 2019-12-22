@@ -13,15 +13,45 @@ namespace task4
     /// </summary>
     public class Server
     {
-        const string ip = "127.0.0.1";
-        const int port = 8080;
-        IPEndPoint tcpEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
-        Socket tcpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="message"></param>
+        public delegate void MessageReceivedEventHandler(string message);
+        /// <summary>
+        /// 
+        /// </summary>
+        public event MessageReceivedEventHandler onReceived;
+
+        string ip;
+        int port;
+        ServerHandler serverHandler = new ServerHandler();
+        /// <summary>
+        /// 
+        /// </summary>
+        public Server()
+        {
+            ip = "127.0.0.1";
+            port = 8080;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="i"></param>
+        /// <param name="p"></param>
+        public Server(string i, int p)
+        {
+            ip = i;
+            port = p;
+        }
         /// <summary>
         /// 
         /// </summary>
         public void Start()
         {
+            IPEndPoint tcpEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
+            Socket tcpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            onReceived += serverHandler.SaveMessages;
             tcpSocket.Bind(tcpEndPoint);
             tcpSocket.Listen(1);
             while (true)
@@ -36,13 +66,12 @@ namespace task4
                     data.Append(Encoding.UTF8.GetString(taken, 0, size));
                 }
                 while (listener.Available > 0);
+                onReceived(data.ToString());
                 Console.WriteLine(data);
-                listener.Send(Encoding.UTF8.GetBytes("Transliteration"));
+                listener.Shutdown(SocketShutdown.Both);
+                listener.Close();
             }
-            //в метод который делает транслитерацию
+
         }
-        /// <summary>
-        /// 
-        /// </summary>
     }
 }
