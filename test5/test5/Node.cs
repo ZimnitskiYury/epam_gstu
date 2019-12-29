@@ -8,7 +8,7 @@ namespace test5
 {
     public class Node<T> where T : IComparable
     {
-        public T Data{get; set;}
+        public T Data { get; set; }
         public Node<T> Left { get; set; }
         public Node<T> Right { get; set; }
         public Node(T data)
@@ -21,14 +21,13 @@ namespace test5
             Left = left;
             Right = right;
         }
-        public int CompareTo(object obj)
+        public int CompareTo(Node<T> other)
         {
-
-            if (obj is Node<T> name)
+            if (other is Node<T> c)
             {
-                return this.Data.CompareTo(name.Data);
+                return this.Data.CompareTo(c.Data);
             }
-            else throw new Exception("Wrong Input Node");
+            else throw new Exception("Wrong Node");
         }
     }
 }

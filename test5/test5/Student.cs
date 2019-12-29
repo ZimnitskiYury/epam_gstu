@@ -83,7 +83,7 @@ namespace test5
         {
             if (obj is Student c) 
             {
-                return Grade.CompareTo(c.Grade);
+                return this.grade.CompareTo(c.grade);
             }
             else throw new Exception("Wrong Student for Compare");
         }
