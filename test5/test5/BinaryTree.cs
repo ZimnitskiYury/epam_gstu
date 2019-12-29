@@ -21,9 +21,9 @@ namespace test5
             }
             Add(node, Root);
         }
-        public void Add(Node<T> _node, Node<T> _root)
+        private void Add(Node<T> _node, Node<T> _root)
         {
-            if (_node.CompareTo(_root) == -1)
+            if (_node.CompareTo(_root)==-1)
             {
                 if (_root.Left == null)
                 {
@@ -54,7 +54,7 @@ namespace test5
             _temp= InOrder();
             var contains = _temp.Count();
             Clear();
-            Balance(_temp, 1, contains);
+            Balance(_temp, 0, contains);
         }
         private void Balance(List <T> temp, int start, int end)
         {

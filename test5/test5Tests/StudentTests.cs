@@ -18,14 +18,14 @@ namespace test5.Tests
             var s2 = new Student("Kruchkov", 10, "DataStructure", new DateTime(2016, 3, 25));
             var s3 = new Student("Varochkin", 58, "DataStructure", new DateTime(2018, 1, 12));
             /*var s4 = new Student("Varochkin", 53, "DataStructure", new DateTime(2017, 2, 10));*/
-            var s5 = new Student("Varochkin", 88, "DataStructure", new DateTime(2015, 2, 11));
-            var s6 = new Student("Varochkin", 75, "DataStructure", new DateTime(2015, 2, 11));
-            var s7 = new Student("Varochkin", 99, "DataStructure", new DateTime(2015, 2, 11));
-            var s8 = new Student("Varochkin", 12, "DataStructure", new DateTime(2015, 2, 11));
-            var s9 = new Student("Varochkin", 63, "DataStructure", new DateTime(2015, 2, 11));
-            var s10 = new Student("Varochkin", 77, "DataStructure", new DateTime(2015, 2, 11));
-            var s11= new Student("Varochkin", 16, "DataStructure", new DateTime(2015, 2, 11));
-            var s12= new Student("Varochkin", 93, "DataStructure", new DateTime(2015, 2, 11));
+            var s5 = new Student("Utyashev", 88, "DataStructure", new DateTime(2019, 2, 11));
+            var s6 = new Student("Karlov", 75, "DataStructure", new DateTime(2015, 2, 11));
+            var s7 = new Student("Puchkin", 99, "DataStructure", new DateTime(2015, 2, 11));
+            var s8 = new Student("Segen", 12, "DataStructure", new DateTime(2015, 2, 11));
+            var s9 = new Student("Artek", 63, "DataStructure", new DateTime(2015, 2, 11));
+            var s10 = new Student("Polko", 77, "DataStructure", new DateTime(2015, 2, 11));
+            var s11= new Student("Ninchenko", 16, "DataStructure", new DateTime(2015, 2, 11));
+            var s12= new Student("Artov", 93, "DataStructure", new DateTime(2015, 2, 11));
            // var result = s1.CompareTo(s2);
             var expected = 1;
             //Assert.AreEqual(expected, result);*/

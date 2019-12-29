@@ -27,7 +27,7 @@ namespace test5
             {
                 return this.Data.CompareTo(c.Data);
             }
-            else throw new Exception("Wrong Node");
+            else throw new Exception("Wrong node");
         }
     }
 }
