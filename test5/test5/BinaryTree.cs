@@ -21,26 +21,26 @@ namespace test5
             }
             Add(node, Root);
         }
-        private void Add(Node<T> _node, Node<T> _root)
+        private void Add(Node<T> node, Node<T> root)
         {
-            if (_node.CompareTo(_root)==-1)
+            if (node.CompareTo(root)==-1)
             {
-                if (_root.Left == null)
+                if (root.Left == null)
                 {
-                    _root.Left = _node;
+                    root.Left = node;
                     Count++;
                 }
-                else Add(_node, _root.Left);
+                else Add(node, root.Left);
             }
             else
             {
-                if (_root.Right == null)
+                if (root.Right == null)
                 {
-                    _root.Right = _node;
+                    root.Right = node;
                     Count++;
                 }
                 else
-                    Add(_node, _root);
+                    Add(node, root.Right);
             }
         }
         public void Clear()
@@ -52,7 +52,7 @@ namespace test5
         {
             var _temp = new List<T>(Count);
             _temp= InOrder();
-            var contains = _temp.Count();
+            var contains = _temp.Count()-1;
             Clear();
             Balance(_temp, 0, contains);
         }

@@ -17,7 +17,7 @@ namespace test5.Tests
             var s1 = new Student("Zimnitski", 27, "DataStructure", new DateTime(2015, 7, 20));
             var s2 = new Student("Kruchkov", 10, "DataStructure", new DateTime(2016, 3, 25));
             var s3 = new Student("Varochkin", 58, "DataStructure", new DateTime(2018, 1, 12));
-            /*var s4 = new Student("Varochkin", 53, "DataStructure", new DateTime(2017, 2, 10));*/
+            var s4 = new Student("Varochkin", 53, "DataStructure", new DateTime(2017, 2, 10));
             var s5 = new Student("Utyashev", 88, "DataStructure", new DateTime(2019, 2, 11));
             var s6 = new Student("Karlov", 75, "DataStructure", new DateTime(2015, 2, 11));
             var s7 = new Student("Puchkin", 99, "DataStructure", new DateTime(2015, 2, 11));
@@ -43,6 +43,7 @@ namespace test5.Tests
             b1.Add(s11);
             b1.Add(s12);
             b1.Balance();
+            b1.Add(s4);
         }
     }
 }
