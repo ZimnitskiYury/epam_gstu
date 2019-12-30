@@ -12,7 +12,6 @@ namespace test5
     /// </summary>
     public class Student : IComparable
     {
-        [XmlArray("Student")]
         private string studentName;
         private string testTitle;
         private int grade;
