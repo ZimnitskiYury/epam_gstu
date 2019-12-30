@@ -3,15 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace test5
 {
-    public class Student:IComparable
+    /// <summary>
+    /// Class for Student and student's data
+    /// </summary>
+    public class Student : IComparable
     {
-        string studentName;
-        string testTitle;
-        int grade;
-        DateTime dateTest;
+        [XmlArray("Student")]
+        private string studentName;
+        private string testTitle;
+        private int grade;
+        private DateTime dateTest;
+        /// <summary>
+        /// Name of Student
+        /// </summary>
         public string StudentName
         {
             get => studentName;
@@ -27,6 +35,9 @@ namespace test5
                 }
             }
         }
+        /// <summary>
+        /// Title of the test
+        /// </summary>
         public string TestTitle
         {
             get => testTitle;
@@ -41,6 +52,9 @@ namespace test5
                 }
             }
         }
+        /// <summary>
+        /// Grade of the test
+        /// </summary>
         public int Grade
         {
             get => grade;
@@ -56,6 +70,9 @@ namespace test5
                 }
             }
         }
+        /// <summary>
+        /// Date of the test
+        /// </summary>
         public DateTime DateTest
         {
             get => dateTest;
@@ -71,6 +88,20 @@ namespace test5
                 }
             }
         }
+        /// <summary>
+        /// Default constructor for XMLSerialization
+        /// </summary>
+        public Student()
+        {
+
+        }
+        /// <summary>
+        /// Main Constructor for student
+        /// </summary>
+        /// <param name="name">Name of student</param>
+        /// <param name="gr">Grade</param>
+        /// <param name="test">Test Title</param>
+        /// <param name="date">Date</param>
         public Student (string name, int gr, string test, DateTime date)
         {
             StudentName = name;
@@ -78,7 +109,11 @@ namespace test5
             TestTitle = test;
             DateTest = date;
         }
-
+        /// <summary>
+        /// Realization of IComparable
+        /// </summary>
+        /// <param name="obj">Input object</param>
+        /// <returns>-1 for less, 0 for equal, 1 for more</returns>
         public int CompareTo(object obj)
         {
             if (obj is Student c) 

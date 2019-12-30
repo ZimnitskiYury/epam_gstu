@@ -6,10 +6,33 @@ using System.Threading.Tasks;
 
 namespace test5
 {
+    
+    /// <summary>
+    /// Class of BinaryTree
+    /// </summary>
+    /// <typeparam name="T">Input type of object</typeparam>
+    [Serializable]
     public class BinaryTree<T> where T : IComparable
     {
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public BinaryTree()
+        {
+
+        }
+        /// <summary>
+        /// Root node of Binary Tree
+        /// </summary>
         public Node<T> Root { get; set; }
+        /// <summary>
+        /// Count of nodes in Binary Tree
+        /// </summary>
         public int Count { get; set; }
+        /// <summary>
+        /// Add new node in Binary Tree. Uses recursion
+        /// </summary>
+        /// <param name="data">Input object(type)</param>
         public void Add(T data)
         {
             var node = new Node<T>(data);
@@ -21,6 +44,11 @@ namespace test5
             }
             Add(node, Root);
         }
+        /// <summary>
+        /// Private method for add new node. Recursion
+        /// </summary>
+        /// <param name="node">Input new node</param>
+        /// <param name="root">Input parent node</param>
         private void Add(Node<T> node, Node<T> root)
         {
             if (node.CompareTo(root)==-1)
@@ -43,11 +71,17 @@ namespace test5
                     Add(node, root.Right);
             }
         }
+        /// <summary>
+        /// Clear Binary Tree for balance
+        /// </summary>
         public void Clear()
         {
             Root = null;
             Count = 0;
         }
+        /// <summary>
+        /// Balance Binary Tree for less O. Rebuild Binary Tree
+        /// </summary>
         public void Balance()
         {
             var _temp = new List<T>(Count);
@@ -56,6 +90,12 @@ namespace test5
             Clear();
             Balance(_temp, 0, contains);
         }
+        /// <summary>
+        /// Part of recursion of balance Binary Tree. 
+        /// </summary>
+        /// <param name="temp">list with objects of Binary Tree</param>
+        /// <param name="start">start number of part temp List</param>
+        /// <param name="end">end number of part temp List</param>
         private void Balance(List <T> temp, int start, int end)
         {
             if (start > end)
@@ -67,6 +107,10 @@ namespace test5
             Balance(temp, start, mid-1);
             Balance(temp, mid + 1, end);
         }
+        /// <summary>
+        /// Output sorted objects of Binary Tree
+        /// </summary>
+        /// <returns>Sorted List with objects</returns>
         public List<T> InOrder()
         {
             var output = new List<T>();
@@ -80,6 +124,11 @@ namespace test5
                 throw new Exception("Empty BinaryTree");
             }
         }
+        /// <summary>
+        /// Part of recursion of Inorder output. Adds List to List
+        /// </summary>
+        /// <param name="node">Node of Binary Tree</param>
+        /// <returns>Sorted List of elements Binary Tree</returns>
         private List<T> InOrder(Node<T> node)
         {
             var output = new List<T>();
