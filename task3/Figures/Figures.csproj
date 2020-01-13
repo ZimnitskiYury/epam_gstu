@@ -52,6 +52,11 @@
     <Compile Include="Film\SquareFilm.cs" />
     <Compile Include="Film\TriangleFilm.cs" />
     <Compile Include="IFigure.cs" />
+    <Compile Include="Paper\CirclePaper.cs" />
+    <Compile Include="Paper\IPaper.cs" />
+    <Compile Include="Paper\RectanglePaper.cs" />
+    <Compile Include="Paper\SquarePaper.cs" />
+    <Compile Include="Paper\TrianglePaper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BaseFigures\Triangle.cs" />
   </ItemGroup>

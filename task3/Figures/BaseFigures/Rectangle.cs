@@ -20,6 +20,29 @@ namespace Figures.BaseFigures
             Height = h;
         }
         /// <summary>
+        /// Constructor for cutting new rectangle from rectangle
+        /// </summary>
+        /// <param name="figure">Figure for cut</param>
+        /// <param name="h">Height</param>
+        /// <param name="w">Width</param>
+        public Rectangle(IFigure figure, float h, float w)
+        {
+            if (h <= 0 && w <= 0)
+            {
+                throw new Exception("Invalid input parameter");
+            }
+            if (!(figure is Rectangle))
+            {
+                throw new Exception("Invalid Figure for cut");
+            }
+            this.Width= w;
+            this.Height = h;
+            if (figure.Area <= this.Area)
+            {
+                throw new Exception("Figure fot cut less than new");
+            }
+        }
+        /// <summary>
         /// Area of Rectangle
         /// </summary>
         public float Area { get => Width * Height; }

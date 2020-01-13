@@ -25,9 +25,9 @@ namespace Figures.BaseFigures
             C = c;
         }
         /// <summary>
-        /// Constructor for cutting new circle from circle
+        /// Constructor for cutting new triangle from triangle
         /// </summary>
-        /// <param name="figure">Circle for cut</param>
+        /// <param name="figure">Triangle for cut</param>
         /// <param name="a">First side</param>
         /// <param name="b">Second side</param>
         /// <param name="c">Third side</param>
