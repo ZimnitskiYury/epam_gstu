@@ -4,14 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace task3
+namespace Figures
 {
     interface IFigure
     {
         float Area { get;}
         float Perimeter { get;}
-    /*    string ToString();
-        bool Equals(object obj);
-        int GetHashCode();*/
     }
 }

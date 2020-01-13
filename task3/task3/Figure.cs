@@ -59,37 +59,6 @@ namespace task3
             pink
         }
         /// <summary>
-        /// Default constructor for all classes
-        /// </summary>
-        public Figure(string m, string c)
-        {
-            if (m=="film")
-            {
-                color = (int)Colors.transparent;
-            }
-            else if((m=="paper")&&(c != "transparent"))
-            {
-                Color = (Colors)Enum.Parse(typeof(Colors), c);
-            }
-            else
-            {
-                throw new Exception("Wrong color or material input");
-            }
-        }
-        /// <summary>
-        /// Constructor for create figure from another
-        /// </summary>
-        /// <param name="m">material</param>
-        /// <param name="c">color</param>
-        /// <param name="f1">Figure another</param>
-        public Figure(string m, string c, Figure f1):this(m,c)
-        {
-            if (f1.Area< this.Area)
-            {
-                throw new Exception("You cannot create bigger figure from less");
-            }
-        }
-        /// <summary>
         /// Area of Figure
         /// </summary>
         public abstract float Area { get; }
@@ -117,20 +86,6 @@ namespace task3
                     }
                 }
                 else throw new Exception("Transparent is not color");
-            }
-        }
-        /// <summary>
-        /// Type of material. Returns paper or film. 
-        /// </summary>
-        public string Material
-        {
-            get
-            {
-                if (Color != 0)
-                {
-                    return "paper";
-                }
-                else return "film";
             }
         }
         /// <summary>
