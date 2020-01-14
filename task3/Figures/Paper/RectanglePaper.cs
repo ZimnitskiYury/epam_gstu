@@ -3,18 +3,38 @@ using System;
 
 namespace Figures.Paper
 {
+    /// <summary>
+    /// Class for figure Rectangle (Paper)
+    /// </summary>
     public class RectanglePaper : Rectangle, IPaper
     {
         private Colors color;
         private bool isPainted = false;
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="h">Height</param>
+        /// <param name="w">Width</param>
         public RectanglePaper(float h, float w) : base(h, w)
         {
             color = Colors.white;
         }
+        /// <summary>
+        /// Constructor with color
+        /// </summary>
+        /// <param name="c">Color</param>
+        /// <param name="h">Height</param>
+        /// <param name="w">Width</param>
         public RectanglePaper(string c, float h, float w) : base(h, w)
         {
             color = (Colors)int.Parse(c);
         }
+        /// <summary>
+        /// Copy constructor
+        /// </summary>
+        /// <param name="figure">Input figure</param>
+        /// <param name="h">Height</param>
+        /// <param name="w">Width</param>
         public RectanglePaper(IFigure figure, float h, float w) : base(figure, h, w)
         {
             if (!(figure is IPaper))
@@ -28,6 +48,9 @@ namespace Figures.Paper
                 IsPainted = cp1.IsPainted;
             }
         }
+        /// <summary>
+        /// Property for change private color
+        /// </summary>
         public Colors Color
         {
             get => color;
@@ -48,8 +71,15 @@ namespace Figures.Paper
                 else throw new Exception("Figure already " + color.ToString() + ". Select another color");
             }
         }
+        /// <summary>
+        /// Checks only once painting a figure
+        /// </summary>
         public bool IsPainted { get => isPainted; set => isPainted = value; }
-
+        /// <summary>
+        /// Override Object.Equals()
+        /// </summary>
+        /// <param name="obj">Input object</param>
+        /// <returns>True or false</returns>
         public override bool Equals(object obj)
         {
             if (obj is RectanglePaper)
@@ -66,11 +96,19 @@ namespace Figures.Paper
             }
             else return false;
         }
+        /// <summary>
+        /// Override Object.GetHashCode()
+        /// </summary>
+        /// <returns>Int value</returns>
         public override int GetHashCode()
         {
             int hash = (int)((Area - Width) + (Height + Perimeter));
             return hash;
         }
+        /// <summary>
+        /// Override Object.ToString()
+        /// </summary>
+        /// <returns>String value</returns>
         public override string ToString()
         {
             string txt = "Type of Figure: Rectangle";

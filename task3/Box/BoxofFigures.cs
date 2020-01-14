@@ -193,98 +193,98 @@ namespace Box
         /// <summary>
         /// Save xml (streamwriter)
         /// </summary>
-        public void SaveXMLAll()
+        public void SaveXMLAll(string output)
         {
             Type1Xml t1 = new Type1Xml();
-            t1.Write("output.xml", boxoffigure);
+            t1.Write(output, boxoffigure);
         }
- /*       /// <summary>
+        /// <summary>
         /// Save xml (only film)
         /// </summary>
-        public void SaveXMLFilm()
+        public void SaveXMLFilm(string output)
         {
-            Stream sxml = new Stream();
-            string txt = "";
+            Type1Xml t1 = new Type1Xml();
+            List<IFigure> _tempbox=new List<IFigure>(boxoffigure.Count);
             foreach (var i in boxoffigure)
             {
-                if (i.Material == "film")
+                if (i is IFilm)
                 {
-                    txt += i.GetXML();
+                    _tempbox.Add(i);
                 }
             }
-            sxml.Write(txt);
+        t1.Write(output, _tempbox);
         }
         /// <summary>
         /// Save xml (only paper)
         /// </summary>
-        public void SaveXMLPaper()
+        public void SaveXMLPaper(string output)
         {
-            Stream sxml = new Stream();
-            string txt = "";
+            Type1Xml t1 = new Type1Xml();
+            List<IFigure> _tempbox = new List<IFigure>(boxoffigure.Count);
             foreach (var i in boxoffigure)
             {
-                if (i.Material == "paper")
+                if (i is IPaper)
                 {
-                    txt += i.GetXML();
+                    _tempbox.Add(i);
                 }
             }
-            sxml.Write(txt);
+            t1.Write(output, _tempbox);
         }
         /// <summary>
         /// load xml (streamreader)
         /// </summary>
-        public void LoadXML()
+        public void LoadXML(string input)
         {
-            Stream sxml = new Stream();
-            boxoffigure = sxml.Read();
-        }*/
+            Type1Xml t1 = new Type1Xml();
+            boxoffigure = t1.Read(input);
+        }
         /// <summary>
         /// Save xml (xmlwriter)
         /// </summary>
-        public void SaveXML2All()
+        public void SaveXML2All(string output)
         {
             Type2Xml wx = new Type2Xml();
-            wx.Write(boxoffigure);
+            wx.Write(output, boxoffigure);
         }
- /*       /// <summary>
+        /// <summary>
         /// Save xml only film (xmlwriter)
         /// </summary>
-        public void SaveXML2Film()
+        public void SaveXML2Film(string output)
         {
-            XML wx = new XML();
-            List<Figure> filmbox = new List<Figure>();
-            foreach(var i in boxoffigure)
-            {
-                if (i.Material == "film")
+            Type2Xml wx = new Type2Xml();
+            List<IFigure> _tempbox = new List<IFigure>(boxoffigure.Count);
+                foreach (var i in boxoffigure)
                 {
-                    filmbox.Add(i);
+                    if (i is IFilm)
+                    {
+                        _tempbox.Add(i);
+                    }
                 }
-            }
-            wx.Write(filmbox);
+            wx.Write(output, _tempbox);
         }
         /// <summary>
         /// Save xml only paper (xmlwriter)
         /// </summary>
-        public void SaveXML2Paper()
+        public void SaveXML2Paper(string output)
         {
-            XML wx = new XML();
-            List<Figure> paperbox = new List<Figure>();
+            Type2Xml wx = new Type2Xml();
+            List<IFigure> _tempbox = new List<IFigure>(boxoffigure.Count);
             foreach (var i in boxoffigure)
             {
-                if (i.Material == "paper")
+                if (i is IPaper)
                 {
-                    paperbox.Add(i);
+                    _tempbox.Add(i);
                 }
             }
-            wx.Write(paperbox);
+            wx.Write(output, _tempbox);
         }
         /// <summary>
         /// load xml (xmlreader)
         /// </summary>
-        public void LoadXML2()
+        public void LoadXML2(string input)
         {
-            XML sx = new XML();
-            boxoffigure = sx.Read();
-        }*/
+            Type2Xml t1 = new Type2Xml();
+            boxoffigure = t1.Read(input);
+        }
     }
 }

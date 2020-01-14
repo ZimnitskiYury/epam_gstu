@@ -3,18 +3,41 @@ using System;
 
 namespace Figures.Paper
 {
+    /// <summary>
+    /// Class for figure Triangle (Paper)
+    /// </summary>
     public class TrianglePaper : Triangle, IPaper
     {
         private Colors color;
         private bool isPainted = false;
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="a">Side a</param>
+        /// <param name="b">Side b</param>
+        /// <param name="c">Side c</param>
         public TrianglePaper(float a, float b, float c) : base(a, b, c)
         {
             color = Colors.white;
         }
+        /// <summary>
+        /// Constructor with color
+        /// </summary>
+        /// <param name="col">Color</param>
+        /// <param name="a">Side a</param>
+        /// <param name="b">Side b</param>
+        /// <param name="c">Side c</param>
         public TrianglePaper(string col, float a, float b, float c) : base(a, b, c)
         {
             color = (Colors)int.Parse(col);
         }
+        /// <summary>
+        /// Copy constructor for cutting
+        /// </summary>
+        /// <param name="figure">Input figure</param>
+        /// <param name="a">Side a</param>
+        /// <param name="b">Side b</param>
+        /// <param name="c">Side c</param>
         public TrianglePaper(IFigure figure, float a, float b, float c) : base(figure, a, b, c)
         {
             if (!(figure is IPaper))
@@ -28,7 +51,9 @@ namespace Figures.Paper
                 IsPainted = cp1.IsPainted;
             }
         }
-
+        /// <summary>
+        /// Property for change private color
+        /// </summary>
         public Colors Color
         {
             get => color;
@@ -49,8 +74,15 @@ namespace Figures.Paper
                 else throw new Exception("Figure already " + color.ToString() + ". Select another color");
             }
         }
+        /// <summary>
+        /// Checks only once painting a figure
+        /// </summary>
         public bool IsPainted { get => isPainted; set => isPainted = value; }
-
+        /// <summary>
+        /// Override Object.Equals()
+        /// </summary>
+        /// <param name="obj">Input object</param>
+        /// <returns>True or false</returns>
         public override bool Equals(object obj)
         {
             if (obj is TrianglePaper)
@@ -63,13 +95,19 @@ namespace Figures.Paper
             }
             else return false;
         }
-
+        /// <summary>
+        /// Override Object.GetHashCode()
+        /// </summary>
+        /// <returns>Int value</returns>
         public override int GetHashCode()
         {
             int hash = (int)((Area - A) + (B + Perimeter)) + (int)C;
             return hash;
         }
-
+        /// <summary>
+        /// Override Object.ToString()
+        /// </summary>
+        /// <returns>String value</returns>
         public override string ToString()
         {
             string txt = "Type of Figure: Triangle";

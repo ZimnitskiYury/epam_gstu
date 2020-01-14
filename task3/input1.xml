@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Box>
+	<figure type="Rectangle">
+		<material>Film</material>
+		<color>None</color>
+		<height>3</height>
+		<width>2</width>
+	</figure>
+	<figure type="Circle">
+		<material>Paper</material>
+		<color>white</color>
+		<diameter>31</diameter>
+	</figure>
+	<figure type="Square">
+		<material>Film</material>
+		<color>None</color>
+		<height>11</height>
+	</figure>
+	<figure type="Rectangle">
+		<material>Paper</material>
+		<color>white</color>
+		<height>17</height>
+		<width>0,9</width>
+	</figure>
+	<figure type="Rectangle">
+		<material>Paper</material>
+		<color>pink</color>
+		<height>9</height>
+		<width>7</width>
+	</figure>
+	<figure type="Square">
+		<material>Paper</material>
+		<color>green</color>
+		<height>7</height>
+	</figure>
+	<figure type="Rectangle">
+		<material>Paper</material>
+		<color>white</color>
+		<height>7,3</height>
+		<width>19,2</width>
+	</figure>
+	<figure type="Rectangle">
+		<material>Paper</material>
+		<color>black</color>
+		<height>3,7</height>
+		<width>2,51</width>
+	</figure>
+	<figure type="Circle">
+		<material>Paper</material>
+		<color>red</color>
+		<diameter>31</diameter>
+	</figure>
+	<figure type="Rectangle">
+		<material>Film</material>
+		<color>None</color>
+		<height>11</height>
+		<width>22</width>
+	</figure>
+
+</Box>

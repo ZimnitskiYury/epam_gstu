@@ -6,9 +6,18 @@ using System.Threading.Tasks;
 
 namespace Figures.Paper
 {
-    interface IPaper
+    /// <summary>
+    /// Interface for all Paper figures
+    /// </summary>
+    public interface IPaper
     {
+        /// <summary>
+        /// Property of Color
+        /// </summary>
     Colors Color { get; set; }
-    bool IsPainted { get; set; }
+        /// <summary>
+        /// Checks only once painting a figure
+        /// </summary>
+        bool IsPainted { get; set; }
     }
 }

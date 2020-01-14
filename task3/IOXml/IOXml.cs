@@ -21,7 +21,7 @@ namespace IOXml
         /// <param name="i">Input string</param>
         public void Write(string output, List<IFigure> figures)
         {
-            StreamWriter sw = new StreamWriter("output.xml", true, System.Text.Encoding.Default);
+            StreamWriter sw = new StreamWriter(output, false, System.Text.Encoding.Default);
             string xml = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<Box>\n";
             foreach (var k in figures)
             {
@@ -50,7 +50,7 @@ namespace IOXml
                     xml += "\t\t<height>" + ((SquareFilm)k).A + "</height>\n";
                     xml += "\t</figure>\n";
                 }
-                else if (k is SquareFilm)
+                else if (k is TriangleFilm)
                 {
                     xml += "\t<figure type=\"Triangle\">\n";
                     xml += "\t\t<material>Film</material>\n";
@@ -99,15 +99,16 @@ namespace IOXml
             sw.Write("" + xml + "\n</Box>");
             sw.Close();
         }
-    }
+
         /// <summary>
         /// StreamReader
         /// </summary>
         /// <returns>List of figures from XML</returns>
- /*       public List<IFigure> Read()
+        public List<IFigure> Read(string input)
         {
+            FigureFactory factory = new FigureFactory();
             List<IFigure> boxxml = new List<IFigure>();
-            StreamReader sr = new StreamReader("input.xml");
+            StreamReader sr = new StreamReader(input);
             string doc = sr.ReadToEnd();
             XmlDocument xdoc = new XmlDocument();
             xdoc.LoadXml(doc);
@@ -119,109 +120,145 @@ namespace IOXml
                 {
                     case "Circle":
                         {
-                            string material = "", color = "";
-                            int diameter = 1;
+                            Material material=0;
+                            Colors color=0;
+                            float diameter = 1;
                             foreach (XmlNode childnode in xnode.ChildNodes)
                             {
                                 if (childnode.Name == "material")
                                 {
-                                    material = $"{childnode.InnerText}";
+                                    material = (Material)Enum.Parse(typeof(Material), $"{childnode.InnerText}");
+
                                 }
-                                if (childnode.Name == "color")
+                                if (material == Material.Paper)
                                 {
-                                    color = $"{childnode.InnerText}";
+                                    if (childnode.Name == "color")
+                                    {
+                                        color = (Colors)Enum.Parse(typeof(Colors), $"{childnode.InnerText}");
+                                    }
                                 }
                                 if (childnode.Name == "diameter")
                                 {
-                                    diameter = int.Parse(childnode.InnerText);
+                                    diameter = float.Parse(childnode.InnerText);
                                 }
                             }
-                            Circle c1 = new Circle(material, color, diameter);
-                            boxxml.Add(c1);
+                            IFigure figure = factory.CreateFigure(material, Form.Circle, diameter);
+                            if (material == Material.Paper && color != Colors.white)
+                            {
+                                ((IPaper)figure).Color = color;
+                            }
+                            boxxml.Add(figure);
                             break;
                         }
                     case "Rectangle":
                         {
-                            string material = "", color = "";
-                            int height = 1;
-                            int width = 1;
+                            Material material = 0;
+                            Colors color = 0;
+                            float height= 1;
+                            float width = 1;
                             foreach (XmlNode childnode in xnode.ChildNodes)
                             {
                                 if (childnode.Name == "material")
                                 {
-                                    material = $"{childnode.InnerText}";
+                                    material = (Material)Enum.Parse(typeof(Material), $"{childnode.InnerText}");
+
                                 }
-                                if (childnode.Name == "color")
-                                {
-                                    color = $"{childnode.InnerText}";
-                                }
+                                if (material == Material.Paper)
+                                    {
+                                        if (childnode.Name == "color")
+                                        {
+                                            color = (Colors)Enum.Parse(typeof(Colors), $"{childnode.InnerText}");
+                                        }
+                                    }
                                 if (childnode.Name == "height")
                                 {
-                                    height = int.Parse(childnode.InnerText);
+                                    height = float.Parse(childnode.InnerText);
                                 }
                                 if (childnode.Name == "width")
                                 {
-                                    width = int.Parse(childnode.InnerText);
+                                    width = float.Parse(childnode.InnerText);
                                 }
                             }
-                            Rectangle c1 = new Rectangle(material, color, height, width);
-                            boxxml.Add(c1);
+                            IFigure figure = factory.CreateFigure(material, Form.Rectangle, new float []{ height,width});
+                            if (material == Material.Paper && color != Colors.white)
+                            {
+                                ((IPaper)figure).Color = color;
+                            }
+                            boxxml.Add(figure);
                             break;
                         }
                     case "Square":
                         {
-                            string material = "", color = "";
-                            int height = 1;
+                            Material material = 0;
+                            Colors color = 0;
+                            float height = 1;
                             foreach (XmlNode childnode in xnode.ChildNodes)
                             {
                                 if (childnode.Name == "material")
                                 {
-                                    material = $"{childnode.InnerText}";
+                                    material = (Material)Enum.Parse(typeof(Material), $"{childnode.InnerText}");
+
                                 }
-                                if (childnode.Name == "color")
+                                if (material == Material.Paper)
                                 {
-                                    color = $"{childnode.InnerText}";
+                                    if (childnode.Name == "color")
+                                    {
+                                        color = (Colors)Enum.Parse(typeof(Colors), $"{childnode.InnerText}");
+                                    }
                                 }
                                 if (childnode.Name == "height")
                                 {
-                                    height = int.Parse(childnode.InnerText);
+                                    height = float.Parse(childnode.InnerText);
                                 }
                             }
-                            Square c1 = new Square(material, color, height);
-                            boxxml.Add(c1);
+                            IFigure figure = factory.CreateFigure(material, Form.Square, new float[] { height});
+                            if (material == Material.Paper && color != Colors.white)
+                            {
+                                ((IPaper)figure).Color = color;
+                            }
+                            boxxml.Add(figure);
                             break;
                         }
                     case "Triangle":
                         {
-                            string material = "", color = "";
-                            int a = 1;
-                            int b = 1;
-                            int d = 1;
+                            Material material = 0;
+                            Colors color = 0;
+                            float a = 1;
+                            float b = 1;
+                            float c = 1;
                             foreach (XmlNode childnode in xnode.ChildNodes)
                             {
                                 if (childnode.Name == "material")
                                 {
-                                    material = $"{childnode.InnerText}";
+                                    material = (Material)Enum.Parse(typeof(Material), $"{childnode.InnerText}");
+
                                 }
-                                if (childnode.Name == "color")
+                                if (material == Material.Paper)
                                 {
-                                    color = $"{childnode.InnerText}";
+                                    if (childnode.Name == "color")
+                                    {
+                                        color = (Colors)Enum.Parse(typeof(Colors), $"{childnode.InnerText}");
+                                    }
                                 }
                                 if (childnode.Name == "side_a")
                                 {
-                                    a = int.Parse(childnode.InnerText);
+                                    a = float.Parse(childnode.InnerText);
                                 }
                                 if (childnode.Name == "side_b")
                                 {
-                                    b = int.Parse(childnode.InnerText);
+                                    b = float.Parse(childnode.InnerText);
                                 }
-                                if (childnode.Name == "side_d")
+                                if (childnode.Name == "side_c")
                                 {
-                                    d = int.Parse(childnode.InnerText);
+                                    c = float.Parse(childnode.InnerText);
                                 }
                             }
-                            Triangle c1 = new Triangle(material, color, a, b, d);
-                            boxxml.Add(c1);
+                            IFigure figure = factory.CreateFigure(material, Form.Square, new float[] { a,b,c });
+                            if (material == Material.Paper && color != Colors.white)
+                            {
+                                ((IPaper)figure).Color = color;
+                            }
+                            boxxml.Add(figure);
                             break;
                         }
                 }
@@ -229,7 +266,7 @@ namespace IOXml
             sr.Close();
             return boxxml;
         }
-    }*/
+    }
     /// <summary>
     /// XmlWriter and XMLReader
     /// </summary>
@@ -239,9 +276,9 @@ namespace IOXml
         /// Method Write
         /// </summary>
         /// <param name="intoBox">Input List</param>
-        public void Write(List<IFigure> intoBox)
+        public void Write(string output, List<IFigure> intoBox)
         {
-            XmlWriter xmlWriter = XmlWriter.Create(@"output.xml");
+            XmlWriter xmlWriter = XmlWriter.Create(output);
             xmlWriter.WriteStartDocument();
             xmlWriter.WriteStartElement("Boxs");
             foreach (var i in intoBox)
@@ -407,16 +444,16 @@ namespace IOXml
             xmlWriter.WriteEndDocument();
             xmlWriter.Close();
         }
-         /// <summary>
+        /// <summary>
         /// Method Read
         /// </summary>
         /// <returns>New List</returns>
-      /*  public List<IFigure> Read()
+        public List<IFigure> Read(string input)
         {
             List<IFigure> boxxml = new List<IFigure>();
-            XmlReader xreader = XmlReader.Create("input.xml");
-            string m;
-            string c;
+            XmlReader xreader = XmlReader.Create(input);
+            Material material;
+            Colors color=0;
             FigureFactory factory = new FigureFactory();
             while (xreader.Read())
             {
@@ -427,120 +464,172 @@ namespace IOXml
                     {
                         case "Circle":
                             {
-                                int d;
+                                float d;
                                 xreader.Read();
                                 xreader.Read();
                                 if (xreader.Name == "material")
                                 {
-                                    m = xreader.ReadInnerXml();
+                                    material = (Material)Enum.Parse(typeof(Material), xreader.ReadInnerXml());
                                     xreader.Read();
                                 }
                                 else throw new Exception("Wrong input xml");
                                 if (xreader.Name == "color")
                                 {
-                                    c = xreader.ReadInnerXml();
-                                    xreader.Read();
+                                    if (material == Material.Paper)
+                                    {
+                                        color = (Colors)Enum.Parse(typeof(Colors), xreader.ReadInnerXml());
+                                        xreader.Read();
+                                    }
+                                    else
+                                    {
+                                        xreader.ReadInnerXml();
+                                        xreader.Read();
+                                    }
                                 }
                                 else throw new Exception("Wrong input xml");
                                 if (xreader.Name == "diameter")
                                 {
-                                    d = Int32.Parse(xreader.ReadInnerXml());
+                                    d = float.Parse(xreader.ReadInnerXml());
                                 }
                                 else throw new Exception("Wrong input xml");
-                                boxxml.Add(factory.CreateFigure(Enum.Parse(, m), c, d));
+                                IFigure figure = factory.CreateFigure(material, Form.Circle, new float[] { d });
+                                if (material == Material.Paper && color != Colors.white)
+                                {
+                                    ((IPaper)figure).Color = color;
+                                }
+                                boxxml.Add(figure);
                                 break;
                             }
                         case "Square":
                             {
-                                int a;
+                                float a;
                                 xreader.Read();
                                 xreader.Read();
                                 if (xreader.Name == "material")
                                 {
-                                    m = xreader.ReadInnerXml();
+                                    material = (Material)Enum.Parse(typeof(Material), xreader.ReadInnerXml());
                                     xreader.Read();
                                 }
                                 else throw new Exception("Wrong input xml");
                                 if (xreader.Name == "color")
                                 {
-                                    c = xreader.ReadInnerXml();
-                                    xreader.Read();
+                                    if (material == Material.Paper)
+                                    {
+                                        color = (Colors)Enum.Parse(typeof(Colors), xreader.ReadInnerXml());
+                                        xreader.Read();
+                                    }
+                                    else
+                                    {
+                                        xreader.ReadInnerXml();
+                                        xreader.Read();
+                                    }
                                 }
                                 else throw new Exception("Wrong input xml");
                                 if (xreader.Name == "height")
                                 {
-                                    a = Int32.Parse(xreader.ReadInnerXml());
+                                    a = float.Parse(xreader.ReadInnerXml());
                                 }
                                 else throw new Exception("Wrong input xml");
-                                boxxml.Add(new Square(m, c, a));
+                                IFigure figure = factory.CreateFigure(material, Form.Square, new float[] { a });
+                                if (material == Material.Paper && color != Colors.white)
+                                {
+                                    ((IPaper)figure).Color = color;
+                                }
+                                boxxml.Add(figure);
                                 break;
                             }
                         case "Rectangle":
                             {
-                                int h, w;
+                                float h, w;
                                 xreader.Read();
                                 xreader.Read();
                                 if (xreader.Name == "material")
                                 {
-                                    m = xreader.ReadInnerXml();
+                                    material = (Material)Enum.Parse(typeof(Material), xreader.ReadInnerXml());
                                     xreader.Read();
                                 }
                                 else throw new Exception("Wrong input xml");
                                 if (xreader.Name == "color")
-                                {
-                                    c = xreader.ReadInnerXml();
-                                    xreader.Read();
+                                    {
+                                    if (material == Material.Paper)
+                                    {
+                                        color = (Colors)Enum.Parse(typeof(Colors), xreader.ReadInnerXml());
+                                        xreader.Read();
+                                    }
+                                    else
+                                    {
+                                        xreader.ReadInnerXml();
+                                        xreader.Read();
+                                    }
                                 }
                                 else throw new Exception("Wrong input xml");
                                 if (xreader.Name == "height")
                                 {
-                                    h = Int32.Parse(xreader.ReadInnerXml());
+                                    h = float.Parse(xreader.ReadInnerXml());
                                     xreader.Read();
                                 }
                                 else throw new Exception("Wrong input xml");
                                 if (xreader.Name == "width")
                                 {
-                                    w = Int32.Parse(xreader.ReadInnerXml());
+                                    w = float.Parse(xreader.ReadInnerXml());
                                 }
                                 else throw new Exception("Wrong input xml");
-                                boxxml.Add(new Rectangle(m, c, h, w));
+                                IFigure figure = factory.CreateFigure(material, Form.Rectangle, new float[] { h,w });
+                                if (material == Material.Paper && color != Colors.white)
+                                {
+                                    ((IPaper)figure).Color = color;
+                                }
+                                boxxml.Add(figure);
                                 break;
                             }
                         case "Triangle":
                             {
-                                int a, b, d;
+                                float a, b, c;
                                 xreader.Read();
                                 xreader.Read();
                                 if (xreader.Name == "material")
                                 {
-                                    m = xreader.ReadInnerXml();
+                                    material = (Material)Enum.Parse(typeof(Material), xreader.ReadInnerXml());
                                     xreader.Read();
                                 }
                                 else throw new Exception("Wrong input xml");
                                 if (xreader.Name == "color")
                                 {
-                                    c = xreader.ReadInnerXml();
+                                    if (material == Material.Paper)
+                                    {
+                                        color = (Colors)Enum.Parse(typeof(Colors), xreader.ReadInnerXml());
+                                        xreader.Read();
+                                    }
+                                    else
+                                    {
+                                        xreader.ReadInnerXml();
+                                        xreader.Read();
+                                    }
+                                }
+                                else throw new Exception("Wrong input xml");
+                                if (xreader.Name == "side_a")
+                                {
+                                    a = float.Parse(xreader.ReadInnerXml());
                                     xreader.Read();
                                 }
                                 else throw new Exception("Wrong input xml");
-                                if (xreader.Name == "a")
+                                if (xreader.Name == "side_b")
                                 {
-                                    a = Int32.Parse(xreader.ReadInnerXml());
+                                    b = float.Parse(xreader.ReadInnerXml());
                                     xreader.Read();
                                 }
                                 else throw new Exception("Wrong input xml");
-                                if (xreader.Name == "b")
+                                if (xreader.Name == "side_c")
                                 {
-                                    b = Int32.Parse(xreader.ReadInnerXml());
-                                    xreader.Read();
+                                    c = float.Parse(xreader.ReadInnerXml());
                                 }
                                 else throw new Exception("Wrong input xml");
-                                if (xreader.Name == "d")
+                                IFigure figure = factory.CreateFigure(material, Form.Triangle, new float[] { a,b,c });
+                                if (material == Material.Paper && color != Colors.white)
                                 {
-                                    d = Int32.Parse(xreader.ReadInnerXml());
+                                    ((IPaper)figure).Color = color;
                                 }
-                                else throw new Exception("Wrong input xml");
-                                boxxml.Add(new Triangle(m, c, a, b, d));
+                                boxxml.Add(figure);
                                 break;
                             }
                     }
@@ -548,6 +637,6 @@ namespace IOXml
             }
             xreader.Close();
             return boxxml;
-        }*/
+        }
     }
 }
