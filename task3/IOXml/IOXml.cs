@@ -6,6 +6,7 @@ using Figures;
 using Figures.BaseFigures;
 using Figures.Film;
 using Figures.Paper;
+using Factory;
 
 namespace IOXml
 {
@@ -20,7 +21,7 @@ namespace IOXml
         /// <param name="i">Input string</param>
         public void Write(string output, List<IFigure> figures)
         {
-            StreamWriter sw = new StreamWriter(output, false, System.Text.Encoding.Default);
+            StreamWriter sw = new StreamWriter("output.xml", true, System.Text.Encoding.Default);
             string xml = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<Box>\n";
             foreach (var k in figures)
             {
@@ -95,7 +96,7 @@ namespace IOXml
                     xml += "\t</figure>\n";
                 }
             }
-            sw.Write(xml + "\n</Box>");
+            sw.Write("" + xml + "\n</Box>");
             sw.Close();
         }
     }
@@ -240,7 +241,7 @@ namespace IOXml
         /// <param name="intoBox">Input List</param>
         public void Write(List<IFigure> intoBox)
         {
-            XmlWriter xmlWriter = XmlWriter.Create("test.xml");
+            XmlWriter xmlWriter = XmlWriter.Create(@"output.xml");
             xmlWriter.WriteStartDocument();
             xmlWriter.WriteStartElement("Boxs");
             foreach (var i in intoBox)
@@ -406,16 +407,17 @@ namespace IOXml
             xmlWriter.WriteEndDocument();
             xmlWriter.Close();
         }
-  /*      /// <summary>
+         /// <summary>
         /// Method Read
         /// </summary>
         /// <returns>New List</returns>
-        public List<Figure> Read()
+      /*  public List<IFigure> Read()
         {
-            List<Figure> boxxml = new List<Figure>();
+            List<IFigure> boxxml = new List<IFigure>();
             XmlReader xreader = XmlReader.Create("input.xml");
             string m;
             string c;
+            FigureFactory factory = new FigureFactory();
             while (xreader.Read())
             {
 
@@ -445,7 +447,7 @@ namespace IOXml
                                     d = Int32.Parse(xreader.ReadInnerXml());
                                 }
                                 else throw new Exception("Wrong input xml");
-                                boxxml.Add(new Circle(m,c,d));
+                                boxxml.Add(factory.CreateFigure(Enum.Parse(, m), c, d));
                                 break;
                             }
                         case "Square":

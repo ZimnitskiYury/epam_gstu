@@ -18,11 +18,11 @@ namespace IOXml.Tests
         public void Test()
         {
             FigureFactory f1 = new FigureFactory();
-            BoxofFigures bf = new BoxofFigures();
-            float[] ms = new float[]{2f,3f};
-            IFigure figure = f1.CreateFigure(Material.Paper, Form.Rectangle, ms);
-            bf.AddFigure(figure);
-            bf.SaveXML2All();
+                        BoxofFigures bf = new BoxofFigures();
+                        float[] ms = new float[]{2f,3f};
+                        IFigure figure = f1.CreateFigure(Material.Paper, Form.Rectangle, ms);
+                        bf.AddFigure(figure);
+           bf.SaveXMLAll();
             Assert.Pass();
         }
     }

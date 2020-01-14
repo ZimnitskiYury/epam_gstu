@@ -45,6 +45,10 @@
     <Compile Include="IOXml.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Factory\Factory.csproj">
+      <Project>{19D0645A-E557-456C-899C-712774D7FD94}</Project>
+      <Name>Factory</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Figures\Figures.csproj">
       <Project>{e9a551f4-555d-4a6e-b50d-8d43fc1a9c50}</Project>
       <Name>Figures</Name>
