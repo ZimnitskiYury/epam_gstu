@@ -3,7 +3,7 @@ using System;
 
 namespace Figures.Film
 {
-    class TriangleFilm : Triangle, IFilm
+    public class TriangleFilm : Triangle, IFilm
     {
         public TriangleFilm(float a, float b, float c) : base(a, b, c)
         {

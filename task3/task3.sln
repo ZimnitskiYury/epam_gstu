@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Figures", "Figures\Figures.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Box", "Box\Box.csproj", "{B5373509-8698-4BD1-BC92-0222D5C66960}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IOXml", "IOXml\IOXml.csproj", "{1D35B56A-3736-4004-831F-E2C8CDF5D260}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Factory", "Factory\Factory.csproj", "{19D0645A-E557-456C-899C-712774D7FD94}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{B5373509-8698-4BD1-BC92-0222D5C66960}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5373509-8698-4BD1-BC92-0222D5C66960}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5373509-8698-4BD1-BC92-0222D5C66960}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D35B56A-3736-4004-831F-E2C8CDF5D260}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D35B56A-3736-4004-831F-E2C8CDF5D260}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D35B56A-3736-4004-831F-E2C8CDF5D260}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D35B56A-3736-4004-831F-E2C8CDF5D260}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19D0645A-E557-456C-899C-712774D7FD94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19D0645A-E557-456C-899C-712774D7FD94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19D0645A-E557-456C-899C-712774D7FD94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19D0645A-E557-456C-899C-712774D7FD94}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

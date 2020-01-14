@@ -3,7 +3,7 @@ using System;
 
 namespace Figures.Film
 {
-    class SquareFilm : Square, IFilm
+    public class SquareFilm : Square, IFilm
     {
         public SquareFilm(float d) : base(d)
         {

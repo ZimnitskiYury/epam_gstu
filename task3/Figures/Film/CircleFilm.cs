@@ -3,7 +3,7 @@ using System;
 
 namespace Figures.Film
 {
-    class CircleFilm : Circle, IFilm
+   public class CircleFilm : Circle, IFilm
     {
         public CircleFilm(float d):base(d)
         {

@@ -3,7 +3,7 @@ using System;
 
 namespace Figures.Film
 {
-    class RectangleFilm : Rectangle, IFilm
+    public class RectangleFilm : Rectangle, IFilm
     {
         public RectangleFilm(float h, float w):base(h,w)
         {

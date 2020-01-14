@@ -3,7 +3,7 @@ using System;
 
 namespace Figures.Paper
 {
-    class CirclePaper : Circle, IPaper
+    public class CirclePaper : Circle, IPaper
     {
         private Colors color;
         private bool isPainted = false;

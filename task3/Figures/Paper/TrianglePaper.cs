@@ -3,7 +3,7 @@ using System;
 
 namespace Figures.Paper
 {
-    class TrianglePaper : Triangle, IPaper
+    public class TrianglePaper : Triangle, IPaper
     {
         private Colors color;
         private bool isPainted = false;

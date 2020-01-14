@@ -3,7 +3,7 @@ using System;
 
 namespace Figures.Paper
 {
-    class RectanglePaper : Rectangle, IPaper
+    public class RectanglePaper : Rectangle, IPaper
     {
         private Colors color;
         private bool isPainted = false;

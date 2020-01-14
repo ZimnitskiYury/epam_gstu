@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B5373509-8698-4BD1-BC92-0222D5C66960}</ProjectGuid>
+    <ProjectGuid>{1D35B56A-3736-4004-831F-E2C8CDF5D260}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Box</RootNamespace>
-    <AssemblyName>Box</AssemblyName>
+    <RootNamespace>IOXml</RootNamespace>
+    <AssemblyName>IOXml</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -21,7 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Box.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -42,17 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoxofFigures.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StreamXML.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Figures\Figures.csproj">
       <Project>{e9a551f4-555d-4a6e-b50d-8d43fc1a9c50}</Project>
       <Name>Figures</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IOXml\IOXml.csproj">
-      <Project>{1d35b56a-3736-4004-831f-e2c8cdf5d260}</Project>
-      <Name>IOXml</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

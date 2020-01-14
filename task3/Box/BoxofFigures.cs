@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Figures;
 using Figures.BaseFigures;
 using Figures.Film;
 using Figures.Paper;
+using IOXml;
 
 namespace Box
 {
@@ -193,7 +195,7 @@ namespace Box
         /// </summary>
         public void SaveXMLAll()
         {
-            Stream sxml = new Stream();
+            FirstXml sxml = new FirstXml();
             string txt = "";
             foreach(var i in boxoffigure)
             {
