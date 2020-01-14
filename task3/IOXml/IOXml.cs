@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Xml;
 using System;
 using Figures;
+using Figures.BaseFigures;
+using Figures.Film;
+using Figures.Paper;
 
-/*namespace IOXml
+namespace IOXml
 {
     /// <summary>
     /// StreamReader and StreamWriter
@@ -15,18 +18,92 @@ using Figures;
         /// StreamWriter
         /// </summary>
         /// <param name="i">Input string</param>
-        public void Write(string i)
+        public void Write(string output, List<IFigure> figures)
         {
-            StreamWriter sw = new StreamWriter("output.xml", false, System.Text.Encoding.Default);
+            StreamWriter sw = new StreamWriter(output, false, System.Text.Encoding.Default);
             string xml = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<Box>\n";
-            sw.Write(xml + i + "\n</Box>");
+            foreach (var k in figures)
+            {
+                if (k is RectangleFilm)
+                {
+                    xml += "\t<figure type=\"Rectangle\">\n";
+                    xml += "\t\t<material>Film</material>\n";
+                    xml += "\t\t<color>None</color>\n";
+                    xml += "\t\t<height>" + ((RectangleFilm)k).Height + "</height>\n";
+                    xml += "\t\t<width>" + ((RectangleFilm)k).Width + "</width>\n";
+                    xml += "\t</figure>\n";
+                }
+                else if (k is CircleFilm)
+                {
+                    xml += "\t<figure type=\"Circle\">\n";
+                    xml += "\t\t<material>Film</material>\n";
+                    xml += "\t\t<color>None</color>\n";
+                    xml += "\t\t<diameter>" + ((CircleFilm)k).Diameter + "</diameter>\n";
+                    xml += "\t</figure>\n";
+                }
+                else if (k is SquareFilm)
+                {
+                    xml += "\t<figure type=\"Square\">\n";
+                    xml += "\t\t<material>Film</material>\n";
+                    xml += "\t\t<color>None</color>\n";
+                    xml += "\t\t<height>" + ((SquareFilm)k).A + "</height>\n";
+                    xml += "\t</figure>\n";
+                }
+                else if (k is SquareFilm)
+                {
+                    xml += "\t<figure type=\"Triangle\">\n";
+                    xml += "\t\t<material>Film</material>\n";
+                    xml += "\t\t<color>None</color>\n";
+                    xml += "\t\t<side_a>" + ((TriangleFilm)k).A + "</side_a>\n";
+                    xml += "\t\t<side_b>" + ((TriangleFilm)k).B + "</side_b>\n";
+                    xml += "\t\t<side_c>" + ((TriangleFilm)k).C + "</side_c>\n";
+                    xml += "\t</figure>\n";
+                }
+                else if (k is RectanglePaper)
+                {
+                    xml += "\t<figure type=\"Rectangle\">\n";
+                    xml += "\t\t<material>Paper</material>\n";
+                    xml += "\t\t<color>" + ((RectanglePaper)k).Color.ToString() + "</color>\n";
+                    xml += "\t\t<height>" + ((RectanglePaper)k).Height + "</height>\n";
+                    xml += "\t\t<width>" + ((RectanglePaper)k).Width + "</width>\n";
+                    xml += "\t</figure>\n";
+                }
+                else if (k is CirclePaper)
+                {
+                    xml += "\t<figure type=\"Circle\">\n";
+                    xml += "\t\t<material>Paper</material>\n";
+                    xml += "\t\t<color>" + ((CirclePaper)k).Color.ToString() + "</color>\n";
+                    xml += "\t\t<diameter>" + ((CirclePaper)k).Diameter + "</diameter>\n";
+                    xml += "\t</figure>\n";
+                }
+                else if (k is SquarePaper)
+                {
+                    xml += "\t<figure type=\"Square\">\n";
+                    xml += "\t\t<material>Paper</material>\n";
+                    xml += "\t\t<color>" + ((SquarePaper)k).Color.ToString() + "</color>\n";
+                    xml += "\t\t<height>" + ((SquarePaper)k).A + "</height>\n";
+                    xml += "\t</figure>\n";
+                }
+                else if (k is TrianglePaper)
+                {
+                    xml += "\t<figure type=\"Triangle\">\n";
+                    xml += "\t\t<material>Paper</material>\n";
+                    xml += "\t\t<color>" + ((TrianglePaper)k).Color.ToString() + "</color>\n";
+                    xml += "\t\t<side_a>" + ((TrianglePaper)k).A + "</side_a>\n";
+                    xml += "\t\t<side_b>" + ((TrianglePaper)k).B + "</side_b>\n";
+                    xml += "\t\t<side_c>" + ((TrianglePaper)k).C + "</side_c>\n";
+                    xml += "\t</figure>\n";
+                }
+            }
+            sw.Write(xml + "\n</Box>");
             sw.Close();
         }
+    }
         /// <summary>
         /// StreamReader
         /// </summary>
         /// <returns>List of figures from XML</returns>
-        public List<IFigure> Read()
+ /*       public List<IFigure> Read()
         {
             List<IFigure> boxxml = new List<IFigure>();
             StreamReader sr = new StreamReader("input.xml");
@@ -151,7 +228,7 @@ using Figures;
             sr.Close();
             return boxxml;
         }
-    }
+    }*/
     /// <summary>
     /// XmlWriter and XMLReader
     /// </summary>
@@ -161,7 +238,7 @@ using Figures;
         /// Method Write
         /// </summary>
         /// <param name="intoBox">Input List</param>
-        public void Write(List<Figure> intoBox)
+        public void Write(List<IFigure> intoBox)
         {
             XmlWriter xmlWriter = XmlWriter.Create("test.xml");
             xmlWriter.WriteStartDocument();
@@ -170,16 +247,16 @@ using Figures;
             {
                 switch (i.GetType().Name)
                 {
-                    case "Circle":
+                    case "CircleFilm":
                         {
-                            Circle c1 = (Circle)i;
+                            CircleFilm c1 = (CircleFilm)i;
                             xmlWriter.WriteStartElement("figure");
                             xmlWriter.WriteAttributeString("type", "Circle");
                             xmlWriter.WriteStartElement("material");
-                            xmlWriter.WriteString(c1.Material);
+                            xmlWriter.WriteString("Film");
                             xmlWriter.WriteEndElement();
                             xmlWriter.WriteStartElement("color");
-                            xmlWriter.WriteString("" + c1.Color);
+                            xmlWriter.WriteString("None");
                             xmlWriter.WriteEndElement();
                             xmlWriter.WriteStartElement("diameter");
                             xmlWriter.WriteString("" + c1.Diameter);
@@ -187,16 +264,16 @@ using Figures;
                             xmlWriter.WriteEndElement();
                             break;
                         }
-                    case "Rectangle":
+                    case "RectangleFilm":
                         {
-                            Rectangle r1 = (Rectangle)i;
+                            RectangleFilm r1 = (RectangleFilm)i;
                             xmlWriter.WriteStartElement("figure");
                             xmlWriter.WriteAttributeString("type", "Rectangle");
                             xmlWriter.WriteStartElement("material");
-                            xmlWriter.WriteString(r1.Material);
+                            xmlWriter.WriteString("Film");
                             xmlWriter.WriteEndElement();
                             xmlWriter.WriteStartElement("color");
-                            xmlWriter.WriteString("" + r1.Color);
+                            xmlWriter.WriteString("None");
                             xmlWriter.WriteEndElement();
                             xmlWriter.WriteStartElement("height");
                             xmlWriter.WriteString("" + r1.Height);
@@ -207,16 +284,16 @@ using Figures;
                             xmlWriter.WriteEndElement();
                             break;
                         }
-                    case "Square":
+                    case "SquareFilm":
                         {
-                            Square s1 = (Square)i;
+                            SquareFilm s1 = (SquareFilm)i;
                             xmlWriter.WriteStartElement("figure");
                             xmlWriter.WriteAttributeString("type", "Square");
                             xmlWriter.WriteStartElement("material");
-                            xmlWriter.WriteString(s1.Material);
+                            xmlWriter.WriteString("Film");
                             xmlWriter.WriteEndElement();
                             xmlWriter.WriteStartElement("color");
-                            xmlWriter.WriteString("" + s1.Color);
+                            xmlWriter.WriteString("None");
                             xmlWriter.WriteEndElement();
                             xmlWriter.WriteStartElement("height");
                             xmlWriter.WriteString("" + s1.A);
@@ -224,16 +301,16 @@ using Figures;
                             xmlWriter.WriteEndElement();
                             break;
                         }
-                    case "Triangle":
+                    case "TriangleFilm":
                         {
-                            Triangle t1 = (Triangle)i;
+                            TriangleFilm t1 = (TriangleFilm)i;
                             xmlWriter.WriteStartElement("figure");
                             xmlWriter.WriteAttributeString("type", "Triangle");
                             xmlWriter.WriteStartElement("material");
-                            xmlWriter.WriteString(t1.Material);
+                            xmlWriter.WriteString("Film");
                             xmlWriter.WriteEndElement();
                             xmlWriter.WriteStartElement("color");
-                            xmlWriter.WriteString("" + t1.Color);
+                            xmlWriter.WriteString("None");
                             xmlWriter.WriteEndElement();
                             xmlWriter.WriteStartElement("side_a");
                             xmlWriter.WriteString("" + t1.A);
@@ -241,18 +318,95 @@ using Figures;
                             xmlWriter.WriteStartElement("side_b");
                             xmlWriter.WriteString("" + t1.B);
                             xmlWriter.WriteEndElement();
-                            xmlWriter.WriteStartElement("side_d");
-                            xmlWriter.WriteString("" + t1.D);
+                            xmlWriter.WriteStartElement("side_c");
+                            xmlWriter.WriteString("" + t1.C);
                             xmlWriter.WriteEndElement();
                             xmlWriter.WriteEndElement();
                             break;
                         }
-                }
+                        case "CirclePaper":
+                            {
+                                CirclePaper c1 = (CirclePaper)i;
+                                xmlWriter.WriteStartElement("figure");
+                                xmlWriter.WriteAttributeString("type", "Circle");
+                                xmlWriter.WriteStartElement("material");
+                                xmlWriter.WriteString("Paper");
+                                xmlWriter.WriteEndElement();
+                                xmlWriter.WriteStartElement("color");
+                                xmlWriter.WriteString(""+c1.Color);
+                                xmlWriter.WriteEndElement();
+                                xmlWriter.WriteStartElement("diameter");
+                                xmlWriter.WriteString("" + c1.Diameter);
+                                xmlWriter.WriteEndElement();
+                                xmlWriter.WriteEndElement();
+                                break;
+                            }
+                        case "RectanglePaper":
+                            {
+                                RectanglePaper r1 = (RectanglePaper)i;
+                                xmlWriter.WriteStartElement("figure");
+                                xmlWriter.WriteAttributeString("type", "Rectangle");
+                                xmlWriter.WriteStartElement("material");
+                                xmlWriter.WriteString("Paper");
+                                xmlWriter.WriteEndElement();
+                                xmlWriter.WriteStartElement("color");
+                                xmlWriter.WriteString(""+r1.Color);
+                                xmlWriter.WriteEndElement();
+                                xmlWriter.WriteStartElement("height");
+                                xmlWriter.WriteString("" + r1.Height);
+                                xmlWriter.WriteEndElement();
+                                xmlWriter.WriteStartElement("width");
+                                xmlWriter.WriteString("" + r1.Width);
+                                xmlWriter.WriteEndElement();
+                                xmlWriter.WriteEndElement();
+                                break;
+                            }
+                        case "SquarePaper":
+                            {
+                                SquarePaper s1 = (SquarePaper)i;
+                                xmlWriter.WriteStartElement("figure");
+                                xmlWriter.WriteAttributeString("type", "Square");
+                                xmlWriter.WriteStartElement("material");
+                                xmlWriter.WriteString("Paper");
+                                xmlWriter.WriteEndElement();
+                                xmlWriter.WriteStartElement("color");
+                                xmlWriter.WriteString(""+s1.Color);
+                                xmlWriter.WriteEndElement();
+                                xmlWriter.WriteStartElement("height");
+                                xmlWriter.WriteString("" + s1.A);
+                                xmlWriter.WriteEndElement();
+                                xmlWriter.WriteEndElement();
+                                break;
+                            }
+                        case "TrianglePaper":
+                            {
+                                TrianglePaper t1 = (TrianglePaper)i;
+                                xmlWriter.WriteStartElement("figure");
+                                xmlWriter.WriteAttributeString("type", "Triangle");
+                                xmlWriter.WriteStartElement("material");
+                                xmlWriter.WriteString("Paper");
+                                xmlWriter.WriteEndElement();
+                                xmlWriter.WriteStartElement("color");
+                                xmlWriter.WriteString(""+t1.Color);
+                                xmlWriter.WriteEndElement();
+                                xmlWriter.WriteStartElement("side_a");
+                                xmlWriter.WriteString("" + t1.A);
+                                xmlWriter.WriteEndElement();
+                                xmlWriter.WriteStartElement("side_b");
+                                xmlWriter.WriteString("" + t1.B);
+                                xmlWriter.WriteEndElement();
+                                xmlWriter.WriteStartElement("side_c");
+                                xmlWriter.WriteString("" + t1.C);
+                                xmlWriter.WriteEndElement();
+                                xmlWriter.WriteEndElement();
+                                break;
+                            }
+                    }
             }
             xmlWriter.WriteEndDocument();
             xmlWriter.Close();
         }
-        /// <summary>
+  /*      /// <summary>
         /// Method Read
         /// </summary>
         /// <returns>New List</returns>
@@ -392,6 +546,6 @@ using Figures;
             }
             xreader.Close();
             return boxxml;
-        }
+        }*/
     }
-}*/
+}

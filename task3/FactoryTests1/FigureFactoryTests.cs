@@ -13,11 +13,12 @@ namespace Factory.Tests
     public class FigureFactoryTests
     {
         [TestMethod()]
+        
         public void CreateFigureTest()
         {
             FigureFactory factory = new FigureFactory();
-            IFigure f1=factory.CreateFigure(Material.Film, Form.Square, 4f, 3f);
-            Assert.AreEqual(12, f1.Area);
+            IFigure f1=factory.CreateFigure(Material.Film, Form.Square, 4f);
+            Assert.AreEqual(16f, f1.Area);
         }
     }
 }

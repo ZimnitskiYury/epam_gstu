@@ -5,6 +5,7 @@ using Figures;
 using Figures.BaseFigures;
 using Figures.Film;
 using Figures.Paper;
+using IOXml;
 
 namespace Box
 {
@@ -192,17 +193,12 @@ namespace Box
         /// <summary>
         /// Save xml (streamwriter)
         /// </summary>
-/*        public void SaveXMLAll()
+        public void SaveXMLAll()
         {
-            FirstXml sxml = new FirstXml();
-            string txt = "";
-            foreach(var i in boxoffigure)
-            {
-                txt += i.GetXML();
-            }
-            sxml.Write(txt);
+            Type1Xml t1 = new Type1Xml();
+            t1.Write("output.xml", boxoffigure);
         }
-        /// <summary>
+ /*       /// <summary>
         /// Save xml (only film)
         /// </summary>
         public void SaveXMLFilm()
@@ -241,16 +237,16 @@ namespace Box
         {
             Stream sxml = new Stream();
             boxoffigure = sxml.Read();
-        }
+        }*/
         /// <summary>
         /// Save xml (xmlwriter)
         /// </summary>
         public void SaveXML2All()
         {
-            XML wx = new XML();
+            Type2Xml wx = new Type2Xml();
             wx.Write(boxoffigure);
         }
-        /// <summary>
+ /*       /// <summary>
         /// Save xml only film (xmlwriter)
         /// </summary>
         public void SaveXML2Film()
