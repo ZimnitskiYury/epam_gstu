@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Figures
 {
-    enum Colors
+    /// <summary>
+    /// Enumeration of colors
+    /// </summary>
+   public enum Colors
     {
         /// <summary>
         /// white = 0

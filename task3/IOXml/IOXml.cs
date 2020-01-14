@@ -4,7 +4,7 @@ using System.Xml;
 using System;
 using Figures;
 
-namespace IOXml
+/*namespace IOXml
 {
     /// <summary>
     /// StreamReader and StreamWriter
@@ -394,4 +394,4 @@ namespace IOXml
             return boxxml;
         }
     }
-}
+}*/

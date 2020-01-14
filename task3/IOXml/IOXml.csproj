@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StreamXML.cs" />
+    <Compile Include="IOXml.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Figures\Figures.csproj">
