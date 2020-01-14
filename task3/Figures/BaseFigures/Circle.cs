@@ -2,7 +2,10 @@
 
 namespace Figures.BaseFigures
 {
-    abstract class Circle : IFigure
+    /// <summary>
+    /// Abstract class for all circles
+    /// </summary>
+    public abstract class Circle : IFigure
     {
         /// <summary>
         /// Diameter of circle
@@ -62,8 +65,21 @@ namespace Figures.BaseFigures
         /// Property of Diameter
         /// </summary>
         public float Diameter { get => diameter; set => diameter = value; }
+        /// <summary>
+        /// Override Object.Equals()
+        /// </summary>
+        /// <param name="obj">Input Object for compare</param>
+        /// <returns>True or False</returns>
         public abstract override bool Equals(Object obj);
+        /// <summary>
+        /// Override Object.GetHashCode()
+        /// </summary>
+        /// <returns>Int-hashcode</returns>
         public abstract override int GetHashCode();
+        /// <summary>
+        /// Override Object.ToString()
+        /// </summary>
+        /// <returns>String value</returns>
         public abstract override string ToString();
 
     }

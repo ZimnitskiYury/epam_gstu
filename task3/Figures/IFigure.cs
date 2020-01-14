@@ -6,9 +6,18 @@ using System.Threading.Tasks;
 
 namespace Figures
 {
-    interface IFigure
+    /// <summary>
+    /// Interface for all Figures
+    /// </summary>
+    public interface IFigure
     {
+        /// <summary>
+        /// Area of Figure
+        /// </summary>
         float Area { get;}
+        /// <summary>
+        /// Perimeter of Figure
+        /// </summary>
         float Perimeter { get;}
     }
 }

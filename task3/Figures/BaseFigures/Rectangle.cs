@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Figures.BaseFigures
 {
-    abstract class Rectangle:IFigure
+    /// <summary>
+    /// Abstract class for all Rectangle
+    /// </summary>
+    public abstract class Rectangle:IFigure
     {
         float width, height;
         /// <summary>
@@ -58,8 +61,21 @@ namespace Figures.BaseFigures
         /// Property of height
         /// </summary>
         public float Height { get => height; set => height = value; }
+        /// <summary>
+        /// Override Object.Equals()
+        /// </summary>
+        /// <param name="obj">Input Object for compare</param>
+        /// <returns>True or False</returns>
         public abstract override bool Equals(Object obj);
+        /// <summary>
+        /// Override Object.GetHashCode()
+        /// </summary>
+        /// <returns>Int-hashcode</returns>
         public abstract override int GetHashCode();
+        /// <summary>
+        /// Override Object.ToString()
+        /// </summary>
+        /// <returns>String value</returns>
         public abstract override string ToString();
     }
 }

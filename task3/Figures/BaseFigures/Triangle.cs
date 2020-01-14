@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Figures.BaseFigures
 {
-    abstract class Triangle : IFigure
+    /// <summary>
+    /// Abstract class for all Triangle
+    /// </summary>
+    public abstract class Triangle : IFigure
     {
         /// <summary>
         /// Sides of triangle
@@ -73,11 +76,24 @@ namespace Figures.BaseFigures
         /// </summary>
         public float B { get => b; set => b = value; }
         /// <summary>
-        /// Property for d
+        /// Property for c
         /// </summary>
         public float C { get => c; set => c = value; }
+        /// <summary>
+        /// Override Object.Equals()
+        /// </summary>
+        /// <param name="obj">Input Object for compare</param>
+        /// <returns>True or False</returns>
         public abstract override bool Equals(Object obj);
+        /// <summary>
+        /// Override Object.GetHashCode()
+        /// </summary>
+        /// <returns>Int-hashcode</returns>
         public abstract override int GetHashCode();
+        /// <summary>
+        /// Override Object.ToString()
+        /// </summary>
+        /// <returns>String value</returns>
         public abstract override string ToString();
     }
 }

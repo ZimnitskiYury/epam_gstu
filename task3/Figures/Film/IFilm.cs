@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Figures.Film
 {
-    interface IFilm
+    /// <summary>
+    /// Interface for film-material
+    /// </summary>
+    public interface IFilm
     {
     }
 }

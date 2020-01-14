@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Figures.BaseFigures
 {
-    abstract class Square : IFigure
+    /// <summary>
+    /// Abstract class for all Square
+    /// </summary>
+    public abstract class Square : IFigure
     {
         /// <summary>
         /// Height of Square
@@ -53,8 +56,21 @@ namespace Figures.BaseFigures
         /// Property for a
         /// </summary>
         public float A { get => a; set => a = value; }
+        /// <summary>
+        /// Override Object.Equals()
+        /// </summary>
+        /// <param name="obj">Input Object for compare</param>
+        /// <returns>True or False</returns>
         public abstract override bool Equals(Object obj);
+        /// <summary>
+        /// Override Object.GetHashCode()
+        /// </summary>
+        /// <returns>Int-hashcode</returns>
         public abstract override int GetHashCode();
+        /// <summary>
+        /// Override Object.ToString()
+        /// </summary>
+        /// <returns>String value</returns>
         public abstract override string ToString();
     }
 }
