@@ -12,7 +12,9 @@ namespace TestDBAccess
         [TestMethod]
         public void TestMethod1()
         {
-
+            Student student = new Student(90010, "Yury Zimniy", new DateTime(27, 11, 7), GenderType.Male, 1);
+            DbFactory<Student> db = new DbFactory<Student>();
+            db.Create(student);
         }
     }
 }
