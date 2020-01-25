@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace StudentsAndGrades
 {
-    public class Class1
+    public enum GenderType
     {
+        Male,
+        Female
     }
 }
