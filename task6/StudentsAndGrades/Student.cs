@@ -10,17 +10,19 @@ namespace StudentsAndGrades
     {
         DateTime dateofbirth;
 
-        public Student(string fullName, DateTime dateofBirth, GenderType gender, Group groupId)
+        public Student(int creditBook, string fullName, DateTime dateofBirth, GenderType gender, Group groupId)
         {
-            FullName = fullName;
+            CreditBook = creditBook;
+            FullName = fullName ?? throw new ArgumentNullException(nameof(fullName));
             DateofBirth = dateofBirth;
             Gender = gender;
-            GroupId = groupId;
+            GroupId = groupId ?? throw new ArgumentNullException(nameof(groupId));
         }
 
-        int Id { get; set; }
-        string FullName { get; set; }
-        DateTime DateofBirth
+        public int CreditBook { get; set; }
+        public int Id { get; set; }
+        public string FullName { get; set; }
+        public DateTime DateofBirth
         {
             get => dateofbirth;
             set
@@ -32,7 +34,7 @@ namespace StudentsAndGrades
                 else dateofbirth = value;
             }
         }
-        GenderType Gender
+        public GenderType Gender
         {
             get=>Gender;
             set

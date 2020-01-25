@@ -6,26 +6,29 @@ using System.Threading.Tasks;
 
 namespace dbDao
 {
-    abstract class baseDao <T>: IDao<T>
+    class Dao <T>: IDao<T>
     {
-        abstract public void Create(T obj);
+        public void Create(T obj)
+        {
+            
+        }
 
-        void IDao<T>.Delete(int id)
+        public void Delete(int id)
         {
             throw new NotImplementedException();
         }
 
-        List<T> IDao<T>.GetAll()
+        public List<T> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        T IDao<T>.Read(int id)
+        public T Read(int id)
         {
             throw new NotImplementedException();
         }
 
-        void IDao<T>.Update(T obj)
+        public void Update(T obj)
         {
             throw new NotImplementedException();
         }
