@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DBA
+namespace dbDao
 {
-    public class Class1
+    class StudentDao:IDao<Student>
     {
     }
 }
