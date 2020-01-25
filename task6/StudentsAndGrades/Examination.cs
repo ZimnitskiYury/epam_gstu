@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace StudentsAndGrades
 {
-    class Examination
+    public class Examination
     {
-        public Examination(DateTime date, Subject subject, ExamType examType, Group group, Session session)
+        public Examination(DateTime date, Subject subjectId, ExamType exam, Group groupId, Session sessionId)
         {
-            this.date = date;
-            this.subject = subject ?? throw new ArgumentNullException(nameof(subject));
-            this.examType = examType;
-            Group = group ?? throw new ArgumentNullException(nameof(group));
-            Session = session ?? throw new ArgumentNullException(nameof(session));
+            Date = date;
+            SubjectId = subjectId ?? throw new ArgumentNullException(nameof(subjectId));
+            Exam = exam;
+            GroupId = groupId ?? throw new ArgumentNullException(nameof(groupId));
+            SessionId = sessionId ?? throw new ArgumentNullException(nameof(sessionId));
         }
 
         public int Id { get; set; }
-        public DateTime date { get; set; }
-        public Subject subject { get; set; }
-        public ExamType examType { get; set; }
-        public Group Group { get; set; }
-        public Session Session { get; set; }
+        public DateTime Date { get; set; }
+        public Subject SubjectId { get; set; }
+        public ExamType Exam { get; set; }
+        public Group GroupId { get; set; }
+        public Session SessionId { get; set; }
     }
 }

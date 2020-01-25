@@ -8,18 +8,18 @@ namespace StudentsAndGrades
 {
     public class Student
     {
-        DateTime dateofbirth;
-
-        public Student(int creditBook, string fullName, DateTime dateofBirth, GenderType gender, int groupId)
+        private DateTime dateofbirth;
+        private GenderType gender;
+        public Student(long creditBook, string fullName, DateTime dateofBirth, GenderType gen, int groupId)
         {
             CreditBook = creditBook;
             FullName = fullName ?? throw new ArgumentNullException(nameof(fullName));
             DateofBirth = dateofBirth;
-            Gender = gender;
+            Gender = gen;
             GroupId = groupId;
         }
 
-        public int CreditBook { get; set; }
+        public long CreditBook { get; set; }
         public int Id { get; set; }
         public string FullName { get; set; }
         public DateTime DateofBirth
@@ -36,14 +36,14 @@ namespace StudentsAndGrades
         }
         public GenderType Gender
         {
-            get=>Gender;
+            get=>gender;
             set
             {
                 if (value != GenderType.Male && value != GenderType.Female)
                 {
                     throw new Exception("Wrong Gender");
                 }
-                else Gender = value;
+                else gender = (GenderType)value;
             }
         }
         public int GroupId { get; set; }
