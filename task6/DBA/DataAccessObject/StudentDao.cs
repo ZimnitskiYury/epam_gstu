@@ -85,7 +85,7 @@ namespace dbDao
             cmd.Parameters.AddWithValue("@CreditBook", obj.CreditBook);
             cmd.Parameters.AddWithValue("@FullName", obj.FullName);
             cmd.Parameters.AddWithValue("@DateofBirth", obj.DateofBirth);
-            cmd.Parameters.AddWithValue("@GroupId", obj.GroupId);
+            cmd.Parameters.AddWithValue("@GroupId", obj.GroupId.Id);
             cmd.Parameters.AddWithValue("@Gender", (int)obj.Gender);
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();

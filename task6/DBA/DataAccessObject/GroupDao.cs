@@ -13,7 +13,7 @@ namespace dbDao
         private string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=task6;";
         public void Create(Group obj)
         {
-            string sql = $"INSERT INTO Group VALUES (@Name)";
+            string sql = $"INSERT INTO [Group] VALUES (@Name)";
             SqlCommand cmd = new SqlCommand(sql);
             cmd.Parameters.AddWithValue("@Name", obj.Name);
             SqlConnection connection = new SqlConnection(connectionString);

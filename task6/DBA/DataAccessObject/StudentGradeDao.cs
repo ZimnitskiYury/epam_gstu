@@ -17,8 +17,8 @@ namespace dbDao
         {
             string sql = $"INSERT INTO StudentGrade VALUES (@StudentId, @Examination, @Grade)";
             SqlCommand cmd = new SqlCommand(sql);
-            cmd.Parameters.AddWithValue("@StudentId", obj.StudentID);
-            cmd.Parameters.AddWithValue("@Examination", obj.Exam);
+            cmd.Parameters.AddWithValue("@StudentId", obj.StudentID.Id);
+            cmd.Parameters.AddWithValue("@Examination", obj.Exam.Id);
             cmd.Parameters.AddWithValue("@Grade", obj.Grade);
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
@@ -80,8 +80,8 @@ namespace dbDao
         {
             string sql = $"UPDATE StudentGrade SET StudentID=@StudentId, ExaminationID=@Examination, Grade=@Grade";
             SqlCommand cmd = new SqlCommand(sql);
-            cmd.Parameters.AddWithValue("@StudentId", obj.StudentID);
-            cmd.Parameters.AddWithValue("@Examination", obj.Exam);
+            cmd.Parameters.AddWithValue("@StudentId", obj.StudentID.Id);
+            cmd.Parameters.AddWithValue("@Examination", obj.Exam.Id);
             cmd.Parameters.AddWithValue("@Grade", obj.Grade);
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();

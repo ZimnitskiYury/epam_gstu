@@ -14,7 +14,10 @@ namespace TestDBAccess
         [TestMethod]
         public void TestMethod1()
         {
-            Student student = new Student(915010, "Yury Zimniy", new DateTime(1987, 11, 7), GenderType.Male, new Group("ой-40"));
+            Group group1 = new Group("ой-40");
+            GroupDao group = new GroupDao();
+            group.Create(group1);
+            Student student = new Student(915010, "Yana Gelesh", new DateTime(1987, 11, 7), GenderType.Male, group1);
             StudentDao student1 = new StudentDao();
             student1.Create(student);
             List<Student> st = new List<Student>();

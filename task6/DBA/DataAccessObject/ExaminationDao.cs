@@ -19,10 +19,10 @@ namespace dbDao
             string sql = $"INSERT INTO Examination VALUES (@Date, @SubjectId, @TypeId, @GroupId, @SessionId)";
             SqlCommand cmd = new SqlCommand(sql);
             cmd.Parameters.AddWithValue("@Date", obj.Date);
-            cmd.Parameters.AddWithValue("@SubjectId", obj.SubjectId);
+            cmd.Parameters.AddWithValue("@SubjectId", obj.SubjectId.Id);
             cmd.Parameters.AddWithValue("@TypeId", obj.Exam);
-            cmd.Parameters.AddWithValue("@GroupId", obj.GroupId);
-            cmd.Parameters.AddWithValue("@SessionId", obj.SessionId);
+            cmd.Parameters.AddWithValue("@GroupId", obj.GroupId.Id);
+            cmd.Parameters.AddWithValue("@SessionId", obj.SessionId.Id);
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
             cmd.Connection = connection;
@@ -84,10 +84,10 @@ namespace dbDao
             string sql = $"UPDATE Examination SET Date=@Date, SubjectId=@SubjectId, TypeId=@TypeId, GroupId=@GroupId, SessionId=@SessionId WHERE Id=@id";
             SqlCommand cmd = new SqlCommand(sql);
             cmd.Parameters.AddWithValue("@Date", obj.Date);
-            cmd.Parameters.AddWithValue("@SubjectId", obj.SubjectId);
+            cmd.Parameters.AddWithValue("@SubjectId", obj.SubjectId.Id);
             cmd.Parameters.AddWithValue("@TypeId", obj.Exam);
-            cmd.Parameters.AddWithValue("@GroupId", obj.GroupId);
-            cmd.Parameters.AddWithValue("@SessionId", obj.SessionId);
+            cmd.Parameters.AddWithValue("@GroupId", obj.GroupId.Id);
+            cmd.Parameters.AddWithValue("@SessionId", obj.SessionId.Id);
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
             cmd.Connection = connection;
