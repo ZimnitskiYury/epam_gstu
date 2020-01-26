@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelOutput", "ExcelOutput\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentsAndGrades", "StudentsAndGrades\StudentsAndGrades.csproj", "{5B79CECE-5438-4E73-8A7E-FC4FFE33BFD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDBAccess", "TestDBAccess\TestDBAccess.csproj", "{E055511C-61AA-4F65-A4AA-D572626F81E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDBAccess", "TestDBAccess\TestDBAccess.csproj", "{E055511C-61AA-4F65-A4AA-D572626F81E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

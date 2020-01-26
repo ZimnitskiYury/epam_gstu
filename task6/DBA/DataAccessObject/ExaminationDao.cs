@@ -8,9 +8,12 @@ using System.Threading.Tasks;
 
 namespace dbDao
 {
-    class ExaminationDao:IDao<Examination>
+    public class ExaminationDao:IDao<Examination>
     {
-        string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=task6;";
+        private string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=task6;";
+        private GroupDao group = new GroupDao();
+        private SubjectDao subject = new SubjectDao();
+        private SessionDao session = new SessionDao();
         public void Create(Examination obj)
         {
             string sql = $"INSERT INTO Examination VALUES (@Date, @SubjectId, @TypeId, @GroupId, @SessionId)";
@@ -45,12 +48,11 @@ namespace dbDao
             SqlCommand cmd = new SqlCommand(sql);
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
-            Examination examination = null;
             cmd.Connection = connection;
             SqlDataReader dbreader = cmd.ExecuteReader();
             while (dbreader.Read())
             {
-                examination = new Examination(dbreader.GetDateTime(1), dbreader.GetInt32(2), dbreader.GetInt32(3), dbreader.GetInt32(4), dbreader.GetInt32(5));
+                Examination examination = new Examination(dbreader.GetDateTime(1), subject.Read(dbreader.GetInt32(2)), (ExamType)dbreader.GetInt32(3), group.Read(dbreader.GetInt32(4)), session.Read(dbreader.GetInt32(5)));
                 examination.Id = dbreader.GetInt32(0);
                 examinations.Add(examination);
             }
@@ -70,7 +72,7 @@ namespace dbDao
             SqlDataReader dbreader = cmd.ExecuteReader();
             if (dbreader.Read())
             {
-                examination = new Examination(dbreader.GetDateTime(1), dbreader.GetInt32(2), dbreader.GetInt32(3), dbreader.GetInt32(4), dbreader.GetInt32(5));
+                examination = new Examination(dbreader.GetDateTime(1), subject.Read(dbreader.GetInt32(2)), (ExamType)dbreader.GetInt32(3), group.Read(dbreader.GetInt32(4)), session.Read(dbreader.GetInt32(5)));
                 examination.Id = dbreader.GetInt32(0);
             }
             connection.Close();

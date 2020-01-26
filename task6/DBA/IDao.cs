@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace dbDao
 {
-    interface IDao<T>
+    public interface IDao<T>
     {
         List<T> GetAll();
         void Create(T obj);

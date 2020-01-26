@@ -10,7 +10,7 @@ namespace StudentsAndGrades
     {
         public Session(DateTime startDate, DateTime endDate)
         {
-            if(startDate>=endDate)
+            if (startDate >= endDate)
             {
                 throw new Exception("Wrong dates of session");
             }

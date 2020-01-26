@@ -10,7 +10,7 @@ namespace StudentsAndGrades
     {
         private DateTime dateofbirth;
         private GenderType gender;
-        public Student(long creditBook, string fullName, DateTime dateofBirth, GenderType gen, int groupId)
+        public Student(long creditBook, string fullName, DateTime dateofBirth, GenderType gen, Group groupId)
         {
             CreditBook = creditBook;
             FullName = fullName ?? throw new ArgumentNullException(nameof(fullName));
@@ -18,7 +18,6 @@ namespace StudentsAndGrades
             Gender = gen;
             GroupId = groupId;
         }
-
         public long CreditBook { get; set; }
         public int Id { get; set; }
         public string FullName { get; set; }
@@ -46,6 +45,6 @@ namespace StudentsAndGrades
                 else gender = (GenderType)value;
             }
         }
-        public int GroupId { get; set; }
+        public Group GroupId { get; set; }
     }
 }

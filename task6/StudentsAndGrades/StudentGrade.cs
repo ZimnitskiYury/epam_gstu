@@ -8,19 +8,16 @@ namespace StudentsAndGrades
 {
     public class StudentGrade
     {
-        public StudentGrade(Student student, Subject subject, Session session, int grade)
+        public StudentGrade(Student student, int grade, Examination exam)
         {
-            Student = student ?? throw new ArgumentNullException(nameof(student));
-            Subject = subject ?? throw new ArgumentNullException(nameof(subject));
-            Session = session ?? throw new ArgumentNullException(nameof(session));
+            StudentID = student ?? throw new ArgumentNullException(nameof(student));
             Grade = grade;
+            Exam = exam ?? throw new ArgumentNullException(nameof(exam));
         }
-
         public int Id { get; set; }
-        public Student Student {get;set;}
-        public Subject Subject { get; set; }
-        public Session Session { get; set; }
+        public Student StudentID {get;set;}
         public int Grade { get; set; }
+        public Examination Exam { get; set; }
 
     }
 }

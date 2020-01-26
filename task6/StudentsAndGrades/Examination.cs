@@ -16,7 +16,6 @@ namespace StudentsAndGrades
             GroupId = groupId ?? throw new ArgumentNullException(nameof(groupId));
             SessionId = sessionId ?? throw new ArgumentNullException(nameof(sessionId));
         }
-
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public Subject SubjectId { get; set; }

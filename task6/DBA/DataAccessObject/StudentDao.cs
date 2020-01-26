@@ -10,7 +10,8 @@ namespace dbDao
 {
     public class StudentDao:IDao<Student>
     {
-        string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=task6;";
+        private string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=task6;";
+        private GroupDao groups = new GroupDao();
         public void Create(Student obj)
         {
             string sql = $"INSERT INTO Student VALUES (@CreditBook, @FullName, @DateofBirth, @GroupId, @Gender)";
@@ -45,12 +46,11 @@ namespace dbDao
             SqlCommand cmd = new SqlCommand(sql);           
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
-            Student student = null;
             cmd.Connection = connection;
             SqlDataReader dbreader = cmd.ExecuteReader();
             while (dbreader.Read())
             {
-                student = new Student(dbreader.GetInt64(1), dbreader.GetString(2), dbreader.GetDateTime(3), (GenderType)dbreader.GetInt32(4), dbreader.GetInt32(5));
+                Student student = new Student(dbreader.GetInt64(1), dbreader.GetString(2), dbreader.GetDateTime(3), (GenderType)dbreader.GetInt32(4), groups.Read(dbreader.GetInt32(5)));
                 student.Id = dbreader.GetInt32(0);
                 students.Add(student);
             }
@@ -70,7 +70,7 @@ namespace dbDao
             SqlDataReader dbreader = cmd.ExecuteReader();
             if (dbreader.Read())
             {
-                student = new Student(dbreader.GetInt32(1), dbreader.GetString(2), dbreader.GetDateTime(3), (GenderType)dbreader.GetInt32(4), dbreader.GetInt32(5));
+                student = new Student(dbreader.GetInt32(1), dbreader.GetString(2), dbreader.GetDateTime(3), (GenderType)dbreader.GetInt32(4), groups.Read(dbreader.GetInt32(5)));
                 student.Id = dbreader.GetInt32(0);
             }
             connection.Close();

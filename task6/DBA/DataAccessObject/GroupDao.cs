@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace dbDao
 {
-    class GroupDao:IDao<Group>
+    public class GroupDao:IDao<Group>
     {
-        string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=task6;";
+        private string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=task6;";
         public void Create(Group obj)
         {
             string sql = $"INSERT INTO Group VALUES (@Name)";
@@ -41,12 +41,11 @@ namespace dbDao
             SqlCommand cmd = new SqlCommand(sql);
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
-            Group group = null;
             cmd.Connection = connection;
             SqlDataReader dbreader = cmd.ExecuteReader();
             while (dbreader.Read())
             {
-                group = new Group(dbreader.GetString(1));
+                Group group = new Group(dbreader.GetString(1));
                 group.Id = dbreader.GetInt32(0);
                 groups.Add(group);
             }

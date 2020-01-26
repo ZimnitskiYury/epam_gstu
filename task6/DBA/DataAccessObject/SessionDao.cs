@@ -10,7 +10,7 @@ namespace dbDao
 {
     public class SessionDao : IDao<Session>
     {
-        string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=task6;";
+        private string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=task6;";
         public void Create(Session obj)
         {
             string sql = $"INSERT INTO Session VALUES (@StartDate, @EndDate)";
@@ -42,12 +42,11 @@ namespace dbDao
             SqlCommand cmd = new SqlCommand(sql);
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
-            Session session = null;
             cmd.Connection = connection;
             SqlDataReader dbreader = cmd.ExecuteReader();
             while (dbreader.Read())
             {
-                session = new Session(dbreader.GetDateTime(1), dbreader.GetDateTime(2));
+                Session session = new Session(dbreader.GetDateTime(1), dbreader.GetDateTime(2));
                 session.Id = dbreader.GetInt32(0);
                 sessions.Add(session);
             }
