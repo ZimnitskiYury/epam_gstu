@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDBAccess", "TestDBAcces
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataReport", "SessionReport\DataReport.csproj", "{30EAA275-0004-4B91-89EA-FD0F3D6B0B51}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelOutputTests", "ExcelOutputTests\ExcelOutputTests.csproj", "{725ABE5D-EADF-410C-977F-151CB48D3EC0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{30EAA275-0004-4B91-89EA-FD0F3D6B0B51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30EAA275-0004-4B91-89EA-FD0F3D6B0B51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30EAA275-0004-4B91-89EA-FD0F3D6B0B51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{725ABE5D-EADF-410C-977F-151CB48D3EC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{725ABE5D-EADF-410C-977F-151CB48D3EC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{725ABE5D-EADF-410C-977F-151CB48D3EC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{725ABE5D-EADF-410C-977F-151CB48D3EC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

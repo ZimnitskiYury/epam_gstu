@@ -6,17 +6,59 @@ using System.Text;
 using System.Threading.Tasks;
 using Excel = Microsoft.Office.Interop.Excel;
 using DataReport;
+using StudentsAndGrades;
 
 namespace ExcelOutput
 {
     public class ExcelIO
     {
-        public void Output(IReport report) {
+        public void Output(List<ReportSession> report, string output) 
+        {
             Excel.Application ex = new Excel.Application();
-            Excel.Workbook workBook = ex.Workbooks.Add(Type.Missing);
+            Excel.Workbook workBook = ex.Workbooks.Add();
             Excel.Worksheet sheet = (Excel.Worksheet)ex.Worksheets.get_Item(1);
-            sheet.Name = report.Title;
-
+            sheet.Name = "Excel";
+            for (int i=0; i<report.Count;i++ )
+            {
+                sheet.Cells[i+1, 1] = report[i].StudentId.FullName;
+                sheet.Cells[i+1, 2] = report[i].SubjectId.Name;
+                sheet.Cells[i+1, 3] = Enum.GetName(typeof(ExamType), report[i].ExamType);
+                sheet.Cells[i+1, 4] = report[i].Date.ToString();
+                sheet.Cells[i+1, 5] = report[i].Grade.Grade.ToString();
+            }
+            workBook.SaveAs(output);
+            workBook.Close();
+        }
+        public void Output(List<ReportGroup> report, string output)
+        {
+            Excel.Application ex = new Excel.Application();
+            Excel.Workbook workBook = ex.Workbooks.Add();
+            Excel.Worksheet sheet = (Excel.Worksheet)ex.Worksheets.get_Item(1);
+            sheet.Name = "Excel2";
+            for (int i = 0; i < report.Count; i++)
+            {
+                sheet.Cells[i + 1, 1] = report[i].GroupId.Name;
+                sheet.Cells[i + 1, 2] = report[i].MinGrade;
+                sheet.Cells[i + 1, 3] = report[i].MaxGrade;
+                sheet.Cells[i + 1, 4] = report[i].AverageGrade;
+            }
+            workBook.SaveAs(output);
+            workBook.Close();
+        }
+        public void Output(List<ReportExpelledStudent> report, string output)
+        {
+            Excel.Application ex = new Excel.Application();
+            Excel.Workbook workBook = ex.Workbooks.Add();
+            Excel.Worksheet sheet = (Excel.Worksheet)ex.Worksheets.get_Item(1);
+            sheet.Name = "Excel2";
+            for (int i = 0; i < report.Count; i++)
+            {
+                sheet.Cells[i + 1, 1] = report[i].GroupId.Name;
+                sheet.Cells[i + 1, 2] = report[i].StudentId.FullName;
+                sheet.Cells[i + 1, 3] = report[i].AverageGrade;
+            }
+            workBook.SaveAs(output);
+            workBook.Close();
         }
     }
 }

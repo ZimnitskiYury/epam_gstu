@@ -63,6 +63,10 @@
       <Project>{30EAA275-0004-4B91-89EA-FD0F3D6B0B51}</Project>
       <Name>DataReport</Name>
     </ProjectReference>
+    <ProjectReference Include="..\StudentsAndGrades\StudentsAndGrades.csproj">
+      <Project>{5B79CECE-5438-4E73-8A7E-FC4FFE33BFD2}</Project>
+      <Name>StudentsAndGrades</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
