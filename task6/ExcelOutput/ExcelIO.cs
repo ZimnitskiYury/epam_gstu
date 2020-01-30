@@ -17,14 +17,19 @@ namespace ExcelOutput
             Excel.Application ex = new Excel.Application();
             Excel.Workbook workBook = ex.Workbooks.Add();
             Excel.Worksheet sheet = (Excel.Worksheet)ex.Worksheets.get_Item(1);
-            sheet.Name = "Excel";
+            sheet.Name = "Session " + report[0].GroupId.Name;
+            sheet.Cells[1, 1] = "Фио";
+            sheet.Cells[1, 2] = "Предмет";
+            sheet.Cells[1, 3] = "Тип";
+            sheet.Cells[1, 4] = "Дата";
+            sheet.Cells[1, 5] = "Оценка";
             for (int i=0; i<report.Count;i++ )
             {
-                sheet.Cells[i+1, 1] = report[i].StudentId.FullName;
-                sheet.Cells[i+1, 2] = report[i].SubjectId.Name;
-                sheet.Cells[i+1, 3] = Enum.GetName(typeof(ExamType), report[i].ExamType);
-                sheet.Cells[i+1, 4] = report[i].Date.ToString();
-                sheet.Cells[i+1, 5] = report[i].Grade.Grade.ToString();
+                sheet.Cells[i+2, 1] = report[i].StudentId.FullName;
+                sheet.Cells[i+2, 2] = report[i].SubjectId.Name;
+                sheet.Cells[i+2, 3] = Enum.GetName(typeof(ExamType), report[i].ExamType);
+                sheet.Cells[i+2, 4] = report[i].Date.ToString();
+                sheet.Cells[i+2, 5] = report[i].Grade.Grade.ToString();
             }
             workBook.SaveAs(output);
             workBook.Close();

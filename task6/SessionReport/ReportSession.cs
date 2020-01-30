@@ -34,8 +34,6 @@ namespace DataReport
         }
         public List<ReportSession> GetResults(Session session, Group group1)
         {
-            
-            title = "Session " + session.StartDate + "-" + session.EndDate + group1.Name;
             List<ReportSession> allStudentsGrades=new List<ReportSession>();
             allStudentsGrades.AddRange(from exams in examinations
                                        where exams.SessionId.Id == session.Id
@@ -44,6 +42,33 @@ namespace DataReport
                                        where grade.ExamId.Id == exams.Id
                                        select new ReportSession(exams.SessionId, exams.GroupId, grade.StudentId, exams.SubjectId, exams.Exam, exams.Date, grade));
             return allStudentsGrades;
+        }
+        public List<ReportSession> GetResultsByGrades(Session session, Group group1)
+        {
+            List<ReportSession> allStudentsGrades = new List<ReportSession>();
+            allStudentsGrades =GetResults(session, group1);
+            var sortedallStudentsGrades = from allstudent in allStudentsGrades
+                                          orderby allstudent.Grade.Grade
+                                          select allstudent;
+            return sortedallStudentsGrades.ToList();
+        }
+        public List<ReportSession> GetResultsBySubject(Session session, Group group1)
+        {
+            List<ReportSession> allStudentsGrades = new List<ReportSession>();
+            allStudentsGrades = GetResults(session, group1);
+            var sortedallStudentsGrades = from allstudent in allStudentsGrades
+                                          orderby allstudent.SubjectId.Name
+                                          select allstudent;
+            return sortedallStudentsGrades.ToList();
+        }
+        public List<ReportSession> GetResultsByStudent(Session session, Group group1)
+        {
+            List<ReportSession> allStudentsGrades = new List<ReportSession>();
+            allStudentsGrades = GetResults(session, group1);
+            var sortedallStudentsGrades = from allstudent in allStudentsGrades
+                                          orderby allstudent.StudentId.FullName
+                                          select allstudent;
+            return sortedallStudentsGrades.ToList();
         }
         public List<ReportGroup> GetGrades(Session session)
         {
@@ -56,7 +81,25 @@ namespace DataReport
                                    select new ReportGroup(gr, avg, min, max));
             return gradesofgroup;
         }
-        public List<ReportExpelledStudent> GetExpelledByGroup(Session session, Group group, int minavg)
+        public List<ReportGroup> GetGradesByAverage(Session session)
+        {
+            List<ReportGroup> gradesofgroup = new List<ReportGroup>();
+            gradesofgroup = GetGrades(session);
+            var sortedgradesofgroup = from grade in gradesofgroup
+                                          orderby grade.AverageGrade
+                                          select grade;
+            return sortedgradesofgroup.ToList();
+        }
+        public List<ReportGroup> GetGradesByGroup(Session session)
+        {
+            List<ReportGroup> gradesofgroup = new List<ReportGroup>();
+            gradesofgroup = GetGrades(session);
+            var sortedgradesofgroup = from grade in gradesofgroup
+                                      orderby grade.GroupId.Name
+                                      select grade;
+            return sortedgradesofgroup.ToList();
+        }
+        public List<ReportExpelledStudent> GetExpelled(Session session, Group group, int minavg)
         {
             List<ReportExpelledStudent> expelled = new List<ReportExpelledStudent>();
             var result = GetResults(session, group);
@@ -82,13 +125,43 @@ namespace DataReport
             }
             return expelled;
         }
-        public List<ReportExpelledStudent> GetExpelledBySession(Session session, int minavg)
+        public List<ReportExpelledStudent> GetExpelledByStudent(Session session, Group group, int minavg)
+        {
+            List<ReportExpelledStudent> expelled = new List<ReportExpelledStudent>();
+            expelled = GetExpelled(session, group, minavg).OrderBy(exp => exp.StudentId.FullName).ToList();
+            return expelled;
+        }
+        public List<ReportExpelledStudent> GetExpelledByGrade(Session session, Group group, int minavg)
+        {
+            List<ReportExpelledStudent> expelled = new List<ReportExpelledStudent>();
+            expelled = GetExpelled(session, group, minavg).OrderBy(exp => exp.AverageGrade).ToList();
+            return expelled;
+        }
+        public List<ReportExpelledStudent> GetSessionExpelled(Session session, int minavg)
         {
             List<ReportExpelledStudent> expelled = new List<ReportExpelledStudent>();
             foreach (var gr in groups)
             {
-                expelled.AddRange(GetExpelledByGroup(session, gr, minavg));
+                expelled.AddRange(GetExpelled(session, gr, minavg));
             }
+            return expelled;
+        }
+        public List<ReportExpelledStudent> GetSessionExpelledByGroup(Session session, int minavg)
+        {
+            List<ReportExpelledStudent> expelled = new List<ReportExpelledStudent>();
+            expelled = GetSessionExpelled(session, minavg).OrderBy(exp => exp.GroupId.Name).ToList();
+            return expelled;
+        }
+        public List<ReportExpelledStudent> GetSessionExpelledByGrade(Session session,  int minavg)
+        {
+            List<ReportExpelledStudent> expelled = new List<ReportExpelledStudent>();
+            expelled = GetSessionExpelled(session, minavg).OrderBy(exp => exp.AverageGrade).ToList();
+            return expelled;
+        }
+        public List<ReportExpelledStudent> GetSessionExpelledByStudent(Session session, int minavg)
+        {
+            List<ReportExpelledStudent> expelled = new List<ReportExpelledStudent>();
+            expelled = GetSessionExpelled(session, minavg).OrderBy(exp => exp.StudentId.FullName).ToList();
             return expelled;
         }
     }

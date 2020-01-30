@@ -21,9 +21,9 @@ namespace ExcelOutput.Tests
             var group = new GroupDao();
             var report = new Report();
             var ex = new ExcelIO();
-            ex.Output(report.GetResults(session.Read(1), group.Read(2)), @"C:\Users\lenni\source\repos\ZimnitskiYury\epam_gstu\task6\output.xlsx");
+            ex.Output(report.GetResultsByStudent(session.Read(1), group.Read(2)), @"C:\Users\lenni\source\repos\ZimnitskiYury\epam_gstu\task6\output.xlsx");
             ex.Output(report.GetGrades(session.Read(1)), @"C:\Users\lenni\source\repos\ZimnitskiYury\epam_gstu\task6\output2.xlsx");
-            ex.Output(report.GetExpelledBySession(session.Read(1), 50), @"C:\Users\lenni\source\repos\ZimnitskiYury\epam_gstu\task6\output3.xlsx");
+            ex.Output(report.GetSessionExpelledByStudent(session.Read(1), 50), @"C:\Users\lenni\source\repos\ZimnitskiYury\epam_gstu\task6\output3.xlsx");
             Assert.Fail();
         }
     }
