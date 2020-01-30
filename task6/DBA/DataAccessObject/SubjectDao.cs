@@ -10,7 +10,7 @@ namespace dbDao
 {
     public class SubjectDao:IDao<Subject>
     {
-        private string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=task6;";
+        private string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Task6DB;";
         public void Create(Subject obj)
         {
             string sql = $"INSERT INTO Subject VALUES (@Name)";
@@ -45,8 +45,7 @@ namespace dbDao
             SqlDataReader dbreader = cmd.ExecuteReader();
             while (dbreader.Read())
             {
-                Subject subject = new Subject(dbreader.GetString(1));
-                subject.Id = dbreader.GetInt32(0);
+                Subject subject = new Subject(dbreader.GetInt32(0), dbreader.GetString(1));
                 subjects.Add(subject);
             }
             connection.Close();
@@ -65,8 +64,7 @@ namespace dbDao
             SqlDataReader dbreader = cmd.ExecuteReader();
             if (dbreader.Read())
             {
-                subject = new Subject(dbreader.GetString(1));
-                subject.Id = dbreader.GetInt32(0);
+                subject = new Subject(dbreader.GetInt32(0), dbreader.GetString(1));
             }
             connection.Close();
             return subject;
@@ -76,6 +74,7 @@ namespace dbDao
         {
             string sql = $"UPDATE Subject SET Name=@Name WHERE Id=@id";
             SqlCommand cmd = new SqlCommand(sql);
+            cmd.Parameters.AddWithValue("@Id", obj.Id);
             cmd.Parameters.AddWithValue("@Name", obj.Name);
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();

@@ -10,7 +10,7 @@ namespace dbDao
 {
     public class ExaminationDao:IDao<Examination>
     {
-        private string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=task6;";
+        private string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Task6DB;";
         private GroupDao group = new GroupDao();
         private SubjectDao subject = new SubjectDao();
         private SessionDao session = new SessionDao();
@@ -52,8 +52,7 @@ namespace dbDao
             SqlDataReader dbreader = cmd.ExecuteReader();
             while (dbreader.Read())
             {
-                Examination examination = new Examination(dbreader.GetDateTime(1), subject.Read(dbreader.GetInt32(2)), (ExamType)dbreader.GetInt32(3), group.Read(dbreader.GetInt32(4)), session.Read(dbreader.GetInt32(5)));
-                examination.Id = dbreader.GetInt32(0);
+                Examination examination = new Examination(dbreader.GetInt32(0), dbreader.GetDateTime(1), subject.Read(dbreader.GetInt32(2)), (ExamType)dbreader.GetInt32(3), group.Read(dbreader.GetInt32(4)), session.Read(dbreader.GetInt32(5)));
                 examinations.Add(examination);
             }
             connection.Close();
@@ -72,8 +71,7 @@ namespace dbDao
             SqlDataReader dbreader = cmd.ExecuteReader();
             if (dbreader.Read())
             {
-                examination = new Examination(dbreader.GetDateTime(1), subject.Read(dbreader.GetInt32(2)), (ExamType)dbreader.GetInt32(3), group.Read(dbreader.GetInt32(4)), session.Read(dbreader.GetInt32(5)));
-                examination.Id = dbreader.GetInt32(0);
+                examination = new Examination(dbreader.GetInt32(0), dbreader.GetDateTime(1), subject.Read(dbreader.GetInt32(2)), (ExamType)dbreader.GetInt32(3), group.Read(dbreader.GetInt32(4)), session.Read(dbreader.GetInt32(5)));
             }
             connection.Close();
             return examination;
@@ -83,6 +81,7 @@ namespace dbDao
         {
             string sql = $"UPDATE Examination SET Date=@Date, SubjectId=@SubjectId, TypeId=@TypeId, GroupId=@GroupId, SessionId=@SessionId WHERE Id=@id";
             SqlCommand cmd = new SqlCommand(sql);
+            cmd.Parameters.AddWithValue("@Id", obj.Id);
             cmd.Parameters.AddWithValue("@Date", obj.Date);
             cmd.Parameters.AddWithValue("@SubjectId", obj.SubjectId.Id);
             cmd.Parameters.AddWithValue("@TypeId", obj.Exam);

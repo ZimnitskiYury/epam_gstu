@@ -10,20 +10,20 @@ namespace StudentsAndGrades
     {
         private DateTime dateofbirth;
         private GenderType gender;
-        public Student(long creditBook, string fullName, DateTime dateofBirth, GenderType gen, Group groupId)
+
+        public Student(int id, string fullName, DateTime dateofBirth,  Group groupId, GenderType gender)
         {
-            CreditBook = creditBook;
+            Id = id;
             FullName = fullName ?? throw new ArgumentNullException(nameof(fullName));
             DateofBirth = dateofBirth;
-            Gender = gen;
-            GroupId = groupId;
+            Gender = gender;
+            GroupId = groupId ?? throw new ArgumentNullException(nameof(groupId));
         }
-        public long CreditBook { get; set; }
-        public int Id { get; set; }
+        public int Id { get;}
         public string FullName { get; set; }
         public DateTime DateofBirth
         {
-            get => dateofbirth;
+            get=> dateofbirth;
             set
             {
                 if (((DateTime.Now - value).Days / 365) <= 13)
@@ -42,7 +42,7 @@ namespace StudentsAndGrades
                 {
                     throw new Exception("Wrong Gender");
                 }
-                else gender = (GenderType)value;
+                else gender = value;
             }
         }
         public Group GroupId { get; set; }

@@ -8,8 +8,9 @@ namespace StudentsAndGrades
 {
     public class Session
     {
-        public Session(DateTime startDate, DateTime endDate)
+        public Session(int id, DateTime startDate, DateTime endDate)
         {
+            Id = id;
             if (startDate >= endDate)
             {
                 throw new Exception("Wrong dates of session");

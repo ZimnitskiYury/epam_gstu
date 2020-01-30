@@ -8,10 +8,12 @@ namespace StudentsAndGrades
 {
     public class Subject
     {
-        public Subject(string name)
+        public Subject(int id, string name)
         {
-            Name = name;
+            Id = id;
+            Name = name ?? throw new ArgumentNullException(nameof(name));
         }
+
         public int Id { get; set; }
         public string Name { get; set; }
     }

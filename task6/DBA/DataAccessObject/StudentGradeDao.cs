@@ -10,15 +10,15 @@ namespace dbDao
 {
     public class StudentGradeDao:IDao<StudentGrade>
     {
-        private string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=task6;";
-        private StudentDao student = new StudentDao();
-        private ExaminationDao examination = new ExaminationDao();
+        private string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Task6DB;";
+        StudentDao daostudent = new StudentDao();
+        ExaminationDao daoexam = new ExaminationDao();
         public void Create(StudentGrade obj)
         {
-            string sql = $"INSERT INTO StudentGrade VALUES (@StudentId, @Examination, @Grade)";
+            string sql = $"INSERT INTO StudentGrade VALUES ( @Examination, @StudentId, @Grade)";
             SqlCommand cmd = new SqlCommand(sql);
-            cmd.Parameters.AddWithValue("@StudentId", obj.StudentID.Id);
-            cmd.Parameters.AddWithValue("@Examination", obj.Exam.Id);
+            cmd.Parameters.AddWithValue("@StudentId", obj.StudentId.Id);
+            cmd.Parameters.AddWithValue("@Examination", obj.ExamId.Id);
             cmd.Parameters.AddWithValue("@Grade", obj.Grade);
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
@@ -39,7 +39,7 @@ namespace dbDao
             connection.Close();
         }
         public List<StudentGrade> GetAll()
-        {
+        {            
             List<StudentGrade> studentGrades = new List<StudentGrade>();
             string sql = $"SELECT * FROM StudentGrade";
             SqlCommand cmd = new SqlCommand(sql);
@@ -49,8 +49,7 @@ namespace dbDao
             SqlDataReader dbreader = cmd.ExecuteReader();
             while (dbreader.Read())
             {
-                StudentGrade studentGrade = new StudentGrade(student.Read(dbreader.GetInt32(1)), dbreader.GetInt32(2), examination.Read(dbreader.GetInt32(3)));
-                studentGrade.Id = dbreader.GetInt32(0);
+                StudentGrade studentGrade = new StudentGrade(dbreader.GetInt32(0), daoexam.Read(dbreader.GetInt32(1)), daostudent.Read(dbreader.GetInt32(2)), dbreader.GetInt32(3));
                 studentGrades.Add(studentGrade);
             }
             connection.Close();
@@ -69,8 +68,7 @@ namespace dbDao
             SqlDataReader dbreader = cmd.ExecuteReader();
             if (dbreader.Read())
             {
-                studentGrade = new StudentGrade(student.Read(dbreader.GetInt32(1)), dbreader.GetInt32(2), examination.Read(dbreader.GetInt32(3)));
-                studentGrade.Id = dbreader.GetInt32(0);
+                studentGrade = new StudentGrade(dbreader.GetInt32(0), daoexam.Read(dbreader.GetInt32(1)), daostudent.Read(dbreader.GetInt32(2)),  dbreader.GetInt32(3));
             }
             connection.Close();
             return studentGrade;
@@ -78,10 +76,11 @@ namespace dbDao
 
         public void Update(StudentGrade obj)
         {
-            string sql = $"UPDATE StudentGrade SET StudentID=@StudentId, ExaminationID=@Examination, Grade=@Grade";
+            string sql = $"UPDATE StudentGrade SET ExaminationID=@Examination, StudentID=@StudentId, Grade=@Grade WHERE [Id]=@Id";
             SqlCommand cmd = new SqlCommand(sql);
-            cmd.Parameters.AddWithValue("@StudentId", obj.StudentID.Id);
-            cmd.Parameters.AddWithValue("@Examination", obj.Exam.Id);
+            cmd.Parameters.AddWithValue("@Id", obj.Id);
+            cmd.Parameters.AddWithValue("@StudentId", obj.StudentId.Id);
+            cmd.Parameters.AddWithValue("@Examination", obj.ExamId.Id);
             cmd.Parameters.AddWithValue("@Grade", obj.Grade);
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();

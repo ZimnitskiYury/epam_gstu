@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExcelOutput
+namespace DataReport
 {
-    public class Class1
+    public interface IReport
     {
     }
 }
