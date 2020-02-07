@@ -11,6 +11,15 @@ namespace dbDao
     public class GroupDao:IDao<Group>
     {
         private string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Task6DB;";
+
+        public GroupDao(string connectionString)
+        {
+            this.connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
+        }
+        public GroupDao()
+        {
+
+        }
         public void Create(Group obj)
         {
             string sql = $"INSERT INTO [Group] VALUES (@Name)";

@@ -11,6 +11,16 @@ namespace dbDao
     public class SessionDao : IDao<Session>
     {
         private string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Task6DB;";
+
+        public SessionDao(string connectionString)
+        {
+            this.connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
+        }
+        public SessionDao()
+        {
+            
+        }
+
         public void Create(Session obj)
         {
             string sql = $"INSERT INTO Session VALUES (@StartDate, @EndDate)";

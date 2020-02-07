@@ -14,6 +14,15 @@ namespace dbDao
         private GroupDao group = new GroupDao();
         private SubjectDao subject = new SubjectDao();
         private SessionDao session = new SessionDao();
+
+        public ExaminationDao(string connectionString)
+        {
+            this.connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
+        }
+        public ExaminationDao()
+        {
+            
+        }
         public void Create(Examination obj)
         {
             string sql = $"INSERT INTO Examination VALUES (@Date, @SubjectId, @TypeId, @GroupId, @SessionId)";

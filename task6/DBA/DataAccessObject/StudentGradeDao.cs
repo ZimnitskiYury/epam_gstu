@@ -13,6 +13,16 @@ namespace dbDao
         private string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Task6DB;";
         StudentDao daostudent = new StudentDao();
         ExaminationDao daoexam = new ExaminationDao();
+
+        public StudentGradeDao(string connectionString)
+        {
+            this.connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
+        }
+        public StudentGradeDao()
+        {
+            
+        }
+
         public void Create(StudentGrade obj)
         {
             string sql = $"INSERT INTO StudentGrade VALUES ( @Examination, @StudentId, @Grade)";

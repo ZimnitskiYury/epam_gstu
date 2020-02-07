@@ -11,6 +11,16 @@ namespace dbDao
     public class SubjectDao:IDao<Subject>
     {
         private string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Task6DB;";
+
+        public SubjectDao(string connectionString)
+        {
+            this.connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
+        }
+        public SubjectDao()
+        {
+            
+        }
+
         public void Create(Subject obj)
         {
             string sql = $"INSERT INTO Subject VALUES (@Name)";

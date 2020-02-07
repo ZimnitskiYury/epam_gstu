@@ -1,4 +1,3 @@
-CREATE DATABASE Task6DB;
 USE Task6DB;
 
 CREATE TABLE [dbo].[Student](
