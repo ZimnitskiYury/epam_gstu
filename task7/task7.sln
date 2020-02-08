@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataReport", "SessionReport
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentsAndGrades", "StudentsAndGrades\StudentsAndGrades.csproj", "{5B79CECE-5438-4E73-8A7E-FC4FFE33BFD2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dbDaoTests", "dbDaoTests\dbDaoTests.csproj", "{4AA46E66-9227-4510-B74D-9241CEFC6886}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{5B79CECE-5438-4E73-8A7E-FC4FFE33BFD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B79CECE-5438-4E73-8A7E-FC4FFE33BFD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B79CECE-5438-4E73-8A7E-FC4FFE33BFD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AA46E66-9227-4510-B74D-9241CEFC6886}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AA46E66-9227-4510-B74D-9241CEFC6886}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AA46E66-9227-4510-B74D-9241CEFC6886}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AA46E66-9227-4510-B74D-9241CEFC6886}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

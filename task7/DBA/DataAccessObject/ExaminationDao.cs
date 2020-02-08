@@ -52,7 +52,7 @@ namespace dbDao
         }
         public List<Examination> GetAll()
         {
-            List<Examination> examinations = new List<Examination>();
+            List<Examination> examinations = new List<Examination>();/*
             string sql = $"SELECT * FROM Examination";
             SqlCommand cmd = new SqlCommand(sql);
             SqlConnection connection = new SqlConnection(connectionString);
@@ -64,25 +64,25 @@ namespace dbDao
                 Examination examination = new Examination(dbreader.GetInt32(0), dbreader.GetDateTime(1), subject.Read(dbreader.GetInt32(2)), (ExamType)dbreader.GetInt32(3), group.Read(dbreader.GetInt32(4)), session.Read(dbreader.GetInt32(5)));
                 examinations.Add(examination);
             }
-            connection.Close();
+            connection.Close();*/
             return examinations;
         }
 
         public Examination Read(int id)
         {
-            string sql = $"SELECT * FROM Examination WHERE [Id]=@Id";
+/*            string sql = $"SELECT * FROM Examination WHERE [Id]=@Id";
             SqlCommand cmd = new SqlCommand(sql);
             cmd.Parameters.AddWithValue("@Id", id);
             SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();
+            connection.Open();*/
             Examination examination = null;
-            cmd.Connection = connection;
+          /*  cmd.Connection = connection;
             SqlDataReader dbreader = cmd.ExecuteReader();
             if (dbreader.Read())
             {
                 examination = new Examination(dbreader.GetInt32(0), dbreader.GetDateTime(1), subject.Read(dbreader.GetInt32(2)), (ExamType)dbreader.GetInt32(3), group.Read(dbreader.GetInt32(4)), session.Read(dbreader.GetInt32(5)));
             }
-            connection.Close();
+            connection.Close();*/
             return examination;
         }
 

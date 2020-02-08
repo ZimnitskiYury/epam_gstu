@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Data.Linq.Mapping;
 using System.Linq;
 using System.Text;
@@ -12,15 +13,6 @@ namespace StudentsAndGrades
     {
         private DateTime dateofbirth;
         private GenderType gender;
-
-        public Student(int id, string fullName, DateTime dateofBirth,  Group groupId, GenderType gender)
-        {
-            Id = id;
-            FullName = fullName ?? throw new ArgumentNullException(nameof(fullName));
-            DateofBirth = dateofBirth;
-            Gender = gender;
-            GroupId = groupId ?? throw new ArgumentNullException(nameof(groupId));
-        }
         [Column(Name = "Id", IsPrimaryKey = true, IsDbGenerated = true)]
         public int Id { get;}
         [Column(Name = "FullName")]
@@ -51,7 +43,32 @@ namespace StudentsAndGrades
                 else gender = value;
             }
         }
-        [Association(Storage = "_Customer", ThisKey = "CustomerID", IsForeignKey = true)]
-        public Group GroupId { get; set; }
+        public int GroupId { get; set; }
+        #region studentgrade
+        private EntitySet<StudentGrade> _StudentGrades;
+
+        [Association(OtherKey = "StudentID", Storage = "_StudentGrades")]
+        public EntitySet<StudentGrade> StudentGrades
+        {
+            get { return this._StudentGrades; }
+            set { this._StudentGrades.Assign(value); }
+        }
+        #endregion 
+        #region groupid
+        [Association(Storage = "_Groups", ThisKey = "GroupID", IsForeignKey = true)]
+        public Group Groups
+        {
+            get { return this._Groups.Entity; }
+            set { this._Groups.Entity = value; }
+        }
+
+        private EntityRef<Group> _Groups;
+
+        #endregion
+        public Student()
+        {
+            _Groups = default(EntityRef<Group>);
+            this._StudentGrades = new EntitySet<StudentGrade>();
+        }
     }
 }

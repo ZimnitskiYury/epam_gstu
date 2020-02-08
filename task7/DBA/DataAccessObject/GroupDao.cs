@@ -1,6 +1,7 @@
 ﻿using StudentsAndGrades;
 using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -22,14 +23,10 @@ namespace dbDao
         }
         public void Create(Group obj)
         {
-            string sql = $"INSERT INTO [Group] VALUES (@Name)";
-            SqlCommand cmd = new SqlCommand(sql);
-            cmd.Parameters.AddWithValue("@Name", obj.Name);
-            SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();
-            cmd.Connection = connection;
-            cmd.ExecuteNonQuery();
-            connection.Close();
+            DataContext db = new DataContext(connectionString);
+            Table<Group> groups = db.GetTable<Group>();
+            groups.InsertOnSubmit(obj);
+            db.SubmitChanges();
         }
 
         public void Delete(int id)
@@ -46,7 +43,7 @@ namespace dbDao
         public List<Group> GetAll()
         {
             List<Group> groups = new List<Group>();
-            string sql = $"SELECT * FROM [Group]";
+        /*    string sql = $"SELECT * FROM [Group]";
             SqlCommand cmd = new SqlCommand(sql);
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
@@ -57,25 +54,25 @@ namespace dbDao
                 Group group = new Group(dbreader.GetInt32(0), dbreader.GetString(1));
                 groups.Add(group);
             }
-            connection.Close();
+            connection.Close();*/
             return groups;
         }
 
         public Group Read(int id)
         {
-            string sql = $"SELECT * FROM [Group] WHERE [Id]=@Id";
+    /*        string sql = $"SELECT * FROM [Group] WHERE [Id]=@Id";
             SqlCommand cmd = new SqlCommand(sql);
             cmd.Parameters.AddWithValue("@Id", id);
             SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();
+            connection.Open();*/
             Group group = null;
-            cmd.Connection = connection;
+      /*      cmd.Connection = connection;
             SqlDataReader dbreader = cmd.ExecuteReader();
             if (dbreader.Read())
             {
                 group = new Group(dbreader.GetInt32(0), dbreader.GetString(1));
             }
-            connection.Close();
+            connection.Close();*/
             return group;
         }
 

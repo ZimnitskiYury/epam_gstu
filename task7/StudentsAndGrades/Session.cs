@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Data.Linq.Mapping;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,19 @@ namespace StudentsAndGrades
         public DateTime StartDate { get; set; }
         [Column(Name = "EndDate")]
         public DateTime EndDate { get; set; }
+        #region examinationid
+        private EntitySet<Examination> _Examinations;
 
+        [Association(OtherKey = "SessionID", Storage = "_Examinations")]
+        public EntitySet<Examination> Examinations
+        {
+            get { return this._Examinations; }
+            set { this._Examinations.Assign(value); }
+        }
+        #endregion
+        public Session()
+        {
+            this._Examinations = new EntitySet<Examination>();
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Data.Linq.Mapping;
 using System.Linq;
 using System.Text;
@@ -19,5 +20,18 @@ namespace StudentsAndGrades
         public int Id { get; set; }
         [Column(Name = "Name")]
         public string Name { get; set; }
+
+        private EntitySet<Examination> _Examinations;
+
+        [Association(OtherKey = "SubjectID", Storage = "_Examenations")]
+        public EntitySet<Examination> Examinations
+        {
+            get { return this._Examinations; }
+            set { this._Examinations.Assign(value); }
+        }
+        public Subject()
+        {
+            this._Examinations = new EntitySet<Examination>();
+        }
     }
 }

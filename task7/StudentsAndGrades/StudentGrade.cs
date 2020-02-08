@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Data.Linq.Mapping;
 using System.Linq;
 using System.Text;
@@ -11,17 +12,10 @@ namespace StudentsAndGrades
     public class StudentGrade
     {
         int grade;
-        public StudentGrade(int id, Examination examId, Student studentId, int grade)
-        {
-            Id = id;
-            StudentId = studentId ?? throw new ArgumentNullException(nameof(studentId));
-            Grade = grade;
-            ExamId = examId ?? throw new ArgumentNullException(nameof(examId));
-        }
         [Column(Name = "id", IsPrimaryKey = true, IsDbGenerated = true)]
         public int Id { get; set; }
         [Column(Name = "StudentID")]
-        public Student StudentId {get;set;}
+        public int StudentId {get;set;}
         [Column(Name = "Grade")]
         public int Grade
         {
@@ -36,7 +30,34 @@ namespace StudentsAndGrades
             }
         }
         [Column(Name = "ExaminationID")]
-        public Examination ExamId { get; set; }
+        public int ExamId { get; set; }
 
+        #region examinationid
+        [Association(Storage = "_Examination", ThisKey = "ExaminationID", IsForeignKey = true)]
+        public Examination Examination
+        {
+            get { return this._Examination.Entity; }
+            set { this._Examination.Entity = value; }
+        }
+
+        private EntityRef<Examination> _Examination;
+
+        #endregion
+        #region studentid
+        [Association(Storage = "_Student", ThisKey = "StudentID", IsForeignKey = true)]
+        public Student Student
+        {
+            get { return this._Student.Entity; }
+            set { this._Student.Entity = value; }
+        }
+
+        private EntityRef<Student> _Student;
+
+        #endregion
+        public StudentGrade()
+        {
+            _Student = default(EntityRef<Student>);
+            _Examination = default(EntityRef<Examination>);
+        }
     }
 }
