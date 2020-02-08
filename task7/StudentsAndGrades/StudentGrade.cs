@@ -15,7 +15,7 @@ namespace StudentsAndGrades
         [Column(Name = "id", IsPrimaryKey = true, IsDbGenerated = true)]
         public int Id { get; set; }
         [Column(Name = "StudentID")]
-        public int StudentId {get;set;}
+        public int StudentID {get;set;}
         [Column(Name = "Grade")]
         public int Grade
         {
@@ -30,7 +30,7 @@ namespace StudentsAndGrades
             }
         }
         [Column(Name = "ExaminationID")]
-        public int ExamId { get; set; }
+        public int ExaminationID { get; set; }
 
         #region examinationid
         [Association(Storage = "_Examination", ThisKey = "ExaminationID", IsForeignKey = true)]

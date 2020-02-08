@@ -25,44 +25,45 @@ namespace dbDao
         public void Create(Session obj)
         {
             DataContext db = new DataContext(connectionString);
-            Table<Session> specialities = db.GetTable<Session>();
-            specialities.InsertOnSubmit(obj);
+            Table<Session> sessions = db.GetTable<Session>();
+            sessions.InsertOnSubmit(obj);
             db.SubmitChanges();
         }
 
         public void Delete(int id)
         {
             DataContext db = new DataContext(connectionString);
-            Table<Session> specialities = db.GetTable<Session>();
-            var specToDelete = specialities.Where(c => c.Id == id).Single();
-            specialities.DeleteOnSubmit(specToDelete);
+            Table<Session> sessions = db.GetTable<Session>();
+            var sesToDelete = sessions.Where(c => c.Id == id).Single();
+            sessions.DeleteOnSubmit(sesToDelete);
             db.SubmitChanges();
         }
 
         public List<Session> GetAll()
         {
             DataContext db = new DataContext(connectionString);
-            Table<Session> specialities = db.GetTable<Session>();
-            return specialities.ToList();
+            Table<Session> sessions = db.GetTable<Session>();
+            return sessions.ToList();
         }
 
         public Session Read(int id)
         {
             DataContext db = new DataContext(connectionString);
-            Table<Session> specialities = db.GetTable<Session>();
-            return specialities.Where(c => c.Id == id).Single();
+            Table<Session> sessions = db.GetTable<Session>();
+            return sessions.Where(c => c.Id == id).Single();
         }
 
         public void Update(Session obj)
         {
             DataContext db = new DataContext(connectionString);
-            Table<Session> specialities = db.GetTable<Session>();
-            foreach (var spec in from spec in specialities
+            Table<Session> sessions = db.GetTable<Session>();
+            foreach (var spec in from spec in sessions
                                  where spec.Id == obj.Id
                                  select spec)
             {
                 spec.StartDate = obj.StartDate;
                 spec.EndDate = obj.EndDate;
+                spec.Examinations = obj.Examinations;
             }
             db.SubmitChanges();
         }

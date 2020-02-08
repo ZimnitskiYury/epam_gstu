@@ -1,6 +1,7 @@
 ﻿using StudentsAndGrades;
 using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -8,96 +9,60 @@ using System.Threading.Tasks;
 
 namespace dbDao
 {
-    public class StudentDao:IDao<Student>
+    public class StudentDao : IDao<Student>
     {
         private string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Task6DB;";
-        GroupDao groupDao = new GroupDao();
-
         public StudentDao(string connectionString)
         {
             this.connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
         }
         public StudentDao()
         {
-           
+
         }
 
         public void Create(Student obj)
         {
-            string sql = $"INSERT INTO Student VALUES (@FullName, @DateofBirth, @GroupId, @Gender)";
-            SqlCommand cmd = new SqlCommand(sql);
-            cmd.Parameters.AddWithValue("@FullName", obj.FullName);
-            cmd.Parameters.AddWithValue("@DateofBirth", obj.DateofBirth);
-            cmd.Parameters.AddWithValue("@GroupId", obj.GroupId.Id);
-            cmd.Parameters.AddWithValue("@Gender", (int)obj.Gender);
-            SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();
-            cmd.Connection = connection;
-            cmd.ExecuteNonQuery();
-            connection.Close();
+            DataContext db = new DataContext(connectionString);
+            Table<Student> students = db.GetTable<Student>();
+            students.InsertOnSubmit(obj);
+            db.SubmitChanges();
         }
 
         public void Delete(int id)
         {
-            string sql = $"Delete from Student where Id=@Id";
-            SqlCommand cmd = new SqlCommand(sql);
-            cmd.Parameters.AddWithValue("@Id", id);
-            SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();
-            cmd.Connection = connection;
-            cmd.ExecuteNonQuery();
-            connection.Close();
+            DataContext db = new DataContext(connectionString);
+            Table<Student> students = db.GetTable<Student>();
+            var studToDelete = students.Where(c => c.Id == id).Single();
+            students.DeleteOnSubmit(studToDelete);
+            db.SubmitChanges();
         }
+
         public List<Student> GetAll()
         {
-            List<Student> students = new List<Student>();
-            string sql = $"SELECT * FROM Student";
-            SqlCommand cmd = new SqlCommand(sql);           
-            SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();
-            cmd.Connection = connection;
-            SqlDataReader dbreader = cmd.ExecuteReader();
-            while (dbreader.Read())
-            {
-                Student student = new Student(dbreader.GetInt32(0), dbreader.GetString(1), dbreader.GetDateTime(2), groupDao.Read(dbreader.GetInt32(3)), (GenderType)dbreader.GetInt32(4));
-                students.Add(student);
-            }
-            connection.Close();
-            return students;
+            DataContext db = new DataContext(connectionString);
+            Table<Student> students = db.GetTable<Student>();
+            return students.ToList();
         }
 
         public Student Read(int id)
         {
-            string sql = $"SELECT * FROM Student WHERE [Id]=@Id";
-            SqlCommand cmd = new SqlCommand(sql);
-            cmd.Parameters.AddWithValue("@Id", id);
-            SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();
-            Student student = null;
-            cmd.Connection = connection;
-            SqlDataReader dbreader = cmd.ExecuteReader();
-            if (dbreader.Read())
-            {
-                student = new Student(dbreader.GetInt32(0), dbreader.GetString(1), dbreader.GetDateTime(2), groupDao.Read(dbreader.GetInt32(3)), (GenderType)dbreader.GetInt32(4));        
-            }
-            connection.Close();
-            return student;
+            DataContext db = new DataContext(connectionString);
+            Table<Student> students = db.GetTable<Student>();
+            return students.Where(c => c.Id == id).Single();
         }
 
         public void Update(Student obj)
         {
-            string sql = $"UPDATE Student SET FullName=@FullName, DateofBirth=@DateofBirth, GroupId=@GroupId, Gender=@Gender WHERE Id=@id";
-            SqlCommand cmd = new SqlCommand(sql);
-            cmd.Parameters.AddWithValue("@Id", obj.Id);
-            cmd.Parameters.AddWithValue("@FullName", obj.FullName);
-            cmd.Parameters.AddWithValue("@DateofBirth", obj.DateofBirth);
-            cmd.Parameters.AddWithValue("@GroupId", obj.GroupId.Id);
-            cmd.Parameters.AddWithValue("@Gender", (int)obj.Gender);
-            SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();
-            cmd.Connection = connection;
-            cmd.ExecuteNonQuery();
-            connection.Close();
+            DataContext db = new DataContext(connectionString);
+            Table<Student> students = db.GetTable<Student>();
+            foreach (var stud in from stud in students
+                                 where stud.Id == obj.Id
+                                 select stud)
+            {
+
+            }
+            db.SubmitChanges();
         }
     }
 }

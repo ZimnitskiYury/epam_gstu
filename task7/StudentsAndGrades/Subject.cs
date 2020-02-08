@@ -23,7 +23,7 @@ namespace StudentsAndGrades
 
         private EntitySet<Examination> _Examinations;
 
-        [Association(OtherKey = "SubjectID", Storage = "_Examenations")]
+        [Association(OtherKey = "SubjectID", Storage = "_Examinations")]
         public EntitySet<Examination> Examinations
         {
             get { return this._Examinations; }

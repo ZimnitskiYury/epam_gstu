@@ -1,4 +1,5 @@
 ﻿using dbDao;
+using dbDao.DataAccessObject;
 using StudentsAndGrades;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,9 @@ namespace DataReport
         List<Examination> examinations;
         List<Session> sessions;
         List<Group> groups;
-        string title;
+        List<Speciality> specialities;
         public Report()
-        {           
+        {
             StudentDao studentDao = new StudentDao();
             students = studentDao.GetAll();
             StudentGradeDao studentGradeDao = new StudentGradeDao();
@@ -31,22 +32,24 @@ namespace DataReport
             sessions = sessionDao.GetAll();
             GroupDao groupDao = new GroupDao();
             groups = groupDao.GetAll();
+            SpecialityDao specialityDao = new SpecialityDao();
+            specialities = specialityDao.GetAll();
         }
         public List<ReportSession> GetResults(Session session, Group group1)
         {
-            List<ReportSession> allStudentsGrades=new List<ReportSession>();
+            List<ReportSession> allStudentsGrades = new List<ReportSession>();
             allStudentsGrades.AddRange(from exams in examinations
-                                       where exams.SessionId.Id == session.Id
-                                       where exams.GroupId.Id == group1.Id
+                                       where exams.SessionID == session.Id
+                                       where exams.GroupID == group1.Id
                                        from grade in grades
-                                       where grade.ExamId.Id == exams.Id
-                                       select new ReportSession(exams.SessionId, exams.GroupId, grade.StudentId, exams.SubjectId, exams.Exam, exams.Date, grade));
+                                       where grade.ExaminationID == exams.Id
+                                       select new ReportSession(exams.Sessions, exams.Groups, grade.Student, exams.Subjects, exams.Exam, exams.Date, grade));
             return allStudentsGrades;
         }
         public List<ReportSession> GetResultsByGrades(Session session, Group group1)
         {
             List<ReportSession> allStudentsGrades = new List<ReportSession>();
-            allStudentsGrades =GetResults(session, group1);
+            allStudentsGrades = GetResults(session, group1);
             var sortedallStudentsGrades = from allstudent in allStudentsGrades
                                           orderby allstudent.Grade.Grade
                                           select allstudent;
@@ -72,7 +75,7 @@ namespace DataReport
         }
         public List<ReportGroup> GetGrades(Session session)
         {
-            List<ReportGroup> gradesofgroup=new List<ReportGroup>();
+            List<ReportGroup> gradesofgroup = new List<ReportGroup>();
             gradesofgroup.AddRange(from gr in groups
                                    let result = GetResults(session, gr)
                                    let min = result.Min(a => a.Grade.Grade)
@@ -86,8 +89,8 @@ namespace DataReport
             List<ReportGroup> gradesofgroup = new List<ReportGroup>();
             gradesofgroup = GetGrades(session);
             var sortedgradesofgroup = from grade in gradesofgroup
-                                          orderby grade.AverageGrade
-                                          select grade;
+                                      orderby grade.AverageGrade
+                                      select grade;
             return sortedgradesofgroup.ToList();
         }
         public List<ReportGroup> GetGradesByGroup(Session session)
@@ -103,7 +106,7 @@ namespace DataReport
         {
             List<ReportExpelledStudent> expelled = new List<ReportExpelledStudent>();
             var result = GetResults(session, group);
-            
+
             foreach (var st in students)
             {
                 var _templist = new List<int>();
@@ -119,7 +122,7 @@ namespace DataReport
                     double avg = _templist.Average();
                     if (avg < minavg)
                     {
-                        expelled.Add(new ReportExpelledStudent(st, st.GroupId, avg));
+                        expelled.Add(new ReportExpelledStudent(st, st.Groups, avg));
                     }
                 }
             }
@@ -152,7 +155,7 @@ namespace DataReport
             expelled = GetSessionExpelled(session, minavg).OrderBy(exp => exp.GroupId.Name).ToList();
             return expelled;
         }
-        public List<ReportExpelledStudent> GetSessionExpelledByGrade(Session session,  int minavg)
+        public List<ReportExpelledStudent> GetSessionExpelledByGrade(Session session, int minavg)
         {
             List<ReportExpelledStudent> expelled = new List<ReportExpelledStudent>();
             expelled = GetSessionExpelled(session, minavg).OrderBy(exp => exp.AverageGrade).ToList();
@@ -163,6 +166,28 @@ namespace DataReport
             List<ReportExpelledStudent> expelled = new List<ReportExpelledStudent>();
             expelled = GetSessionExpelled(session, minavg).OrderBy(exp => exp.StudentId.FullName).ToList();
             return expelled;
+        }
+        public List<AvgGradeBySpeciality> GetAvgGradeBySpecialities(Session session)
+        {
+            List<AvgGradeBySpeciality> avgGradeBies = new List<AvgGradeBySpeciality>();
+            foreach (var spec in specialities)
+            {
+                double avggrade = 0;
+                int count = 0;
+                foreach (var gr in from exams in examinations
+                                   where exams.SessionID == session.Id && exams.Groups.SpecialityID == spec.Id
+                                   from gr in grades
+                                   where gr.ExaminationID == exams.Id
+                                   select gr)
+                {
+                    avggrade += gr.Grade;
+                    count++;
+                }
+
+                avggrade = avggrade / count;
+                avgGradeBies.Add(new AvgGradeBySpeciality(spec.Name, avggrade));
+            }
+            return avgGradeBies;
         }
     }
 }

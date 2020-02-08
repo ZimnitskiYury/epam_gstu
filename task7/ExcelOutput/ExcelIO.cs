@@ -65,5 +65,19 @@ namespace ExcelOutput
             workBook.SaveAs(output);
             workBook.Close();
         }
+        public void Output(List<AvgGradeBySpeciality> report, string output)
+        {
+            Excel.Application ex = new Excel.Application();
+            Excel.Workbook workBook = ex.Workbooks.Add();
+            Excel.Worksheet sheet = (Excel.Worksheet)ex.Worksheets.get_Item(1);
+            sheet.Name = "Average Grade by Specialities";
+            for (int i = 0; i < report.Count; i++)
+            {
+                sheet.Cells[i + 1, 1] = report[i].SpecialityName;
+                sheet.Cells[i + 1, 2] = report[i].AverageGrade;
+            }
+            workBook.SaveAs(output);
+            workBook.Close();
+        }
     }
 }

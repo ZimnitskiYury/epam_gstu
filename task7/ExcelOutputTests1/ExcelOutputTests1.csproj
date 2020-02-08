@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4AA46E66-9227-4510-B74D-9241CEFC6886}</ProjectGuid>
+    <ProjectGuid>{60504400-C0BF-4932-B424-2D8DC36B02F9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>dbDaoTests</RootNamespace>
-    <AssemblyName>dbDaoTests</AssemblyName>
+    <RootNamespace>ExcelOutputTests1</RootNamespace>
+    <AssemblyName>ExcelOutputTests1</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -56,8 +56,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="DataAccessObject\ExaminationDaoTests.cs" />
-    <Compile Include="DataAccessObject\SpecialityDaoTests.cs" />
+    <Compile Include="ExcelIOTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +66,14 @@
     <ProjectReference Include="..\DBA\dbDao.csproj">
       <Project>{0800C9E8-E28F-4791-9255-F46A55A0CA51}</Project>
       <Name>dbDao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExcelOutput\ExcelOutput.csproj">
+      <Project>{66151DDA-B19C-4D6C-BDC1-0E0AA9DC242D}</Project>
+      <Name>ExcelOutput</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SessionReport\DataReport.csproj">
+      <Project>{30EAA275-0004-4B91-89EA-FD0F3D6B0B51}</Project>
+      <Name>DataReport</Name>
     </ProjectReference>
     <ProjectReference Include="..\StudentsAndGrades\StudentsAndGrades.csproj">
       <Project>{5B79CECE-5438-4E73-8A7E-FC4FFE33BFD2}</Project>

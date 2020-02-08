@@ -55,4 +55,15 @@ namespace DataReport
         public Group GroupId { get; set; }
         public double AverageGrade { get; set; }
     }
+    public class AvgGradeBySpeciality
+    {
+        public AvgGradeBySpeciality(string specialityName, double averageGrade)
+        {
+            SpecialityName = specialityName ?? throw new ArgumentNullException(nameof(specialityName));
+            AverageGrade = averageGrade;
+        }
+
+        public string SpecialityName { get; set; }
+        public double AverageGrade { get; set; }
+    }
 }

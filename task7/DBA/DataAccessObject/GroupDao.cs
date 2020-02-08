@@ -31,62 +31,42 @@ namespace dbDao
 
         public void Delete(int id)
         {
-            string sql = $"Delete from Group where Id=@Id";
-            SqlCommand cmd = new SqlCommand(sql);
-            cmd.Parameters.AddWithValue("@Id", id);
-            SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();
-            cmd.Connection = connection;
-            cmd.ExecuteNonQuery();
-            connection.Close();
+            DataContext db = new DataContext(connectionString);
+            Table<Group> groups = db.GetTable<Group>();
+            var sesToDelete = groups.Where(c => c.Id == id).Single();
+            groups.DeleteOnSubmit(sesToDelete);
+            db.SubmitChanges();
         }
+
         public List<Group> GetAll()
         {
-            List<Group> groups = new List<Group>();
-        /*    string sql = $"SELECT * FROM [Group]";
-            SqlCommand cmd = new SqlCommand(sql);
-            SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();
-            cmd.Connection = connection;
-            SqlDataReader dbreader = cmd.ExecuteReader();
-            while (dbreader.Read())
-            {
-                Group group = new Group(dbreader.GetInt32(0), dbreader.GetString(1));
-                groups.Add(group);
-            }
-            connection.Close();*/
-            return groups;
+            DataContext db = new DataContext(connectionString);
+            Table<Group> groups = db.GetTable<Group>();
+            return groups.ToList();
         }
 
         public Group Read(int id)
         {
-    /*        string sql = $"SELECT * FROM [Group] WHERE [Id]=@Id";
-            SqlCommand cmd = new SqlCommand(sql);
-            cmd.Parameters.AddWithValue("@Id", id);
-            SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();*/
-            Group group = null;
-      /*      cmd.Connection = connection;
-            SqlDataReader dbreader = cmd.ExecuteReader();
-            if (dbreader.Read())
-            {
-                group = new Group(dbreader.GetInt32(0), dbreader.GetString(1));
-            }
-            connection.Close();*/
-            return group;
+            DataContext db = new DataContext(connectionString);
+            Table<Group> groups = db.GetTable<Group>();
+            return groups.Where(c => c.Id == id).Single();
         }
 
         public void Update(Group obj)
         {
-            string sql = $"UPDATE Group SET Name=@Name WHERE Id=@id";
-            SqlCommand cmd = new SqlCommand(sql);
-            cmd.Parameters.AddWithValue("@Id", obj.Id);
-            cmd.Parameters.AddWithValue("@Name", obj.Name);
-            SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();
-            cmd.Connection = connection;
-            cmd.ExecuteNonQuery();
-            connection.Close();
+            DataContext db = new DataContext(connectionString);
+            Table<Group> groups = db.GetTable<Group>();
+            foreach (var spec in from spec in groups
+                                 where spec.Id == obj.Id
+                                 select spec)
+            {
+                spec.Name = obj.Name;
+                spec.Speciality = obj.Speciality;
+                spec.SpecialityID = obj.SpecialityID;
+                spec.Students = obj.Students;            
+                spec.Examinations = obj.Examinations;
+            }
+            db.SubmitChanges();
         }
     }
 }

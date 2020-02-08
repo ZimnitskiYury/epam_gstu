@@ -12,30 +12,29 @@ namespace StudentsAndGrades
     public class Examination
     {
         [Column(Name = "MentorID")]
-        public int MentorId { get; set; }
+        public int MentorID { get; set; }
         [Column(Name= "id", IsPrimaryKey = true, IsDbGenerated = true)]
         public int Id { get; set; }
         [Column(Name = "Date")]
         public DateTime Date { get; set; }
         [Column(Name = "SubjectID")]
-        public int SubjectId { get; set; }
+        public int SubjectID { get; set; }
         [Column(Name = "TypeID")]
         public ExamType Exam { get; set; }
         [Column(Name = "GroupID")]
-        public int GroupId { get; set; }
+        public int GroupID { get; set; }
         [Column(Name = "SessionID")]
-        public int SessionId { get; set; }
-        #region subjectid
-        [Association(Storage = "_Subject", ThisKey = "SubjectID", IsForeignKey = true)]
-        public Subject Subject
+        public int SessionID { get; set; }
+
+        [Association(Storage = "_Subjects", ThisKey = "SubjectID", IsForeignKey = true)]
+        public Subject Subjects
         {
-            get { return this._Subject.Entity; }
-            set { this._Subject.Entity = value; }
+            get { return this._Subjects.Entity; }
+            set { this._Subjects.Entity = value; }
         }
 
-        private EntityRef<Subject> _Subject;
+        private EntityRef<Subject> _Subjects;
 
-        #endregion
         #region studentgrades
         private EntitySet<StudentGrade> _StudentGrades;
 
@@ -83,7 +82,7 @@ namespace StudentsAndGrades
         {
             _Mentors = default(EntityRef<Mentor>);
             _Sessions = default(EntityRef<Session>);
-            _Subject = default(EntityRef<Subject>);
+            _Subjects = default(EntityRef<Subject>);
             _Groups = default(EntityRef<Group>);
             this._StudentGrades = new EntitySet<StudentGrade>();
         }               

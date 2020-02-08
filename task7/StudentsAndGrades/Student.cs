@@ -14,7 +14,7 @@ namespace StudentsAndGrades
         private DateTime dateofbirth;
         private GenderType gender;
         [Column(Name = "Id", IsPrimaryKey = true, IsDbGenerated = true)]
-        public int Id { get;}
+        public int Id { get; set; }
         [Column(Name = "FullName")]
         public string FullName { get; set; }
         [Column(Name = "DateofBirth")]
@@ -43,7 +43,8 @@ namespace StudentsAndGrades
                 else gender = value;
             }
         }
-        public int GroupId { get; set; }
+        [Column(Name = "GroupID")]
+        public int GroupID { get; set; }
         #region studentgrade
         private EntitySet<StudentGrade> _StudentGrades;
 
